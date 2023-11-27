@@ -9,7 +9,7 @@ public class TestDbConnection {
         ResultSet rs;
 
         String jdbc = "jdbc:mysql://localhost:3306/koreanmasterdb"
-                +"?useSSL=false" + "&serverTimezone=Asia/Seoul";// jdbc URL
+                +"?useSSL=false" + "&serverTimezone=Asia/Seoul";
         String user_name = "root";
         String pw = "qoalswjd620!";
 
