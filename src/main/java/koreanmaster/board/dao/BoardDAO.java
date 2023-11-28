@@ -13,7 +13,7 @@ public class BoardDAO {
     public BoardDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public void showMyBoard(String myEmail) throws SQLException {
+    public void showByEmail(String myEmail) throws SQLException {
         String sql = "SELECT * FROM Board WHERE writer = \""+myEmail+"\"";
         ResultSet rs = executeSql.getResult(sql);
         while(rs.next()){
@@ -21,11 +21,20 @@ public class BoardDAO {
         }
     }
 
-    public void uploadBoard(String title, String email, String content) throws SQLException {
+    public void upload(String title, String email, String content) throws SQLException {
         String date = dateFormat.format(new Date());
         String sql = "INSERT INTO Board VALUES (NULL, \""
                 + title + "\", \"" + email + "\", \""
                 + date + "\", \"" + content + "\",NULL);";
+        executeSql.noResult(sql);
+    }
+
+    public void revise(int boardId, String content) throws SQLException {
+        String date = dateFormat.format(new Date());
+        String sql = "UPDATE Board SET content = \"" + content
+                + "\", registration_date = \"" + date +
+                "\" WHERE board_id = " + boardId +";";
+        System.out.println(sql);
         executeSql.noResult(sql);
     }
 }
