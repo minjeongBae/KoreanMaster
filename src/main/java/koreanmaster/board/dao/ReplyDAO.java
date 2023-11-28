@@ -14,7 +14,7 @@ public class ReplyDAO {
     public ReplyDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public void upload(String content, int boardId) throws SQLException {
+    public void upload(String content, int postId) throws SQLException {
         String date = dateFormat.format(new Date());
         String sql = "INSERT INTO Reply VALUES (NULL, \"관리자\", \""
                 + date + "\",\""+content+"\");";
@@ -27,9 +27,9 @@ public class ReplyDAO {
             replyId = Integer.parseInt(rs.getString(1));
         }
 
-        sql = "UPDATE Board SET reply_id = "
-                + replyId + " WHERE board_id = "
-                + boardId + ";";
+        sql = "UPDATE Post SET reply_id = "
+                + replyId + " WHERE post_id = "
+                + postId + ";";
         executeSql.noResult(sql);
     }
 
@@ -38,7 +38,6 @@ public class ReplyDAO {
         String sql = "UPDATE Reply SET content = \"" + content
                 + "\", registration_date = \"" + date +
                 "\" WHERE reply_id = " + replyId +";";
-        System.out.println(sql);
         executeSql.noResult(sql);
     }
 }
