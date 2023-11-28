@@ -34,7 +34,6 @@ public class BoardDAO {
         String sql = "UPDATE Board SET content = \"" + content
                 + "\", registration_date = \"" + date +
                 "\" WHERE board_id = " + boardId +";";
-        System.out.println(sql);
         executeSql.noResult(sql);
     }
 }
