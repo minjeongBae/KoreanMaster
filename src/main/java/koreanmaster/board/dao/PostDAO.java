@@ -17,7 +17,7 @@ public class PostDAO {
     public PostDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public void getByEmail(String email) throws SQLException, ParseException {
+    public List<PostDTO> getByEmail(String email) throws SQLException, ParseException {
         String sql = "SELECT * FROM Post WHERE writer = \""+email+"\"";
         ResultSet rs = executeSql.getResult(sql);
         List<PostDTO> allPost = new ArrayList<>();
@@ -33,6 +33,8 @@ public class PostDAO {
             allPost.add(post);
             System.out.println(post.printInfo());
         }
+
+        return allPost;
     }
 
     public void upload(String title, String email, String content) throws SQLException {
