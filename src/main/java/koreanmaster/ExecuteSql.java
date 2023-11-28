@@ -2,7 +2,7 @@ package koreanmaster;
 
 import java.sql.*;
 
-public class CommonConnection {
+public class ExecuteSql {
     private final static String jdbc = "jdbc:mysql://localhost:3306/koreanmasterdb"
             +"?useSSL=false" + "&serverTimezone=Asia/Seoul";// jdbc URL
     private final static String user_name = "root";
@@ -11,18 +11,13 @@ public class CommonConnection {
     private Connection con;
     private Statement stmt;
 
-    public CommonConnection(){
-        try {
-            con = DriverManager.getConnection(jdbc,user_name, pw);
-            System.out.println("연결 성공");
-            stmt = con.createStatement();
-        } catch(SQLException e) {
-            System.err.println("오류 : " + e.getMessage());
-            e.printStackTrace();
-        }
+    public ExecuteSql() throws SQLException {
+        con = DriverManager.getConnection(jdbc,user_name, pw);
+        System.out.println("연결 성공");
+        stmt = con.createStatement();
     }
 
-    public ResultSet executeSQL(String sql){
+    public ResultSet getResult(String sql){
         try{
             return stmt.executeQuery(sql);
         }catch(SQLException e){
@@ -32,14 +27,16 @@ public class CommonConnection {
         }
     }
 
-    public boolean close(){
-        if (con != null) try{
-            con.close();
-            return true;
-        }catch (SQLException e){
+    public void noResult(String sql) throws SQLException {
+        try{
+            stmt.executeUpdate(sql);
+        }catch(SQLException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-        return false;
+    }
+
+    public void closeConnection() throws SQLException {
+        con.close();
     }
 }
