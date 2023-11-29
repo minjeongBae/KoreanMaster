@@ -21,7 +21,4 @@ public class PostDTO {
         this.replyId = replyId;
     }
 
-    public String printInfo(){
-        return this.postId +"-"+this.content;
-    }
 }
