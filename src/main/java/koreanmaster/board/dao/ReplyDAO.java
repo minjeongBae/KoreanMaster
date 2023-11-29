@@ -1,40 +1,35 @@
 package koreanmaster.board.dao;
 
-import koreanmaster.ExecuteSql;
+import koreanmaster.common.ExecuteSql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ReplyDAO {
-    private final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private final ExecuteSql executeSql;
 
     public ReplyDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public void upload(String content, int postId) throws SQLException {
-        String date = dateFormat.format(new Date());
-        String sql = "INSERT INTO Reply VALUES (NULL, \"관리자\", \""
+    public void upload(String writer, String content, Date date) throws SQLException {
+        String sql = "INSERT INTO Reply VALUES (NULL, \""+writer+"\", \""
                 + date + "\",\""+content+"\");";
         executeSql.noResult(sql);
+    }
 
-        sql = "SELECT reply_id AS LAST_VALUE_OVER FROM Reply;";
+    public int getLastRegistered() throws SQLException {
+        String sql = "SELECT reply_id AS LAST_VALUE_OVER FROM Reply;";
         ResultSet rs = executeSql.getResult(sql);
         int replyId = -1;
         while (rs.next()){
             replyId = Integer.parseInt(rs.getString(1));
         }
 
-        sql = "UPDATE Post SET reply_id = "
-                + replyId + " WHERE post_id = "
-                + postId + ";";
-        executeSql.noResult(sql);
+        return replyId;
     }
 
-    public void revise(int replyId, String content) throws SQLException {
-        String date = dateFormat.format(new Date());
+    public void revise(int replyId, String content, Date date) throws SQLException {
         String sql = "UPDATE Reply SET content = \"" + content
                 + "\", registration_date = \"" + date +
                 "\" WHERE reply_id = " + replyId +";";
