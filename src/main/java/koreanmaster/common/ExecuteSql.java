@@ -1,4 +1,4 @@
-package koreanmaster;
+package koreanmaster.common;
 
 import java.sql.*;
 
