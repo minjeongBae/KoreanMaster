@@ -24,8 +24,7 @@ public class PostDAO {    private final ExecuteSql executeSql;
             PostDTO post = new PostDTO(
                     Integer.parseInt(rs.getString(1)),
                     rs.getString(2), rs.getString(3),
-                    new SimpleDateFormat().parse(rs.getString(4)),
-                    rs.getString(5),
+                    rs.getString(4), rs.getString(5),
                     Integer.parseInt(rs.getString(6))
             );
             allPost.add(post);
@@ -34,7 +33,7 @@ public class PostDAO {    private final ExecuteSql executeSql;
         return allPost;
     }
 
-    public void upload(String title, String email, Date date, String content) throws SQLException {
+    public void upload(String title, String email, String date, String content) throws SQLException {
         String sql = "INSERT INTO Post VALUES (NULL, \""
                 + title + "\", \"" + email + "\", \""
                 + date + "\", \"" + content + "\",NULL);";

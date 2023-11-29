@@ -12,7 +12,7 @@ public class ReplyDAO {
     public ReplyDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public void upload(String writer, String content, Date date) throws SQLException {
+    public void upload(String writer, String content, String date) throws SQLException {
         String sql = "INSERT INTO Reply VALUES (NULL, \""+writer+"\", \""
                 + date + "\",\""+content+"\");";
         executeSql.noResult(sql);
