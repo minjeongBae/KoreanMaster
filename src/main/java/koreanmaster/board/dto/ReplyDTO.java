@@ -1,6 +1,5 @@
 package koreanmaster.board.dto;
 
-import java.util.Date;
 
 public class ReplyDTO {
     private final int replyId;

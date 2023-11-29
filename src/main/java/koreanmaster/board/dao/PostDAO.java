@@ -53,4 +53,13 @@ public class PostDAO {    private final ExecuteSql executeSql;
                 + postId + ";";
         executeSql.noResult(sql);
     }
+
+    public int getReplyId(int postId) throws SQLException {
+        String sql = "SELECT reply_id FROM Post WHERE post_id = " + postId + ";";
+        ResultSet rs = executeSql.getResult(sql);
+        while (rs.next()){
+            return rs.getInt(1);
+        }
+        return -1;
+    }
 }

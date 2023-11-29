@@ -1,7 +1,8 @@
 package koreanmaster.board.dto;
 
-import java.util.Date;
+import lombok.Getter;
 
+@Getter
 public class PostDTO {
     private final int postId;
     private final String title;

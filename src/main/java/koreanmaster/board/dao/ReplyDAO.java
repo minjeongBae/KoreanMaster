@@ -1,5 +1,6 @@
 package koreanmaster.board.dao;
 
+import koreanmaster.board.dto.ReplyDTO;
 import koreanmaster.common.ExecuteSql;
 
 import java.sql.ResultSet;
@@ -32,7 +33,21 @@ public class ReplyDAO {
     public void revise(int replyId, String content, Date date) throws SQLException {
         String sql = "UPDATE Reply SET content = \"" + content
                 + "\", registration_date = \"" + date +
-                "\" WHERE reply_id = " + replyId +";";
+                "\" WHERE reply_id = " + replyId + ";";
         executeSql.noResult(sql);
+    }
+
+    public ReplyDTO getReply(int replyId) throws SQLException {
+        String sql = "SELECT * FROM Reply WHERE = " + replyId + ";";
+        ResultSet rs = executeSql.getResult(sql);
+        while (rs.next()){
+            return new ReplyDTO(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4)
+            );
+        }
+        return null;
     }
 }
