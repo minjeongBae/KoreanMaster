@@ -5,17 +5,15 @@ import koreanmaster.board.dto.PostDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class PostDAO {    private final ExecuteSql executeSql;
+public class PostDAO {
+    private final ExecuteSql executeSql;
     public PostDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public List<PostDTO> getAllByEmail(String email) throws SQLException, ParseException {
+    public List<PostDTO> getAllByEmail(String email) throws SQLException {
         String sql = "SELECT * FROM Post WHERE writer = \""+email+"\"";
         ResultSet rs = executeSql.getResult(sql);
 
@@ -33,17 +31,17 @@ public class PostDAO {    private final ExecuteSql executeSql;
         return allPost;
     }
 
-    public void upload(String title, String email, String date, String content) throws SQLException {
+    public void upload(PostDTO post) throws SQLException {
         String sql = "INSERT INTO Post VALUES (NULL, \""
-                + title + "\", \"" + email + "\", \""
-                + date + "\", \"" + content + "\",NULL);";
+                + post.getTitle() + "\", \"" + post.getWriter() + "\", \""
+                + post.getRegistrationDate() + "\", \"" + post.getContent() + "\",NULL);";
         executeSql.noResult(sql);
     }
 
-    public void revise(int postId, String content, Date date) throws SQLException {
-        String sql = "UPDATE Post SET content = \"" + content
-                + "\", registration_date = \"" + date +
-                "\" WHERE post_id = " + postId +";";
+    public void revise(PostDTO post) throws SQLException {
+        String sql = "UPDATE Post SET content = \"" + post.getContent()
+                + "\", registration_date = \"" + post.getRegistrationDate() +
+                "\" WHERE post_id = " + post.getPostId() +";";
         executeSql.noResult(sql);
     }
 
