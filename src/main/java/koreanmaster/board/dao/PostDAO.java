@@ -38,10 +38,9 @@ public class PostDAO {
         executeSql.noResult(sql);
     }
 
-    public void revise(PostDTO post) throws SQLException {
-        String sql = "UPDATE Post SET content = \"" + post.getContent()
-                + "\", registration_date = \"" + post.getRegistrationDate() +
-                "\" WHERE post_id = " + post.getPostId() +";";
+    public void revise(int postId, String content) throws SQLException {
+        String sql = "UPDATE Post SET content = \"" +  content
+                + "\" WHERE post_id = " + postId +";";
         executeSql.noResult(sql);
     }
 
