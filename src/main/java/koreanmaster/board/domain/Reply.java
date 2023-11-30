@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Reply {
-    private PostDTO post;
+    private final PostDTO post;
     private ReplyDTO reply;
     public Reply(PostDTO post) throws SQLException {
         this.post = post;
@@ -28,9 +28,18 @@ public class Reply {
         reply = new ReplyDTO(replyDAO.getLastRegistered(), writer, date, content);
     }
 
-    public void revise(){
+    public boolean revise(String content) throws SQLException {
         if(reply!=null){
-
+            reply = new ReplyDTO(
+                    reply.getReplyId(),
+                    reply.getWriter(),
+                    reply.getRegistrationDate(),
+                    content
+            );
+            ReplyDAO replyDAO = new ReplyDAO();
+            replyDAO.revise(reply.getReplyId(), reply.getContent(), reply.getRegistrationDate());
+           return true;
         }
+        return false;
     }
 }

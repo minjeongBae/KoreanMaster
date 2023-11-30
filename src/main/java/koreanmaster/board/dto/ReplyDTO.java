@@ -1,6 +1,9 @@
 package koreanmaster.board.dto;
 
 
+import lombok.Getter;
+
+@Getter
 public class ReplyDTO {
     private final int replyId;
     private final String writer;

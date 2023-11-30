@@ -30,7 +30,7 @@ public class ReplyDAO {
         return replyId;
     }
 
-    public void revise(int replyId, String content, Date date) throws SQLException {
+    public void revise(int replyId, String content, String date) throws SQLException {
         String sql = "UPDATE Reply SET content = \"" + content
                 + "\", registration_date = \"" + date +
                 "\" WHERE reply_id = " + replyId + ";";
