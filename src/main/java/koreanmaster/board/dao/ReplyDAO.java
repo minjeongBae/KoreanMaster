@@ -32,8 +32,7 @@ public class ReplyDAO {
 
     public void revise(ReplyDTO reply) throws SQLException {
         String sql = "UPDATE Reply SET content = \"" + reply.getContent()
-                + "\", registration_date = \"" + reply.getRegistrationDate() +
-                "\" WHERE reply_id = " + reply.getReplyId() + ";";
+                + "\" WHERE reply_id = " + reply.getReplyId() + ";";
         executeSql.noResult(sql);
     }
 
