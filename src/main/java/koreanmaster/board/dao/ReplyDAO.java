@@ -5,7 +5,6 @@ import koreanmaster.common.ExecuteSql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 public class ReplyDAO {
     private final ExecuteSql executeSql;
@@ -13,9 +12,10 @@ public class ReplyDAO {
     public ReplyDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public void upload(String writer, String content, String date) throws SQLException {
-        String sql = "INSERT INTO Reply VALUES (NULL, \""+writer+"\", \""
-                + date + "\",\""+content+"\");";
+    public void upload(ReplyDTO reply) throws SQLException {
+        String sql = "INSERT INTO Reply VALUES (NULL, \""+reply.getWriter()+"\", \""
+                + reply.getRegistrationDate() + "\",\""
+                + reply.getContent() + "\");";
         executeSql.noResult(sql);
     }
 
@@ -30,10 +30,10 @@ public class ReplyDAO {
         return replyId;
     }
 
-    public void revise(int replyId, String content, String date) throws SQLException {
-        String sql = "UPDATE Reply SET content = \"" + content
-                + "\", registration_date = \"" + date +
-                "\" WHERE reply_id = " + replyId + ";";
+    public void revise(ReplyDTO reply) throws SQLException {
+        String sql = "UPDATE Reply SET content = \"" + reply.getContent()
+                + "\", registration_date = \"" + reply.getRegistrationDate() +
+                "\" WHERE reply_id = " + reply.getReplyId() + ";";
         executeSql.noResult(sql);
     }
 

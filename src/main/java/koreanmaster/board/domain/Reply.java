@@ -19,13 +19,14 @@ public class Reply {
         reply = new ReplyDAO().getReply(replyId);
     }
     public void register(String content, String writer) throws SQLException {
+        ReplyDAO replyDAO = new ReplyDAO();
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(new Date());
 
-        ReplyDAO replyDAO = new ReplyDAO();
-        replyDAO.upload(writer, content, date);
-
         reply = new ReplyDTO(replyDAO.getLastRegistered(), writer, date, content);
+
+        replyDAO.upload(reply);
     }
 
     public boolean revise(String content) throws SQLException {
@@ -37,7 +38,7 @@ public class Reply {
                     content
             );
             ReplyDAO replyDAO = new ReplyDAO();
-            replyDAO.revise(reply.getReplyId(), reply.getContent(), reply.getRegistrationDate());
+            replyDAO.revise(reply);
            return true;
         }
         return false;
