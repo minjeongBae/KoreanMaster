@@ -11,34 +11,30 @@ import java.util.Date;
 
 public class Reply {
     private final PostDTO post;
+    private final ReplyDAO replyDAO;
     private ReplyDTO reply;
     public Reply(PostDTO post) throws SQLException {
         this.post = post;
 
+        replyDAO = new ReplyDAO();
         int replyId = new PostDAO().getReplyId(post.getPostId());
-        reply = new ReplyDAO().getReply(replyId);
+        reply = replyDAO.getReply(replyId);
     }
-    public void register(String content, String writer) throws SQLException {
-        ReplyDAO replyDAO = new ReplyDAO();
+    public boolean register(String content, String writer) throws SQLException {
+        if(reply!=null) return false;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(new Date());
 
         reply = new ReplyDTO(replyDAO.getLastRegistered(), writer, date, content);
-
         replyDAO.upload(reply);
+        return true;
     }
 
     public boolean revise(String content) throws SQLException {
         if(reply!=null){
-            reply = new ReplyDTO(
-                    reply.getReplyId(),
-                    reply.getWriter(),
-                    reply.getRegistrationDate(),
-                    content
-            );
-            ReplyDAO replyDAO = new ReplyDAO();
-            replyDAO.revise(reply);
+            reply.setContent(content);
+            replyDAO.revise(reply.getReplyId(), reply.getContent());
            return true;
         }
         return false;

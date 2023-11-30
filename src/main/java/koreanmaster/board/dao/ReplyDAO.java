@@ -30,9 +30,9 @@ public class ReplyDAO {
         return replyId;
     }
 
-    public void revise(ReplyDTO reply) throws SQLException {
-        String sql = "UPDATE Reply SET content = \"" + reply.getContent()
-                + "\" WHERE reply_id = " + reply.getReplyId() + ";";
+    public void revise(int replyId, String content) throws SQLException {
+        String sql = "UPDATE Reply SET content = \"" + content
+                + "\" WHERE reply_id = " + replyId + ";";
         executeSql.noResult(sql);
     }
 
