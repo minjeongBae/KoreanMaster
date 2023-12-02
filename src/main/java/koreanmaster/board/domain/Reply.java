@@ -39,4 +39,12 @@ public class Reply {
         }
         return false;
     }
+
+    public boolean remove() throws SQLException {
+        if(reply==null) return false;
+        replyDAO.remove(reply.getReplyId());
+        reply = null;
+        return true;
+    }
+
 }
