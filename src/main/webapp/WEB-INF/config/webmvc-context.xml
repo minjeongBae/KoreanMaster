@@ -17,7 +17,7 @@
     <annotation-driven/>
 
     <!-- Component Scan 패키지 설정 -->
-    <context:component-scan base-package="koreanmaster"/>
+    <context:component-scan base-package="koreanmaster.common.config"/>
 
 
     <!-- 뷰 prefix, suffix 설정 -->
