@@ -9,7 +9,7 @@ public class PostDTO {
     private final String writer;
     private final String registrationDate;
     private String content;
-    private final int replyId;
+    private int replyId;
 
     public PostDTO(int boardId, String title,
                    String writer, String registrationDate,
@@ -25,5 +25,7 @@ public class PostDTO {
     public void setContent(String newContent){
         this.content = newContent;
     }
-
+    public void setReplyId(int replyId){
+        this.replyId = replyId;
+    }
 }

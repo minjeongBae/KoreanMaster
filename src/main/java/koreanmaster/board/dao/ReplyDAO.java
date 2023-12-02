@@ -49,4 +49,9 @@ public class ReplyDAO {
         }
         return null;
     }
+
+    public void remove(int replyId) throws SQLException {
+        String sql = "DELETE FROM Reply WHERE reply_id = " + replyId;
+        executeSql.noResult(sql);
+    }
 }

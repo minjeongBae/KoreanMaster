@@ -13,11 +13,11 @@ public class PostDAO {
     public PostDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public List<PostDTO> getAllByEmail(String email) throws SQLException {
+    public List<PostDTO> getByEmail(String email) throws SQLException {
         String sql = "SELECT * FROM Post WHERE writer = \""+email+"\"";
         ResultSet rs = executeSql.getResult(sql);
 
-        List<PostDTO> allPost = new ArrayList<>();
+        List<PostDTO> posts = new ArrayList<>();
         while(rs.next()){
             PostDTO post = new PostDTO(
                     Integer.parseInt(rs.getString(1)),
@@ -25,10 +25,28 @@ public class PostDAO {
                     rs.getString(4), rs.getString(5),
                     Integer.parseInt(rs.getString(6))
             );
-            allPost.add(post);
+            posts.add(post);
         }
 
-        return allPost;
+        return posts;
+    }
+
+    public List<PostDTO> allPosts() throws SQLException {
+        String sql = "SELECT * FROM Post;";
+        ResultSet rs = executeSql.getResult(sql);
+        List<PostDTO> posts = new ArrayList<>();
+
+        while(rs.next()){
+            PostDTO post = new PostDTO(
+                    Integer.parseInt(rs.getString(1)),
+                    rs.getString(2), rs.getString(3),
+                    rs.getString(4), rs.getString(5),
+                    Integer.parseInt(rs.getString(6))
+            );
+            posts.add(post);
+        }
+
+        return posts;
     }
 
     public void upload(PostDTO post) throws SQLException {
@@ -51,6 +69,12 @@ public class PostDAO {
         executeSql.noResult(sql);
     }
 
+    public void removeReply(int postId) throws SQLException {
+        String sql = "UPDATE Post SET reply_id = NULL "
+                + "WHERE post_id = " + postId + ";";
+        executeSql.noResult(sql);
+    }
+
     public int getReplyId(int postId) throws SQLException {
         String sql = "SELECT reply_id FROM Post WHERE post_id = " + postId + ";";
         ResultSet rs = executeSql.getResult(sql);
@@ -58,5 +82,10 @@ public class PostDAO {
             return rs.getInt(1);
         }
         return -1;
+    }
+
+    public void remove(int postId) throws SQLException {
+        String sql = "DELETE FROM Post WHERE post_id = " + postId;
+        executeSql.noResult(sql);
     }
 }
