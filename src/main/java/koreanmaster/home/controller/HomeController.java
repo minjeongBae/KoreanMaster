@@ -1,7 +1,18 @@
 package koreanmaster.home.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import koreanmaster.board.dao.PostDAO;
+import koreanmaster.board.dto.PostDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -11,7 +22,16 @@ public class HomeController {
     }
 
     @GetMapping("/show_board")
-    public String showBoard() {
+    public String showBoard(Model model) throws SQLException {
+        List<PostDTO> posts = new PostDAO().allPosts();
+        model.addAttribute("posts",posts);
         return "show-board";
     }
+
+    @GetMapping("/board_values")
+    public @ResponseBody ResponseEntity<List<PostDTO>> boardValues() throws SQLException, JsonProcessingException {
+        List<PostDTO> all = new PostDAO().allPosts();
+        return ResponseEntity.ok(all);
+    }
+
 }

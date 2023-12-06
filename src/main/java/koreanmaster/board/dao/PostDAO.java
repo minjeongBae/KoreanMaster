@@ -1,5 +1,6 @@
 package koreanmaster.board.dao;
 
+import koreanmaster.board.domain.Post;
 import koreanmaster.common.ExecuteSql;
 import koreanmaster.board.dto.PostDTO;
 
@@ -19,16 +20,37 @@ public class PostDAO {
 
         List<PostDTO> posts = new ArrayList<>();
         while(rs.next()){
+            String replyId = rs.getString(6);
+            if (replyId == null) replyId = "0";
             PostDTO post = new PostDTO(
                     Integer.parseInt(rs.getString(1)),
                     rs.getString(2), rs.getString(3),
                     rs.getString(4), rs.getString(5),
-                    Integer.parseInt(rs.getString(6))
+                    Integer.parseInt(replyId)
             );
             posts.add(post);
         }
 
         return posts;
+    }
+
+    public PostDTO getByPostId(int postId) throws SQLException {
+        String sql = "SELECT * FROM Post WHERE post_id = \""+postId+"\"";
+        ResultSet rs = executeSql.getResult(sql);
+
+        PostDTO post = null;
+        while(rs.next()){
+            String replyId = rs.getString(6);
+            if (replyId == null) replyId = "0";
+            post = new PostDTO(
+                    Integer.parseInt(rs.getString(1)),
+                    rs.getString(2), rs.getString(3),
+                    rs.getString(4), rs.getString(5),
+                    Integer.parseInt(replyId)
+            );
+        }
+
+        return post;
     }
 
     public List<PostDTO> allPosts() throws SQLException {
@@ -37,11 +59,13 @@ public class PostDAO {
         List<PostDTO> posts = new ArrayList<>();
 
         while(rs.next()){
+            String replyId = rs.getString(6);
+            if (replyId == null) replyId = "0";
             PostDTO post = new PostDTO(
                     Integer.parseInt(rs.getString(1)),
                     rs.getString(2), rs.getString(3),
                     rs.getString(4), rs.getString(5),
-                    Integer.parseInt(rs.getString(6))
+                    Integer.parseInt(replyId)
             );
             posts.add(post);
         }
