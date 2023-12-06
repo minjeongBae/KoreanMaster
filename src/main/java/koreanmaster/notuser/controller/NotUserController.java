@@ -2,6 +2,7 @@ package koreanmaster.notuser.controller;
 
 import koreanmaster.user.service.SignIn;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -24,12 +25,13 @@ public class NotUserController {
     }
 
     @PostMapping("/session")
-    public String checkSession(HttpServletRequest rq, HttpSession session) throws SQLException {
+    public String checkSession(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
         SignIn signin = new SignIn();
         boolean isSuccess = signin.isSuccess(rq.getParameter("userEmail"),
                         rq.getParameter("userPW"));
         if(isSuccess) {
             session.setAttribute("userEmail", rq.getParameter("userEmail"));
+            model.addAttribute("email", rq.getParameter("userEmail"));
             return "my-page";
         }
         return "sign-in";

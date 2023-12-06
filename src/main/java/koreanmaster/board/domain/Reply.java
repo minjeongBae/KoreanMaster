@@ -17,8 +17,10 @@ public class Reply {
         this.post = post;
 
         replyDAO = new ReplyDAO();
-        int replyId = new PostDAO().getReplyId(post.getPostId());
-        reply = replyDAO.getReply(replyId);
+        if(post!=null){
+            int replyId = new PostDAO().getReplyId(post.getPostId());
+            reply = replyDAO.getReply(replyId);
+        }
     }
     public boolean register(String content, String writer) throws SQLException {
         if(reply!=null) return false;
@@ -47,4 +49,11 @@ public class Reply {
         return true;
     }
 
+    public boolean isExisting(){
+        return reply!=null;
+    }
+
+    public ReplyDTO getReply(){
+        return this.reply;
+    }
 }

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -36,11 +38,60 @@
         </div>
       </header>
 
-    <button onclick="logout()" type="button" class="btn btn-outline-danger">로그아웃</button>
+    <div style="margin: 50px 50px 50px 50px" align="left">
+        <img class="mb-4" src="https://cdn.pixabay.com/photo/2018/07/04/08/51/graphic-3515619_640.png" width="230" height="250">
+        <br /><br />
+        <h4> 로그인 정보: ${email} </h4> <br />
+
+        <div align="left">
+            <button type="button" class="btn btn-outline-primary">수강 목록</button>
+            <button onclick="show_my_posts()" type="button" class="btn btn-outline-info">나의 글</button>
+            <button onclick="change_info()" type="button" class="btn btn-outline-success">정보 수정</button>
+            <button onclick="logout()" type="button" class="btn btn-outline-danger">로그아웃</button>
+        </div>
+
+
+        <c:if test="${myPosts.size() > 0}">
+            <div style="margin: 50px 50px 50px 50px">
+                <table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
+                    <thead>
+                    <tr>
+                        <th style= "background-color: #c9e4c2; text-align: center;">번호</th>
+                        <th style= "background-color: #c9e4c2; text-align: center;">제목</th>
+                        <th style= "background-color: #c9e4c2; text-align: center;">작성일</th>
+                        <th style= "background-color: #c9e4c2; text-align: center;"> </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="post" items="${myPosts}">
+                            <tr>
+                                <td>${post.getPostId()}</td>
+                                <td>${post.getTitle()}</td>
+                                <td>${post.getRegistrationDate()}</td>
+                                <td>
+                                    <form action="post" method="get">
+                                        <input type="hidden" name="postId" value="${post.getPostId()}" />
+                                        <input type="submit" value="상세보기" class="btn btn-secondary"/>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </c:if>
+
+    </div>
 
     <script>
         function logout() {
             window.location.href = "/KoreanMaster/sign_in";
+        }
+        function show_my_posts() {
+            window.location.href = "/KoreanMaster/my_posts";
+        }
+        function change_info() {
+            window.location.href = "/KoreanMaster";
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

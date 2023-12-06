@@ -41,12 +41,12 @@
         <c:if test="${post.getReplyId() > 0}">
             <div class="card">
               <div class="card-header">
-                답변
+                ${reply.getRegistrationDate()}
               </div>
               <div class="card-body">
-                <h3 class="card-title">제목</h3>
-                작성자: 관리자 <br /><br />
-                <p class="card-text">내용</p>
+                <h4 class="card-title">답글</h4>
+                작성자: ${reply.getWriter()} <br /><br />
+                <p class="card-text">${reply.getContent()}</p>
               </div>
             </div>
         </c:if>

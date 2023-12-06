@@ -37,17 +37,20 @@ public class ReplyDAO {
     }
 
     public ReplyDTO getReply(int replyId) throws SQLException {
-        String sql = "SELECT * FROM Reply WHERE = " + replyId + ";";
+        String sql = "SELECT * FROM Reply WHERE reply_id = " + replyId + ";";
         ResultSet rs = executeSql.getResult(sql);
-        while (rs.next()){
-            return new ReplyDTO(
+        if(rs==null) return null;
+
+        ReplyDTO reply = null;
+        while (rs.next()) {
+            reply = new ReplyDTO(
                     rs.getInt(1),
                     rs.getString(2),
                     rs.getString(3),
                     rs.getString(4)
             );
         }
-        return null;
+        return reply;
     }
 
     public void remove(int replyId) throws SQLException {

@@ -16,8 +16,9 @@ import java.util.List;
 @Controller
 public class HomeController {
     @GetMapping("/my_page")
-    public String myPage(HttpSession session) {
+    public String myPage(HttpSession session, Model model) {
         if(session.getAttribute("userEmail")==null) return "not-user";
+        model.addAttribute("email", session.getAttribute("userEmail"));
         return "my-page";
     }
 
