@@ -1,7 +1,6 @@
 package koreanmaster.home.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import koreanmaster.board.dao.PostDAO;
 import koreanmaster.board.dto.PostDTO;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.sql.SQLException;
 import java.util.List;
 
