@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@page import="koreanmaster.board.dto.PostDTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -22,7 +25,46 @@
         </div>
       </header>
 
-      ${post}
+      <h1 style="margin:30px 30px 30px 30px" >질문게시판</h1>
+
+      <div style="margin:50px 50px 50px 50px; border:5px solid #c9e4c2;">
+        <div style="margin:50px 50px 50px 50px;">
+            <h2> ${post.getTitle()} <br /> </h2>
+            작성일자: ${post.getRegistrationDate()} <br />
+            작성자: ${post.getWriter()} <br /><br />
+            <h4> ${post.getContent()} <br /> </h4>
+        </div>
+
+      </div>
+
+      <div style="margin:50px 50px 50px 50px">
+        <c:if test="${post.getReplyId() > 0}">
+            <div class="card">
+              <div class="card-header">
+                답변
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">제목</h3>
+                작성자: 관리자 <br /><br />
+                <p class="card-text">내용</p>
+              </div>
+            </div>
+        </c:if>
+      </div>
+
+      <div align="right" style="margin-top:50px; margin-right:100px">
+        <c:if test="${post.getPostId() > 1}">
+            <form action="post" method="get">
+                <input type="hidden" name="postId" value="${post.getPostId()-1}" />
+                    <input type="submit" value="이전글" class="btn btn-secondary" />
+            </form>
+        </c:if>
+        <br />
+        <form action="post" method="get">
+            <input type="hidden" name="postId" value="${post.getPostId()+1}" />
+            <input type="submit" value="다음글" class="btn btn-secondary" />
+        </form>
+      </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>

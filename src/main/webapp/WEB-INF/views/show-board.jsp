@@ -35,11 +35,11 @@
     	    <table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
     	    	<thead>
     	    	<tr>
-    	    		<th style= "background-color: #bada55; text-align: center;">번호</th>
-    	    		<th style= "background-color: #bada55; text-align: center;">제목</th>
-    	    		<th style= "background-color: #bada55; text-align: center;">작성자</th>
-    	    		<th style= "background-color: #bada55; text-align: center;">작성일</th>
-    	    		<th style= "background-color: #bada55; text-align: center;"> </th>
+    	    		<th style= "background-color: #c9e4c2; text-align: center;">번호</th>
+    	    		<th style= "background-color: #c9e4c2; text-align: center;">제목</th>
+    	    		<th style= "background-color: #c9e4c2; text-align: center;">작성자</th>
+    	    		<th style= "background-color: #c9e4c2; text-align: center;">작성일</th>
+    	    		<th style= "background-color: #c9e4c2; text-align: center;"> </th>
     	    	</tr>
     	    	</thead>
                 <tbody>
@@ -53,7 +53,7 @@
                             <td>
                                 <form action="post" method="get">
                                     <input type="hidden" name="postId" value="${post.getPostId()}" />
-                                    <input type="submit" value="상세보기" />
+                                    <input type="submit" value="상세보기" class="btn btn-secondary"/>
                                 </form>
                             </td>
                         </tr>
