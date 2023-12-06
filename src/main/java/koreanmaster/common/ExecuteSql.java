@@ -12,9 +12,18 @@ public class ExecuteSql {
     private Statement stmt;
 
     public ExecuteSql() throws SQLException {
-        con = DriverManager.getConnection(jdbc,user_name, pw);
-        System.out.println("연결 성공");
-        stmt = con.createStatement();
+        try {
+            // 드라이버 로드
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // 연결 설정
+            con = DriverManager.getConnection(jdbc, user_name, pw);
+            System.out.println("연결 성공");
+            stmt = con.createStatement();
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버를 찾을 수 없습니다.");
+            e.printStackTrace();
+        }
     }
 
     public ResultSet getResult(String sql){
