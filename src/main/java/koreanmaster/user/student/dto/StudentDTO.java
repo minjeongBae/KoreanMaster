@@ -8,8 +8,8 @@ public class StudentDTO extends UserDTO {
     private final int level;
     private final String phone;
     public StudentDTO(String email, String pw, String name,
-                      String birth, int level, String phone){
-        super(email,pw);
+                      String birth, int level, String phone, boolean isStudent){
+        super(email,pw,isStudent);
         this.name = name;
         this.birth = birth;
         this.level = level;

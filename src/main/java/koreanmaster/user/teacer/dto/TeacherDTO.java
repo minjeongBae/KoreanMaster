@@ -8,8 +8,8 @@ public class TeacherDTO extends UserDTO {
     private final boolean qualified;
     private final String phone;
     public TeacherDTO(String email, String password, String name, String birth,
-                      boolean qualified, String phone) {
-        super(email, password);
+                      boolean qualified, String phone, boolean isStudent) {
+        super(email, password, isStudent);
         this.name = name;
         this.birth = birth;
         this.qualified = qualified;

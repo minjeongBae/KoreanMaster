@@ -8,13 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
 @Controller
 public class HomeController {
     @GetMapping("/my_page")
-    public String myPage() {
+    public String myPage(HttpSession session) {
+        if(session.getAttribute("userEmail")==null) return "not-user";
         return "my-page";
     }
 

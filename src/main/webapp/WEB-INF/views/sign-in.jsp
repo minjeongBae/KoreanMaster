@@ -22,15 +22,15 @@
         </div>
       </header>
       <div align="center" style="padding: 25px;">
-        <form>
+        <form action="session" method="post">
             <img class="mb-4" src="https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415_640.jpg" alt="" width="230" height="250">
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">이메일</label>
+                <input type="email" class="form-control" name="userEmail" placeholder="name@example.com">
+                <label for="userEmail">이메일</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">비밀번호</label>
+                <input type="password" class="form-control" name="userPW" placeholder="Password">
+                <label for="userPW">비밀번호</label>
             </div>
             <button style="margin: 30px 10px 10px 50px" class="w-50 btn btn-lg btn-primary" type="submit">로그인</button>
         </form>
