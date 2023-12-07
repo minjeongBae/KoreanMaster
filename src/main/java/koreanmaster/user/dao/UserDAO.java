@@ -1,6 +1,5 @@
 package koreanmaster.user.dao;
 
-import koreanmaster.board.dto.PostDTO;
 import koreanmaster.common.ExecuteSql;
 import koreanmaster.user.dto.UserDTO;
 

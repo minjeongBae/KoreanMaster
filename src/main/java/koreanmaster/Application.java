@@ -1,13 +1,13 @@
 package koreanmaster;
 
-import koreanmaster.common.ExecuteSql;
+import koreanmaster.user.dao.UserDAO;
 
 import java.sql.SQLException;
 
 public class Application {
     public static void main(String[] args) throws SQLException {
-        ExecuteSql e = new ExecuteSql();
-
+        UserDAO dao = new UserDAO();
+        System.out.println(dao.checkCorrect("ssii620@naver.com","qoalswjd620!"));
     }
 }
 
