@@ -24,6 +24,15 @@ public class NotUserController {
         return "sign-up";
     }
 
+    @PostMapping("/sign_up/step2")
+    public String signUpNextStep(HttpServletRequest rq){
+        System.out.println(rq.getParameter("position"));
+        if(rq.getParameter("position").equals("student")){
+            return "sign-up-student";
+        }
+        return "sign-up-teacher";
+    }
+
     @PostMapping("/session")
     public String checkSession(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
         SignIn signin = new SignIn();
