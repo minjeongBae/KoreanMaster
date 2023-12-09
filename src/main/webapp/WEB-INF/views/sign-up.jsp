@@ -40,23 +40,23 @@
         <div class="row g-5">
           <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">회원가입</h4>
-            <form action="sign_up/step2" method="post" class="needs-validation" novalidate>
+            <form id="form" action="sign_up/step2" method="post" class="needs-validation" novalidate>
               <div class="row g-3">
                 <div class="col-12">
                   <label for="email" class="form-label">이메일<span class="text-body-secondary"/></label>
-                  <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                  <input type="email" class="form-control" name="email" placeholder="you@example.com" required>
                   <div class="invalid-feedback"> 이메일을 입력해주세요. </div>
                 </div>
                 <div class="col-sm-6">
                   <label for="password" class="form-label">비밀번호</label>
-                  <input type="password" class="form-control" id="password" placeholder="" value="" required>
+                  <input type="password" id="password" class="form-control" name="password" value="" required>
                   <div class="invalid-feedback">
                     비밀번호를 입력해주세요.
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <label for="checkPw" class="form-label">비밀번호 확인</label>
-                  <input type="password" class="form-control" id="checkPw" value="" required>
+                  <input type="password" class="form-control" id="checkPw" name="checkPw" value="" required>
                   <div class="invalid-feedback">
                     비밀번호를 확인해주세요.
                   </div>
@@ -65,11 +65,11 @@
                 <h4 class="mb-3">목적</h4>
                 <div class="my-3">
                     <div class="form-check">
-                      <input id="student" name="position" type="radio" value="student" class="form-check-input" checked required>
+                      <input id="pStudent" name="position" type="radio" value="student" class="form-check-input" checked required>
                       <label class="form-check-label" for="credit">한국어를 배우고 싶어요!</label>
                     </div>
                     <div class="form-check">
-                      <input id="teacher" name="position" type="radio" value="teacher" class="form-check-input" required>
+                      <input id="pTeacher" name="position" type="radio" value="teacher" class="form-check-input" required>
                       <label class="form-check-label" for="debit">한국어를 가르쳐주고 싶어요!</label>
                     </div>
                 </div>
@@ -97,6 +97,20 @@
                     }, false);
                 });
         })();
+    </script>
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("password").value;
+            var checkPw = document.getElementById("checkPw").value;
+
+            if (password === checkPw) {
+                // Passwords match, submit the form
+                document.getElementById("form").submit();
+            } else {
+                // Passwords do not match, show a warning
+                alert("비밀번호와 확인 비밀번호가 일치하지 않습니다.");
+            }
+        }
     </script>
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="checkout.js"></script>
