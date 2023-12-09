@@ -2,6 +2,14 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head>
+    <title>안녕 - 회원가입 1단계</title>
+    <style>
+        /* 라디오 버튼이 선택되었을 때의 스타일 */
+        input[type="radio"]:checked {
+            background-color: #4CAF50; /* 선택되었을 때의 배경 색상 */
+            color: #c9e4c2; /* 선택되었을 때의 텍스트 색상 */
+        }
+    </style>
     <link href="checkout.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
@@ -36,19 +44,19 @@
               <div class="row g-3">
                 <div class="col-12">
                   <label for="email" class="form-label">이메일<span class="text-body-secondary"/></label>
-                  <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                  <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
                   <div class="invalid-feedback"> 이메일을 입력해주세요. </div>
                 </div>
                 <div class="col-sm-6">
                   <label for="password" class="form-label">비밀번호</label>
-                  <input type="text" class="form-control" id="password" placeholder="" value="" required>
+                  <input type="password" class="form-control" id="password" placeholder="" value="" required>
                   <div class="invalid-feedback">
                     비밀번호를 입력해주세요.
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <label for="checkPw" class="form-label">비밀번호 확인</label>
-                  <input type="text" class="form-control" id="checkPw" value="" required>
+                  <input type="password" class="form-control" id="checkPw" value="" required>
                   <div class="invalid-feedback">
                     비밀번호를 확인해주세요.
                   </div>
@@ -67,13 +75,29 @@
                 </div>
                 <hr class="my-4">
                 <div style="margin-bottom:50px">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">다음 단계</button>
+                <button class="w-100 btn btn-secondary btn-lg" type="submit">다음 단계</button>
               </div>
             </form>
           </div>
         </div>
       </main>
     </div>
+    <script>
+        (function () {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+        })();
+    </script>
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

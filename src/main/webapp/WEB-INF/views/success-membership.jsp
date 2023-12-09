@@ -1,16 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@page import="koreanmaster.board.dto.PostDTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!doctype html>
 <html lang="en">
   <head>
-    <title>안녕 - 로그인</title>
-    <script>
-        function showAlert(message) {
-            if (message && message.trim() !== "") {
-                alert(message);
-            }
-        }
-        showAlert("${alertMessage}");
-    </script>
+    <title>안녕 - 게시물</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
   <body>
@@ -29,18 +24,17 @@
           </div>
         </div>
       </header>
-      <div align="center" style="padding: 25px;">
-        <form action="session" method="post">
-            <img class="mb-4" src="https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415_640.jpg" alt="" width="230" height="250">
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" name="userEmail" placeholder="name@example.com">
-                <label for="userEmail">이메일</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" name="userPW" placeholder="Password">
-                <label for="userPW">비밀번호</label>
-            </div>
-            <button style="margin: 30px 10px 10px 50px" class="w-50 btn btn-lg btn-primary" type="submit">로그인</button>
+
+      <div align="center">
+        <h1 style="margin:30px 30px 30px 30px">회원가입 완료</h1>
+        <h3 style="margin:30px 30px 30px 30px">한국어 학습을 응원합니다.</h3>
+        <img src="https://img.freepik.com/free-vector/hand-drawn-flat-design-people-waving-illustration_52683-79273.jpg?size=626&ext=jpg&ga=GA1.1.251455798.1702027075&semt=ais"
+          width="500px" height="auto"/>
+      </div>
+
+      <div style="margin:60px 50px 50px 50px" width="100px" height="40px">
+        <form action="sign-in" method="get">
+            <input type="submit" style="margin-bottom:50px" class="w-100 btn btn-secondary btn-lg"  value="로그인하기"/>
         </form>
       </div>
 

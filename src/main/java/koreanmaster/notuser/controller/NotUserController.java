@@ -33,6 +33,11 @@ public class NotUserController {
         return "sign-up-teacher";
     }
 
+    @PostMapping("/sign_up/success_membership")
+    public String membership() {
+        return "success-membership";
+    }
+
     @PostMapping("/session")
     public String checkSession(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
         SignIn signin = new SignIn();
@@ -43,6 +48,7 @@ public class NotUserController {
             model.addAttribute("email", rq.getParameter("userEmail"));
             return "my-page";
         }
+        model.addAttribute("alertMessage","사용자 이메일 또는 비밀번호가 옳지 않습니다.");
         return "sign-in";
 
     }
