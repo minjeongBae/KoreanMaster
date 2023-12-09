@@ -11,10 +11,10 @@ public class StudentDAO {
     public StudentDAO () throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public void addStudent(StudentDTO student){
+    public void addStudent(StudentDTO student) throws SQLException {
         String sql = "INSERT INTO Student VALUES (\"" + student.getEmail() +"\", \""
                 + student.getName() + "\", \"" + student.getBirth() + "\", "
                 + student.getLevel() +", \"" + student.getPhone() + "\");";
-        System.out.println(sql);
+        executeSql.noResult(sql);
     }
 }
