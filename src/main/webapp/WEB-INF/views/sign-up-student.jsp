@@ -32,17 +32,17 @@
         <div class="row g-5">
           <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">정보를 입력해주세요.</h4>
-            <form action="sign_up/step2" method="post" class="needs-validation" novalidate>
+            <form action="success_membership" method="post" class="needs-validation" novalidate>
               <div class="row g-3">
                 <div class="col-12">
                   <label for="name" class="form-label">이름<span class="text-body-secondary"/></label>
-                  <input type="text" class="form-control" id="name" placeholder="홍길동">
+                  <input type="text" class="form-control" id="name" placeholder="홍길동" required>
                   <div class="invalid-feedback"> 이름을 입력해주세요. </div>
                 </div>
                 <div>
                     <div class="col-md-5">
                         <label for="phone" class="form-label">휴대폰번호</label>
-                        <input name="phone" type="text" class="form-control" oninput="oninputPhone(this)" placeholder="010-1234-1234" maxlength="14">
+                        <input name="phone" type="text" class="form-control" oninput="oninputPhone(this)" placeholder="010-1234-1234" maxlength="14" required>
                         <div class="invalid-feedback">
                             휴대폰 번호를 확인해주세요.
                         </div>
@@ -65,7 +65,7 @@
                 <div>
                     <div class="col-md-5">
                       <label for="birth" class="form-label">생년월일</label>
-                      <input type="date" name="birth"/>
+                      <input type="date" name="birth" required/>
                       <div class="invalid-feedback">
                         생일을 선택해주세요.
                       </div>
@@ -73,7 +73,7 @@
                 </div>
                 <hr class="my-4">
                 <div style="margin-bottom:50px">
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">완료</button>
+                    <button class="w-100 btn btn-secondary btn-lg" type="submit">완료</button>
                 </div>
             </form>
           </div>
@@ -87,6 +87,22 @@
                 .replace(/[^0-9]/g, '')
                 .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
         }
+    </script>
+    <script>
+        (function () {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+        })();
     </script>
 
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
