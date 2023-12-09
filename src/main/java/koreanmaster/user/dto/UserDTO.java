@@ -1,5 +1,8 @@
 package koreanmaster.user.dto;
 
+import lombok.Getter;
+
+@Getter
 public class UserDTO {
     private final String email;
     private final String password;

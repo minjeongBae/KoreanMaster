@@ -1,0 +1,20 @@
+package koreanmaster.user.student.dao;
+
+import koreanmaster.common.ExecuteSql;
+import koreanmaster.user.student.dto.StudentDTO;
+
+import java.sql.SQLException;
+
+public class StudentDAO {
+
+    private final ExecuteSql executeSql;
+    public StudentDAO () throws SQLException {
+        executeSql = new ExecuteSql();
+    }
+    public void addStudent(StudentDTO student){
+        String sql = "INSERT INTO Student VALUES (\"" + student.getEmail() +"\", \""
+                + student.getName() + "\", \"" + student.getBirth() + "\", "
+                + student.getLevel() +", \"" + student.getPhone() + "\");";
+        System.out.println(sql);
+    }
+}
