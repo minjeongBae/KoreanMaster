@@ -32,7 +32,7 @@
       </header>
       <div align="center" style="margin-top:50px" class= "container">
     	<div= "row">
-    	    <table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
+    	    <table class= "table table-stripped" style= "text-align: center; boarder: 1px; solid #dddddd">
     	    	<thead>
     	    	<tr>
     	    		<th style= "background-color: #c9e4c2; text-align: center;">번호</th>
