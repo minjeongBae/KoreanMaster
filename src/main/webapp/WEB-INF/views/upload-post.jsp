@@ -25,10 +25,21 @@
         </div>
       </header>
 
-      <div style="margin: 50px 50px 10px 50px" >
+      <div style="margin: 50px 50px 50px 50px">
         <h2>
             [게시물 작성]
         </h2>
+          <form action="writerAction" method="post">
+            <input type="text" name="bdTitle" class="form-control mt-4 mb-2"
+                placeholder="제목을 입력해주세요." required>
+            <div class="form-group">
+                <textarea class="form-control" rows="10" name="bdContent"
+                    placeholder="내용을 입력해주세요" required></textarea>
+            </div>
+            <div style="margin-Top: 20px">
+                <button type="submit" class="btn btn-secondary mb-3">제출</button>
+            </div>
+          </form>
       </div>
 
 
