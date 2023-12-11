@@ -51,6 +51,7 @@
           <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">회원가입</h4>
             <form id="form" action="sign_up/step2" method="post" onsubmit="return validatePasswords()" class="needs-validation" novalidate>
+
               <div class="row g-3">
                 <div class="col-12">
                   <label for="email" class="form-label">이메일<span class="text-body-secondary"/></label>

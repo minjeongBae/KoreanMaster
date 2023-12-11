@@ -43,7 +43,7 @@
               <div class="row g-3">
                 <div class="col-12">
                   <label for="name" class="form-label">이름<span class="text-body-secondary"/></label>
-                  <input type="text" class="form-control" id="name" placeholder="홍길동" required>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="홍길동" required>
                   <div class="invalid-feedback"> 이름을 입력해주세요. </div>
                 </div>
                 <div>
@@ -58,11 +58,11 @@
 
                 <div class="col-md-5">
                   <label for="language" class="form-label">영어 소통 가능 여부</label>
-                  <select class="form-select" id="language" required>
+                  <select class="form-select" id="english" name="english" required>
                     <option value="">선택</option>
-                    <option>매우 잘 통함</option>
-                    <option>간단한 의사소통 가능</option>
-                    <option>불가능</option>
+                    <option value=1>매우 원활함</option>
+                    <option value=2>간단한 소통 가능</option>
+                    <option value=3>불가능</option>
                   </select>
                   <div class="invalid-feedback">
                     영어 소통 가능 여부를 선택해주세요.
@@ -92,19 +92,19 @@
                 </div>
                 <div id="yearInKorea" style="display:none; border:5px solid #c9e4c2" >
                     <div class="form-check">
-                        <input id="years3" name="years" type="radio" value="three" class="form-check-input" checked required>
+                        <input id="years3" name="years" type="radio" value="1" class="form-check-input" checked required>
                         <label class="form-check-label" for="years3">3년 이하</label>
                     </div>
                     <div class="form-check">
-                        <input id="years5" name="years" type="radio" value="five" class="form-check-input" required>
+                        <input id="years5" name="years" type="radio" value="2" class="form-check-input" required>
                         <label class="form-check-label" for="years5">5년 이하</label>
                     </div>
                     <div class="form-check">
-                        <input id="years10" name="years" type="radio" value="ten" class="form-check-input" required>
+                        <input id="years10" name="years" type="radio" value="3" class="form-check-input" required>
                         <label class="form-check-label" for="years10">10년 이하</label>
                     </div>
                     <div class="form-check">
-                        <input id="years10" name="years" type="radio" value="ten" class="form-check-input" required>
+                        <input id="years10" name="years" type="radio" value="4" class="form-check-input" required>
                         <label class="form-check-label" for="years10">그이상</label>
                     </div>
                 </div>

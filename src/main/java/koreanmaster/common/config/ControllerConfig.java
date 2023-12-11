@@ -7,6 +7,8 @@ import koreanmaster.mypage.controller.SignUpController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.sql.SQLException;
+
 @Configuration
 public class ControllerConfig {
     @Bean
@@ -20,7 +22,7 @@ public class ControllerConfig {
     }
 
     @Bean
-    public SignUpController signUpController(){
+    public SignUpController signUpController() throws SQLException {
         return new SignUpController();
     }
 

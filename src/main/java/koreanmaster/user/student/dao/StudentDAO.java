@@ -13,7 +13,7 @@ public class StudentDAO {
     public void addStudent(StudentDTO student) throws SQLException {
         String sql = "INSERT INTO Student VALUES (\"" + student.getEmail() +"\", \""
                 + student.getName() + "\", \"" + student.getBirth() + "\", "
-                + student.getLevel() +", \"" + student.getPhone() + "\");";
+                + student.getEnglish() +", \"" + student.getPhone() + "\");";
         executeSql.noResult(sql);
     }
 }

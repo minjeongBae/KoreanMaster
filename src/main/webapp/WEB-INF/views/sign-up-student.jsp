@@ -36,7 +36,7 @@
               <div class="row g-3">
                 <div class="col-12">
                   <label for="name" class="form-label">이름<span class="text-body-secondary"/></label>
-                  <input type="text" class="form-control" id="name" placeholder="홍길동" required>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="홍길동" required>
                   <div class="invalid-feedback"> 이름을 입력해주세요. </div>
                 </div>
                 <div>
@@ -51,11 +51,11 @@
 
                 <div class="col-md-5">
                   <label for="language" class="form-label">영어 능력</label>
-                  <select class="form-select" id="language" required>
+                  <select class="form-select" name="english" id="eneglish" rquired>
                     <option value="">선택</option>
-                    <option>매우 원활함</option>
-                    <option>간단한 소통 가능</option>
-                    <option>불가능</option>
+                    <option value=1>매우 원활함</option>
+                    <option value=2>간단한 소통 가능</option>
+                    <option value=3>불가능</option>
                   </select>
                   <div class="invalid-feedback">
                     영어 소통 가능 여부를 선택해주세요.

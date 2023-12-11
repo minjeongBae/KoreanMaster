@@ -14,9 +14,10 @@ public class TeacherDAO {
 
     public void addTeacher(TeacherDTO teacher) throws SQLException {
         String sql = "INSERT INTO Teacher VALUES (\"" + teacher.getEmail() + "\", \""
-                + teacher.getName() + "\", \"" + teacher.getBirth() + "\", "
-                + teacher.isQualified() + ", \"" + teacher.getPhone() + "\");";
-
+                + teacher.getName() + "\", \"" + teacher.getBirth() + "\", \"" + teacher.getEnglish() + "\", "
+                + teacher.isQualified() + ", " + teacher.isKorean() + ", \"" + teacher.getHowLong() + "\", \""
+                + teacher.getPhone() + "\");";
+        System.out.println(sql);
         executeSql.noResult(sql);
     }
 }
