@@ -12,6 +12,7 @@ public class TeacherDTO extends UserDTO {
     private final boolean korean;
     private final int howLong;
     private final String phone;
+
     public TeacherDTO(String email, String password, String name, String birth, int english,
                       boolean qualified,
                       boolean korean, int howLong, String phone) {

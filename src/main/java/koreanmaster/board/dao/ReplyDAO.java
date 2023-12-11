@@ -12,8 +12,9 @@ public class ReplyDAO {
     public ReplyDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
+
     public void upload(ReplyDTO reply) throws SQLException {
-        String sql = "INSERT INTO Reply VALUES (NULL, \""+reply.getWriter()+"\", \""
+        String sql = "INSERT INTO Reply VALUES (NULL, \"" + reply.getWriter() + "\", \""
                 + reply.getRegistrationDate() + "\",\""
                 + reply.getContent() + "\");";
         executeSql.noResult(sql);
@@ -23,7 +24,7 @@ public class ReplyDAO {
         String sql = "SELECT reply_id AS LAST_VALUE_OVER FROM Reply;";
         ResultSet rs = executeSql.getResult(sql);
         int replyId = -1;
-        while (rs.next()){
+        while (rs.next()) {
             replyId = Integer.parseInt(rs.getString(1));
         }
 
@@ -39,7 +40,7 @@ public class ReplyDAO {
     public ReplyDTO getReply(int replyId) throws SQLException {
         String sql = "SELECT * FROM Reply WHERE reply_id = " + replyId + ";";
         ResultSet rs = executeSql.getResult(sql);
-        if(rs==null) return null;
+        if (rs == null) return null;
 
         ReplyDTO reply = null;
         while (rs.next()) {

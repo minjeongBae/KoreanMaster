@@ -13,7 +13,7 @@ public class PostDTO {
 
     public PostDTO(int boardId, String title,
                    String writer, String registrationDate,
-                   String content, int replyId){
+                   String content, int replyId) {
         this.postId = boardId;
         this.title = title;
         this.writer = writer;
@@ -22,10 +22,11 @@ public class PostDTO {
         this.replyId = replyId;
     }
 
-    public void setContent(String newContent){
+    public void setContent(String newContent) {
         this.content = newContent;
     }
-    public void setReplyId(int replyId){
+
+    public void setReplyId(int replyId) {
         this.replyId = replyId;
     }
 }

@@ -7,13 +7,15 @@ import java.sql.SQLException;
 
 public class StudentDAO {
     private final ExecuteSql executeSql;
-    public StudentDAO () throws SQLException {
+
+    public StudentDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
-    public void addStudent(StudentDTO student) throws SQLException {
-        String sql = "INSERT INTO Student VALUES (\"" + student.getEmail() +"\", \""
+
+    public void addStudent(StudentDTO student) {
+        String sql = "INSERT INTO Student VALUES (\"" + student.getEmail() + "\", \""
                 + student.getName() + "\", \"" + student.getBirth() + "\", "
-                + student.getEnglish() +", \"" + student.getPhone() + "\");";
+                + student.getEnglish() + ", \"" + student.getPhone() + "\");";
         executeSql.noResult(sql);
     }
 }

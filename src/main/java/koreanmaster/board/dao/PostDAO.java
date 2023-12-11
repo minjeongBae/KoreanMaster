@@ -1,6 +1,5 @@
 package koreanmaster.board.dao;
 
-import koreanmaster.board.domain.Post;
 import koreanmaster.common.ExecuteSql;
 import koreanmaster.board.dto.PostDTO;
 
@@ -11,15 +10,17 @@ import java.util.List;
 
 public class PostDAO {
     private final ExecuteSql executeSql;
+
     public PostDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
+
     public List<PostDTO> getByEmail(String email) throws SQLException {
-        String sql = "SELECT * FROM Post WHERE writer = \""+email+"\"";
+        String sql = "SELECT * FROM Post WHERE writer = \"" + email + "\"";
         ResultSet rs = executeSql.getResult(sql);
 
         List<PostDTO> posts = new ArrayList<>();
-        while(rs.next()){
+        while (rs.next()) {
             String replyId = rs.getString(6);
             if (replyId == null) replyId = "0";
             PostDTO post = new PostDTO(
@@ -35,11 +36,11 @@ public class PostDAO {
     }
 
     public PostDTO getByPostId(int postId) throws SQLException {
-        String sql = "SELECT * FROM Post WHERE post_id = \""+postId+"\"";
+        String sql = "SELECT * FROM Post WHERE post_id = \"" + postId + "\"";
         ResultSet rs = executeSql.getResult(sql);
 
         PostDTO post = null;
-        while(rs.next()){
+        while (rs.next()) {
             String replyId = rs.getString(6);
             if (replyId == null) replyId = "0";
             post = new PostDTO(
@@ -58,7 +59,7 @@ public class PostDAO {
         ResultSet rs = executeSql.getResult(sql);
         List<PostDTO> posts = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             String replyId = rs.getString(6);
             if (replyId == null) replyId = "0";
             PostDTO post = new PostDTO(
@@ -81,8 +82,8 @@ public class PostDAO {
     }
 
     public void revise(int postId, String content) throws SQLException {
-        String sql = "UPDATE Post SET content = \"" +  content
-                + "\" WHERE post_id = " + postId +";";
+        String sql = "UPDATE Post SET content = \"" + content
+                + "\" WHERE post_id = " + postId + ";";
         executeSql.noResult(sql);
     }
 
@@ -102,7 +103,7 @@ public class PostDAO {
     public int getReplyId(int postId) throws SQLException {
         String sql = "SELECT reply_id FROM Post WHERE post_id = " + postId + ";";
         ResultSet rs = executeSql.getResult(sql);
-        while (rs.next()){
+        while (rs.next()) {
             return rs.getInt(1);
         }
         return -1;

@@ -17,7 +17,7 @@ import java.util.List;
 public class HomeController {
     @GetMapping("/my_page")
     public String myPage(HttpSession session, Model model) {
-        if(session.getAttribute("userEmail")==null) return "not-user";
+        if (session.getAttribute("userEmail") == null) return "not-user";
         model.addAttribute("email", session.getAttribute("userEmail"));
         return "my-page";
     }
@@ -25,7 +25,7 @@ public class HomeController {
     @GetMapping("/show_board")
     public String showBoard(Model model) throws SQLException {
         List<PostDTO> posts = new PostDAO().allPosts();
-        model.addAttribute("posts",posts);
+        model.addAttribute("posts", posts);
         return "show-board";
     }
 

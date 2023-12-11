@@ -3,7 +3,6 @@ package koreanmaster.board.controller;
 import koreanmaster.board.dao.PostDAO;
 import koreanmaster.board.domain.Reply;
 import koreanmaster.board.dto.PostDTO;
-import koreanmaster.board.dto.ReplyDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,18 +19,18 @@ public class BoardController {
     public String showPost(HttpServletRequest rq, Model model) throws SQLException {
         PostDTO post = new PostDAO().getByPostId(Integer.parseInt(rq.getParameter("postId")));
         Reply reply = new Reply(post);
-        if(reply.isExisting()) model.addAttribute("reply", reply.getReply());
-        model.addAttribute("post",post);
+        if (reply.isExisting()) model.addAttribute("reply", reply.getReply());
+        model.addAttribute("post", post);
         return "show-post";
     }
 
     @GetMapping("/upload_post")
-    public String uploadPost(){
+    public String uploadPost() {
         return "upload-post";
     }
 
     @GetMapping("/upload_reply")
-    public String uploadReply(){
+    public String uploadReply() {
         return "upload-reply";
     }
 

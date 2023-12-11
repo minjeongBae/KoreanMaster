@@ -12,12 +12,12 @@ import java.sql.SQLException;
 @Configuration
 public class ControllerConfig {
     @Bean
-    public BoardController boardController(){
+    public BoardController boardController() {
         return new BoardController();
     }
 
     @Bean
-    public HomeController homeController(){
+    public HomeController homeController() {
         return new HomeController();
     }
 
@@ -27,7 +27,7 @@ public class ControllerConfig {
     }
 
     @Bean
-    public SignInController signInController(){
+    public SignInController signInController() {
         return new SignInController();
     }
 }

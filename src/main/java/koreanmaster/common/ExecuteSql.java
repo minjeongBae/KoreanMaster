@@ -36,7 +36,7 @@ public class ExecuteSql {
         }
     }
 
-    public void noResult(String sql) throws SQLException {
+    public void noResult(String sql){
         try{
             stmt.executeUpdate(sql);
         }catch(SQLException e){

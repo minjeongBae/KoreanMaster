@@ -8,14 +8,16 @@ import java.sql.SQLException;
 
 public class UserDAO {
     private final ExecuteSql executeSql;
+
     public UserDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
+
     public UserDTO checkCorrect(String email, String password) throws SQLException {
-        String sql = "SELECT * FROM User WHERE email = \""+email+"\" AND password = \"" + password + "\";";
+        String sql = "SELECT * FROM User WHERE email = \"" + email + "\" AND password = \"" + password + "\";";
         ResultSet rs = executeSql.getResult(sql);
 
-        while(rs.next()){
+        while (rs.next()) {
             return new UserDTO(
                     rs.getString(1),
                     rs.getString(2),
@@ -42,9 +44,9 @@ public class UserDAO {
         String sql = "SELECT email FROM User WHERE email=\"" + email + "\";";
         ResultSet rs = executeSql.getResult(sql);
 
-        while(rs.next()){
+        while (rs.next()) {
             System.out.println(rs.getString(1));
-            if(rs.getString(1).equals(email)) return true;
+            if (rs.getString(1).equals(email)) return true;
         }
         return false;
     }

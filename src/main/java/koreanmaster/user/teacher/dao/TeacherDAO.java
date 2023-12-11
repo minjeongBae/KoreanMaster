@@ -12,12 +12,11 @@ public class TeacherDAO {
         executeSql = new ExecuteSql();
     }
 
-    public void addTeacher(TeacherDTO teacher) throws SQLException {
+    public void addTeacher(TeacherDTO teacher) {
         String sql = "INSERT INTO Teacher VALUES (\"" + teacher.getEmail() + "\", \""
                 + teacher.getName() + "\", \"" + teacher.getBirth() + "\", \"" + teacher.getEnglish() + "\", "
                 + teacher.isQualified() + ", " + teacher.isKorean() + ", \"" + teacher.getHowLong() + "\", \""
                 + teacher.getPhone() + "\");";
-        System.out.println(sql);
         executeSql.noResult(sql);
     }
 }
