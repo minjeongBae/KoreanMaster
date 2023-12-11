@@ -1,11 +1,19 @@
-package koreanmaster.user.service;
+package koreanmaster.mypage.service;
 
+import koreanmaster.user.dao.UserDAO;
+import koreanmaster.user.dto.UserDTO;
 import koreanmaster.user.student.dao.StudentDAO;
 import koreanmaster.user.student.dto.StudentDTO;
 import koreanmaster.user.teacher.dao.TeacherDAO;
 import koreanmaster.user.teacher.dto.TeacherDTO;
 
+import java.sql.SQLException;
+
 public class SignUp {
+    public boolean ableEmail(String email) throws SQLException {
+        UserDAO dao = new UserDAO();
+        return !dao.findByEmail(email);
+    }
     public boolean studentUser(String email, String pw, String name,
                                String birth, int level, String phone) {
         try{

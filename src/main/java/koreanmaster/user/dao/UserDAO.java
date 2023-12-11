@@ -33,10 +33,20 @@ public class UserDAO {
         executeSql.noResult(sql);
     }
 
-    public void addUser(String email, String pw, boolean isStudent) throws SQLException {
-        String sql = "INSERT INTO User VALUES (\"" + email + "\", \"" + pw + "\", " + isStudent + ");";
+    public void addUser(UserDTO user) throws SQLException {
+        String sql = "INSERT INTO User VALUES (\"" + user.getEmail() + "\", \"" + user.getPassword() + "\", " + user.isStudent() + ");";
         executeSql.noResult(sql);
     }
 
+    public boolean findByEmail(String email) throws SQLException {
+        String sql = "SELECT email FROM User WHERE email=\"" + email + "\";";
+        ResultSet rs = executeSql.getResult(sql);
+
+        while(rs.next()){
+            System.out.println(rs.getString(1));
+            if(rs.getString(1).equals(email)) return true;
+        }
+        return false;
+    }
 
 }

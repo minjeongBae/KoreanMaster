@@ -1,4 +1,4 @@
-package koreanmaster.user.service;
+package koreanmaster.mypage.service;
 
 import koreanmaster.user.dao.UserDAO;
 import koreanmaster.user.dto.UserDTO;

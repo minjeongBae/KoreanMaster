@@ -1,6 +1,6 @@
 package koreanmaster.mypage.controller;
 
-import koreanmaster.user.service.SignIn;
+import koreanmaster.mypage.service.SignIn;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
