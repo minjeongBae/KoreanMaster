@@ -24,7 +24,6 @@ public class HomeController {
 
     @GetMapping("/show_board")
     public String showBoard(HttpSession session, Model model) throws SQLException {
-        System.out.println(session.getAttribute("userEmail"));
         model.addAttribute("signIn","false");
         if(session.getAttribute("userEmail")!=null) model.addAttribute("signIn","true");
         List<PostDTO> posts = new PostDAO().allPosts();

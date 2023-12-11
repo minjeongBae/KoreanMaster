@@ -18,7 +18,6 @@ public class ExecuteSql {
 
             // 연결 설정
             con = DriverManager.getConnection(jdbc, user_name, pw);
-            System.out.println("연결 성공");
             stmt = con.createStatement();
         } catch (ClassNotFoundException e) {
             System.out.println("JDBC 드라이버를 찾을 수 없습니다.");
