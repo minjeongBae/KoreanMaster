@@ -2,7 +2,8 @@ package koreanmaster.common.config;
 
 import koreanmaster.board.controller.BoardController;
 import koreanmaster.home.controller.HomeController;
-import koreanmaster.notuser.controller.NotUserController;
+import koreanmaster.mypage.controller.SignInController;
+import koreanmaster.mypage.controller.SignUpController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,7 +20,12 @@ public class ControllerConfig {
     }
 
     @Bean
-    public NotUserController myPageController(){
-        return new NotUserController();
+    public SignUpController signUpController(){
+        return new SignUpController();
+    }
+
+    @Bean
+    public SignInController signInController(){
+        return new SignInController();
     }
 }

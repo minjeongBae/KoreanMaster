@@ -1,4 +1,4 @@
-package koreanmaster.notuser.controller;
+package koreanmaster.mypage.controller;
 
 import koreanmaster.user.service.SignIn;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Controller
-public class NotUserController {
+public class SignInController {
     @GetMapping("/sign_in")
     public String signIn(HttpServletRequest request) {
         HttpSession s = request.getSession(false);
@@ -19,30 +19,11 @@ public class NotUserController {
         return "sign-in";
     }
 
-    @GetMapping("/sign_up")
-    public String signUp() {
-        return "sign-up";
-    }
-
-    @PostMapping("/sign_up/step2")
-    public String signUpNextStep(HttpServletRequest rq){
-        System.out.println(rq.getParameter("position"));
-        if(rq.getParameter("position").equals("student")){
-            return "sign-up-student";
-        }
-        return "sign-up-teacher";
-    }
-
-    @PostMapping("/sign_up/success_membership")
-    public String membership() {
-        return "success-membership";
-    }
-
     @PostMapping("/session")
     public String checkSession(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
         SignIn signin = new SignIn();
         boolean isSuccess = signin.isSuccess(rq.getParameter("userEmail"),
-                        rq.getParameter("userPW"));
+                rq.getParameter("userPW"));
         if(isSuccess) {
             session.setAttribute("userEmail", rq.getParameter("userEmail"));
             model.addAttribute("email", rq.getParameter("userEmail"));
@@ -52,5 +33,4 @@ public class NotUserController {
         return "sign-in";
 
     }
-
 }

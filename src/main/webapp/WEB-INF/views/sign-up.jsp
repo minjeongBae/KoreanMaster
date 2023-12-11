@@ -40,7 +40,7 @@
         <div class="row g-5">
           <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">회원가입</h4>
-            <form id="form" action="sign_up/step2" method="post" class="needs-validation" novalidate>
+            <form id="form" action="sign_up/step2" method="post" onsubmit="return validatePasswords()" class="needs-validation" novalidate>
               <div class="row g-3">
                 <div class="col-12">
                   <label for="email" class="form-label">이메일<span class="text-body-secondary"/></label>
@@ -97,18 +97,21 @@
                     }, false);
                 });
         })();
-    </script>
+    </script>>
     <script>
-        function checkPassword() {
-            var password = document.getElementById("password").value;
-            var checkPw = document.getElementById("checkPw").value;
+        function validatePasswords() {
+            // 두 패스워드 필드의 값을 가져옴
+            var passwordValue = document.getElementById("password").value;
+            var checkPwValue = document.getElementById("checkPw").value;
 
-            if (password === checkPw) {
-                // Passwords match, submit the form
-                document.getElementById("form").submit();
+            // 패스워드가 일치하는지 확인
+            if (passwordValue === checkPwValue) {
+                // 일치하면 submit을 허용
+                return true;
             } else {
-                // Passwords do not match, show a warning
-                alert("비밀번호와 확인 비밀번호가 일치하지 않습니다.");
+                // 불일치하면 경고창을 띄우고 submit을 차단
+                alert("입력한 패스워드가 일치하지 않습니다. 다시 확인해주세요.");
+                return false;
             }
         }
     </script>

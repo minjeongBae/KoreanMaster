@@ -36,23 +36,21 @@
         </div>
       </header>
 
-
       <div style="margin: 30px 10px 20px 10px">
             <img class="mb-1" src="https://cdn.pixabay.com/photo/2017/10/11/17/09/read-2841722_640.jpg" alt="" width="230" height="250">
       </div>
 
       <div>
-        <button onclick="sign_in()" style="margin: 10px 10px 30px 10px" type="button" class="btn btn-secondary"> 로그인 </button>
-        <button onclick="sign_up()" style="margin: 10px 10px 30px 10px" type="button" class="btn btn-secondary"/> 회원가입 </button>
+        <form action="sign_up" method="post">
+            <button onclick="sign_in()" style="margin: 10px 10px 30px 10px" type="button" class="btn btn-secondary"> 로그인 </button>
+            <button style="margin: 10px 10px 30px 10px" type="submit" class="btn btn-secondary"/> 회원가입 </button>
+        </form>
       </div>
 
 
     <script>
         function sign_in() {
             window.location.href = "/KoreanMaster/sign_in";
-        }
-        function sign_up() {
-            window.location.href = "/KoreanMaster/sign_up";
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
