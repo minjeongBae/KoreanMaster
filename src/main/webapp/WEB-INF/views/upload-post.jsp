@@ -3,6 +3,13 @@
 <html>
 <head>
     <title>안녕 - 게시물 작성 </title>
+    <style>
+        .colored-div {
+
+            background-color: #FAEBD7; /* 여기에 원하는 색상 코드를 넣습니다. */
+            padding: 20px; /* 내용과 테두리 간격을 조절합니다. */
+        }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
@@ -22,7 +29,7 @@
           </div>
         </div>
     </header>
-    <div style="margin: 50px 50px 50px 50px">
+    <div style="margin: 50px 50px 50px 50px" class="colored-div">
         <h2> [게시물 작성] </h2>
         <form action="success_upload_post" method="post" class="needs-validation">
             <input type="text" name="title" class="form-control mt-4 mb-2"
