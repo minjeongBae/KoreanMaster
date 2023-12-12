@@ -1,5 +1,8 @@
 package koreanmaster.user.teacher.introduction.dto;
 
+import lombok.Getter;
+
+@Getter
 public class IntroductionDTO {
     private final int introductionId;
     private final String brief;
