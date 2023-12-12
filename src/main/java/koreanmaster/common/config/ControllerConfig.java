@@ -2,6 +2,7 @@ package koreanmaster.common.config;
 
 import koreanmaster.board.controller.BoardController;
 import koreanmaster.home.controller.HomeController;
+import koreanmaster.mypage.controller.MyPageController;
 import koreanmaster.mypage.controller.SignInController;
 import koreanmaster.mypage.controller.SignUpController;
 import org.springframework.context.annotation.Bean;
@@ -29,5 +30,10 @@ public class ControllerConfig {
     @Bean
     public SignInController signInController() {
         return new SignInController();
+    }
+
+    @Bean
+    public MyPageController myPageController(){
+        return new MyPageController();
     }
 }
