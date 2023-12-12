@@ -5,6 +5,7 @@ import koreanmaster.board.service.DateManage;
 import koreanmaster.board.service.PostManage;
 import koreanmaster.board.service.ReplyManage;
 import koreanmaster.board.dto.PostDTO;
+import koreanmaster.user.dao.UserDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +20,15 @@ import java.util.List;
 public class BoardController {
 
     @GetMapping("/post")
-    public String showPost(HttpServletRequest rq, Model model) throws SQLException {
+    public String showPost(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
         PostDTO post = new PostDAO().getByPostId(Integer.parseInt(rq.getParameter("postId")));
         ReplyManage replyManage = new ReplyManage(post);
         if (replyManage.isExisting()) model.addAttribute("reply", replyManage.getReply());
         model.addAttribute("post", post);
+
+        String nowUser = (String) session.getAttribute("userEmail");
+        if(new UserDAO().isManager(nowUser)) model.addAttribute("isManager",true);
+
         return "show-post";
     }
 

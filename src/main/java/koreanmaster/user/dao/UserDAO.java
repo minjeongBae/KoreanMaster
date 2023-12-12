@@ -51,4 +51,14 @@ public class UserDAO {
         return false;
     }
 
+
+    public boolean isManager(String email) throws SQLException {
+        String sql = "SELECT email FROM Manager WHERE email=\"" + email + "\";";
+        ResultSet rs = executeSql.getResult(sql);
+        while (rs.next()) {
+            System.out.println(rs.getString(1));
+            if (rs.getString(1).equals(email)) return true;
+        }
+        return false;
+    }
 }

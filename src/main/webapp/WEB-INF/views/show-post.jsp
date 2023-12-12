@@ -66,6 +66,11 @@
             <input type="submit" value="다음글" class="btn btn-secondary" />
         </form>
       </div>
+      <div align="right" style="margin:30px 90px 30px 30px">
+          <c:if test="${isManager == true}">
+            <button onclick="upload_reply()" type="submit" style="margin: 10px 10px 30px 10px"  class="btn btn-outline-danger">답변작성</button>
+          </c:if>
+      </div>
 
       <footer class="container py-5">
         <div class="row">
@@ -78,6 +83,11 @@
         </div>
       </footer>
 
+    <script>
+        function upload_reply() {
+            window.location.href = "/KoreanMaster/upload_reply";
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>

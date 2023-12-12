@@ -25,11 +25,21 @@
         </div>
     </header>
 
-    <div style="margin: 50px 50px 10px 50px" >
-        <h2>
-            [답글 작성]
-        </h2>
+    <div style="margin: 50px 50px 50px 50px">
+        <h2> [답변 작성] </h2>
+        <form action="/KoreanMaster/show_board" method="get" class="needs-validation">
+            <input type="text" name="title" class="form-control mt-4 mb-2"
+                placeholder="제목을 입력해주세요." required>
+            <div class="form-group">
+                <textarea class="form-control" rows="10" name="content"
+                    placeholder="내용을 입력해주세요" required></textarea>
+            </div>
+            <div style="margin-Top: 20px">
+                <button type="submit" class="btn btn-secondary mb-3">제출</button>
+            </div>
+        </form>
     </div>
+
     <footer class="container py-5">
         <div class="row">
             <div class="col-12 col-md">
