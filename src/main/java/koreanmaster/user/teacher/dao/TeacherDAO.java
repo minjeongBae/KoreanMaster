@@ -47,4 +47,23 @@ public class TeacherDAO {
 
         return name;
     }
+
+    public TeacherDTO getByIntroductionId(int introductionId) throws SQLException {
+        String sql = "SELECT * FROM Teacher WHERE introduction_id=\"" + introductionId + "\"";
+        ResultSet rs = executeSql.getResult(sql);
+        if(rs==null) return null;
+
+        TeacherDTO result = null;
+        while (rs.next()) {
+            result = new TeacherDTO(
+                    rs.getString(1),
+                    "", rs.getString(2),
+                    rs.getString(3), rs.getInt(4), rs.getBoolean(5),
+                    rs.getBoolean(6), rs.getInt(7), rs.getString(8),
+                    rs.getInt(9)
+            );
+        }
+
+        return result;
+    }
 }

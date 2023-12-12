@@ -50,7 +50,7 @@ public class SignUp {
         try{
             TeacherDTO teacher = new TeacherDTO(user.getEmail(), user.getPassword(),
                     name, birth, english, qualified,
-                    korean, howLong, phone);
+                    korean, howLong, phone, 0);
             TeacherDAO dao = new TeacherDAO();
 
             userDAO.addUser(this.user);

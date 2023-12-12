@@ -12,10 +12,11 @@ public class TeacherDTO extends UserDTO {
     private final boolean korean;
     private final int howLong;
     private final String phone;
+    private int introductionId;
 
     public TeacherDTO(String email, String password, String name, String birth, int english,
                       boolean qualified,
-                      boolean korean, int howLong, String phone) {
+                      boolean korean, int howLong, String phone, int introductionId) {
         super(email, password, false);
         this.name = name;
         this.birth = birth;
@@ -24,5 +25,10 @@ public class TeacherDTO extends UserDTO {
         this.korean = korean;
         this.howLong = howLong;
         this.phone = phone;
+        this.introductionId = introductionId;
+    }
+
+    public void setIntroductionId(int introductionId) {
+        this.introductionId = introductionId;
     }
 }
