@@ -23,8 +23,9 @@
                     <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
                 </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/KoreanMaster/introduction" class="nav-link px-2 text-white">소개</a></li>
                     <li><a href="/KoreanMaster/show_board" class="nav-link px-2 text-white">질문게시판</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">정보</a></li>
+                    <li><a href="/KoreanMaster/teachers" class="nav-link px-2 text-white">멘토</a></li>
                     <li><a href="/KoreanMaster/my_page" class="nav-link px-2 text-white">마이페이지</a></li>
                 </ul>
             </div>

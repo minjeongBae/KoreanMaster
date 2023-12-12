@@ -37,4 +37,13 @@ public class HomeController {
         return ResponseEntity.ok(all);
     }
 
+    @GetMapping("/introduction")
+    public String introduction(){
+        return "introduction";
+    }
+
+    @GetMapping("/teachers")
+    public String teachers(){
+        return "teachers";
+    }
 }
