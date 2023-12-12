@@ -5,6 +5,8 @@ import koreanmaster.user.teacher.introduction.dto.IntroductionDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IntroductionDAO {
     private final ExecuteSql executeSql;
@@ -14,7 +16,8 @@ public class IntroductionDAO {
 
     public void add(IntroductionDTO introduction){
         String sql = "INSERT INTO Introduction VALUES (" +
-                "NULL, \""+ introduction.getBrief() +"\", " +
+                "NULL, \"" + introduction.getName() + "\", "
+                + introduction.getBrief() +"\", " +
                 "\""+ introduction.getTxt() +"\"," +
                 "\""+ introduction.getImg() +"\"" + ");";
         executeSql.noResult(sql);
@@ -46,9 +49,25 @@ public class IntroductionDAO {
             introduction = new IntroductionDTO(
                     id, rs.getString(2),
                     rs.getString(3),
-                    rs.getString(4));
+                    rs.getString(4),
+                    rs.getString(5));
         }
 
         return introduction;
+    }
+
+    public List<IntroductionDTO> getAll() throws SQLException {
+        String sql = "SELECT * FROM Introduction;";
+        List<IntroductionDTO> introductionDTOList = new ArrayList<>();
+        ResultSet rs = executeSql.getResult(sql);
+        while (rs.next()) {
+            introductionDTOList.add(new IntroductionDTO(
+                    rs.getInt(1), rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5)));
+        }
+
+        return introductionDTOList;
     }
 }

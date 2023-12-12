@@ -3,6 +3,7 @@ package koreanmaster.home.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import koreanmaster.board.dao.PostDAO;
 import koreanmaster.board.dto.PostDTO;
+import koreanmaster.user.teacher.introduction.dao.IntroductionDAO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +44,10 @@ public class HomeController {
     }
 
     @GetMapping("/teachers")
-    public String teachers(){
+    public String teachers(Model model) throws SQLException {
+        IntroductionDAO introDao = new IntroductionDAO();
+        model.addAttribute("introductionDTOList", introDao.getAll());
+
         return "teachers";
     }
 }

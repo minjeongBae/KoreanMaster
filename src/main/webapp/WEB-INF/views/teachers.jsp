@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@page import="koreanmaster.user.teacher.introduction.dto.IntroductionDTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -32,14 +34,19 @@
     <div class="container marketing" align="center" style="margin-top:50px">
 
         <div class="row">
+            <c:forEach var="introduction" items="${introductionDTOList}">
+                <div class="col-lg-4" style="padding:20px">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="${introduction.getImg()}" />
+                    <h2 class="fw-normal"><br />${introduction.getName()}</h2>
+                    <p>${introduction.getBrief()}</p>
+                    <p><a class="btn btn-secondary" href="#">자세히 보기 &raquo;</a></p>
+                </div>
 
-          <div class="col-lg-4" style="padding:20px">
-            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://cdn.pixabay.com/photo/2012/05/07/01/54/owl-47526_640.png" />
-            <h2 class="fw-normal"><br />멘토 이름</h2>
-            <p>멘토 짧은 소개</p>
-            <p><a class="btn btn-secondary" href="#">자세히 보기 &raquo;</a></p>
-          </div>
-
+                <!-- Add a line break after every 3 items -->
+                <c:if test="${(loop.index + 1) % 3 == 0}">
+                    <div class="w-100"></div>
+                </c:if>
+            </c:forEach>
         </div>
     </div>
     <footer class="container py-5">

@@ -34,4 +34,17 @@ public class TeacherDAO {
 
         return Math.max(introduction_id, 0);
     }
+
+    public String getName(String email) throws SQLException {
+        String sql = "SELECT name FROM Teacher WHERE email=\"" + email + "\"";
+        ResultSet rs = executeSql.getResult(sql);
+        if(rs==null) return "";
+
+        String name = "";
+        while (rs.next()) {
+            name = rs.getString(1);
+        }
+
+        return name;
+    }
 }
