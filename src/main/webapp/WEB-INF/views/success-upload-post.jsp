@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>안녕 - 게시물 작성 </title>
+    <title>안녕 - 게시물 작성 완료 </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
@@ -21,20 +21,17 @@
           </div>
         </div>
     </header>
-    <div style="margin: 50px 50px 50px 50px">
-        <h2> [게시물 작성] </h2>
-        <form action="success_upload_post" method="post" class="needs-validation">
-            <input type="text" name="title" class="form-control mt-4 mb-2"
-                placeholder="제목을 입력해주세요." required>
-            <div class="form-group">
-                <textarea class="form-control" rows="10" name="content"
-                    placeholder="내용을 입력해주세요" required></textarea>
-            </div>
-            <div style="margin-Top: 20px">
-                <button type="submit" class="btn btn-secondary mb-3">제출</button>
-            </div>
-        </form>
+    <div align="center" style="margin: 50px 50px 50px 50px">
+        <h2> 게시물 작성 완료하였습니다. </h2>
+        <div style="margin-Top: 20px">
+            <button onclick="go_board()" type="submit" class="btn btn-secondary mb-3">질문 게시판</button>
+        </div>
     </div>
+    <script>
+        function go_board() {
+            window.location.href = "/KoreanMaster/show_board";
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

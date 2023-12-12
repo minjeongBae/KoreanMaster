@@ -81,20 +81,20 @@ public class PostDAO {
         executeSql.noResult(sql);
     }
 
-    public void revise(int postId, String content) throws SQLException {
+    public void revise(int postId, String content) {
         String sql = "UPDATE Post SET content = \"" + content
                 + "\" WHERE post_id = " + postId + ";";
         executeSql.noResult(sql);
     }
 
-    public void addReply(int postId, int replyId) throws SQLException {
+    public void addReply(int postId, int replyId) {
         String sql = "UPDATE Post SET reply_id = "
                 + replyId + " WHERE post_id = "
                 + postId + ";";
         executeSql.noResult(sql);
     }
 
-    public void removeReply(int postId) throws SQLException {
+    public void removeReply(int postId) {
         String sql = "UPDATE Post SET reply_id = NULL "
                 + "WHERE post_id = " + postId + ";";
         executeSql.noResult(sql);

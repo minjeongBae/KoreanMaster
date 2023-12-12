@@ -1,4 +1,4 @@
-package koreanmaster.board.domain;
+package koreanmaster.board.service;
 
 import koreanmaster.board.dao.PostDAO;
 import koreanmaster.board.dao.ReplyDAO;
@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Reply {
+public class ReplyManage {
     private final PostDTO post;
     private final ReplyDAO replyDAO;
     private ReplyDTO reply;
 
-    public Reply(PostDTO post) throws SQLException {
+    public ReplyManage(PostDTO post) throws SQLException {
         this.post = post;
 
         replyDAO = new ReplyDAO();
