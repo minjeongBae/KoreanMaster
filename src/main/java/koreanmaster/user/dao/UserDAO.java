@@ -61,4 +61,13 @@ public class UserDAO {
         }
         return false;
     }
+
+    public boolean isStudent(String email) throws SQLException {
+        String sql = "SELECT * FROM User WHERE email=\"" + email + "\";";
+        ResultSet rs = executeSql.getResult(sql);
+        while (rs.next()) {
+            if (rs.getBoolean(3)) return true;
+        }
+        return false;
+    }
 }
