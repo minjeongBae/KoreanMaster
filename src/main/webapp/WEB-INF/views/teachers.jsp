@@ -39,7 +39,12 @@
                     <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="${introduction.getImg()}" />
                     <h2 class="fw-normal"><br />${introduction.getName()}</h2>
                     <p>${introduction.getBrief()}</p>
-                    <p><a class="btn btn-secondary" href="#">자세히 보기 &raquo;</a></p>
+                    <p>
+                        <form action="teacher_page" method="get">
+                            <input type="hidden" name="introduction-id" value="${introduction.getIntroductionId()}" />
+                            <button style="margin: 30px 10px 10px 50px" class="w-50 btn btn-lg btn-secondary" type="submit">자세히 보기 &raquo;</button>
+                        </form>
+                    </p>
                 </div>
 
                 <!-- Add a line break after every 3 items -->

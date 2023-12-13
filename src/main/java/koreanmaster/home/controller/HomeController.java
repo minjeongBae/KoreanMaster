@@ -4,12 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import koreanmaster.board.dao.PostDAO;
 import koreanmaster.board.dto.PostDTO;
 import koreanmaster.user.teacher.introduction.dao.IntroductionDAO;
+import koreanmaster.user.teacher.introduction.dto.IntroductionDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
@@ -49,5 +51,14 @@ public class HomeController {
         model.addAttribute("introductionDTOList", introDao.getAll());
 
         return "teachers";
+    }
+
+    @GetMapping("/teacher_page")
+    public String teacherPage(HttpServletRequest request, Model model) throws SQLException {
+        IntroductionDAO introductionDAO = new IntroductionDAO();
+        System.out.println(Integer.parseInt(request.getParameter("introduction-id")));
+        IntroductionDTO introduction = introductionDAO.getById(Integer.parseInt(request.getParameter("introduction-id")));
+        model.addAttribute("introduction", introduction);
+        return "teacher-page";
     }
 }
