@@ -1,6 +1,7 @@
 package koreanmaster.mypage.controller;
 
 import koreanmaster.mypage.service.SignIn;
+import koreanmaster.user.dao.UserDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,14 @@ public class SignInController {
         boolean isSuccess = signin.isSuccess(rq.getParameter("userEmail"),
                 rq.getParameter("userPW"));
         if(isSuccess) {
-            session.setAttribute("userEmail", rq.getParameter("userEmail"));
-            model.addAttribute("email", rq.getParameter("userEmail"));
+            String userEmail = rq.getParameter("userEmail");
+            session.setAttribute("userEmail", userEmail);
+            model.addAttribute("email", userEmail);
+            if(new UserDAO().isStudent(userEmail)) {
+                model.addAttribute("isStudent", true);
+                return "my-page";
+            }
+            model.addAttribute("isStudent",false);
             return "my-page";
         }
         model.addAttribute("alertMessage","사용자 이메일 또는 비밀번호가 옳지 않습니다.");

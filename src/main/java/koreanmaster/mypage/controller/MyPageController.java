@@ -21,6 +21,13 @@ public class MyPageController {
 
     @GetMapping("/show_classes")
     public String showClasses(Model model){
+        // student version
         return "show-classes";
+    }
+
+    @GetMapping("/show_application")
+    public String showApplication(){
+        // teacher version
+        return "show-application";
     }
 }
