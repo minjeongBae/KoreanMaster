@@ -128,16 +128,6 @@
                     <h4 class="mb-3"><br/>신청인의 정보를 입력해주세요.</h4>
                     <div class="my-3"  style="margin:30px 30px 30px 30px; padding:30px; border:5px solid #c9e4c2;">
                         <p>
-                            <label for="phone" class="form-label"><h3>휴대폰 번호</h3></label>
-                            일정이나 수업 난이도 등을 논의할 휴대폰 번호를 입력해주세요.
-                        </p>
-                        <p>
-                            <input name="phone" type="text" class="form-control" oninput="oninputPhone(this)" placeholder="010-1234-1234" maxlength="14" required>
-                            <div class="invalid-feedback">
-                                휴대폰 번호를 입력해주세요.
-                            </div>
-                        </p>
-                        <p>
                             <label for="phone" class="form-label"><h3>상담 가능 시간대</h3></label>
                         </p>
                         <p>
