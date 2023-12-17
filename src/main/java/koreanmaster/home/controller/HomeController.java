@@ -3,6 +3,7 @@ package koreanmaster.home.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import koreanmaster.board.dao.PostDAO;
 import koreanmaster.board.dto.PostDTO;
+import koreanmaster.user.dao.UserDAO;
 import koreanmaster.user.teacher.introduction.dao.IntroductionDAO;
 import koreanmaster.user.teacher.introduction.dto.IntroductionDTO;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,15 @@ import java.util.List;
 @Controller
 public class HomeController {
     @GetMapping("/my_page")
-    public String myPage(HttpSession session, Model model) {
+    public String myPage(HttpSession session, Model model) throws SQLException {
         if (session.getAttribute("userEmail") == null) return "not-user";
-        model.addAttribute("email", session.getAttribute("userEmail"));
+        String userEmail = (String) session.getAttribute("userEmail");
+        model.addAttribute("email", userEmail);
+        if(new UserDAO().isStudent(userEmail)) {
+            model.addAttribute("isStudent", true);
+            return "my-page";
+        }
+        model.addAttribute("isStudent",false);
         return "my-page";
     }
 
@@ -60,5 +67,15 @@ public class HomeController {
         IntroductionDTO introduction = introductionDAO.getById(Integer.parseInt(request.getParameter("introduction-id")));
         model.addAttribute("introduction", introduction);
         return "teacher-page";
+    }
+
+    @GetMapping("/counsel")
+    public String counsel(){
+        return "counsel";
+    }
+
+    @GetMapping("/subscribe")
+    public String subscribe(){
+        return "subscribe";
     }
 }

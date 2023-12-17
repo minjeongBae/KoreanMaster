@@ -34,8 +34,8 @@
         <h1 class="display-4 fw-bold lh-1">${introduction.getName()} <br/> ${introduction.getBrief()}</h1>
         <p class="lead">${introduction.getTxt()}</p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-          <button type="button" class="btn btn-success btn-lg px-4 me-md-2 fw-bold">매칭신청</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">상담하기</button>
+          <button onclick="subscribe()" type="button" class="btn btn-success btn-lg px-4 me-md-2 fw-bold">매칭신청</button>
+          <button onclick="counsel()" type="button" class="btn btn-outline-secondary btn-lg px-4">상담하기</button>
         </div>
       </div>
       <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg" align="center">
@@ -80,7 +80,14 @@
             <div class="col-6 col-md"> <p>주소: 대한민국 </p> </div>
         </div>
     </footer>
-
+    <script>
+        function subscribe() {
+            window.location.href = "/KoreanMaster/subscribe";
+        }
+        function counsel() {
+            window.location.href = "/KoreanMaster/counsel";
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
