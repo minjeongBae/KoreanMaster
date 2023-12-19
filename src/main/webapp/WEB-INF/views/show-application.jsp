@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@page import="koreanmaster.user.teacher.dto.ApplicationFormDTO"%>
+<%@page import="koreanmaster.teachers.teacher.dto.ApplicationFormDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -41,18 +41,18 @@
     	    <table class= "table table-stripped" style= "text-align: center; boarder: 1px; solid #dddddd">
     	        <thead>
     	    	<tr>
-    	    		<th style= "background-color: #c9e4c2; text-align: center;">번호</th>
+    	    		<th style= "background-color: #c9e4c2; text-align: center;">현상태</th>
     	    		<th style= "background-color: #c9e4c2; text-align: center;">신청인</th>
-    	    		<th style= "background-color: #c9e4c2; text-align: center;">전화번호</th>
+    	    		<th style= "background-color: #c9e4c2; text-align: center;">수업방식</th>
     	    		<th style= "background-color: #c9e4c2; text-align: center;"></th>
     	    	</tr>
     	    	</thead>
                 <tbody>
                     <c:forEach var="application" items="${applications}">
                         <tr>
-                            <td>${application.getWriter()}</td>
+                            <td>${application.getState()}</td>
                             <td>${application.getStudentEmail()}</td>
-                            <td>${application.getPhone()}</td>
+                            <td>${application.getRoot()}</td>
                             <td>
                                 <form action="post" method="get">
                                     <input type="hidden" name="postId" value="${post.getPostId()}" />
