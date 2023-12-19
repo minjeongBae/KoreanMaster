@@ -50,7 +50,10 @@ public class IntroductionDAO {
                     id, rs.getString(2),
                     rs.getString(3),
                     rs.getString(4),
-                    rs.getString(5));
+                    rs.getBoolean(5),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getString(8));
         }
 
         return introduction;
@@ -65,7 +68,10 @@ public class IntroductionDAO {
                     rs.getInt(1), rs.getString(2),
                     rs.getString(3),
                     rs.getString(4),
-                    rs.getString(5)));
+                    rs.getBoolean(5),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getString(8)));
         }
 
         return introductionDTOList;

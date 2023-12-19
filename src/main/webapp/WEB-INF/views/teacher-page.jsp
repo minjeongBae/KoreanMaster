@@ -54,7 +54,7 @@
                    <p class="lead">
             <div>
                 <img src="https://img.icons8.com/?size=48&id=114321&format=png" width="23px">
-                <span>최종 학력: </span>
+                <span>최종 학력: ${introduction.getFinalAcademicAbility()} ${introduction.getMajor()}</span>
             </div>
             <div>
                 <img src="https://img.icons8.com/?size=48&id=114321&format=png" width="23px">
