@@ -1,7 +1,7 @@
 package koreanmaster.mypage.controller;
 
 import koreanmaster.mypage.service.SignIn;
-import koreanmaster.user.dao.UserDAO;
+import koreanmaster.home.user.dao.UserDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

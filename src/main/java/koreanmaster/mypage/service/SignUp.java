@@ -1,11 +1,11 @@
 package koreanmaster.mypage.service;
 
-import koreanmaster.user.dao.UserDAO;
-import koreanmaster.user.dto.UserDTO;
-import koreanmaster.user.student.dao.StudentDAO;
-import koreanmaster.user.student.dto.StudentDTO;
-import koreanmaster.user.teacher.dao.TeacherDAO;
-import koreanmaster.user.teacher.dto.TeacherDTO;
+import koreanmaster.home.user.dao.UserDAO;
+import koreanmaster.home.user.dto.UserDTO;
+import koreanmaster.home.user.student.dao.StudentDAO;
+import koreanmaster.home.user.student.dto.StudentDTO;
+import koreanmaster.teachers.teacher.dao.TeacherDAO;
+import koreanmaster.teachers.teacher.dto.TeacherDTO;
 
 import java.sql.SQLException;
 
