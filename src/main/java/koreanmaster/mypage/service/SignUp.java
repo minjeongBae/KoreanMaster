@@ -1,22 +1,17 @@
 package koreanmaster.mypage.service;
 
-import koreanmaster.home.user.dao.UserDAO;
+import koreanmaster.home.user.dao.Insert;
+import koreanmaster.home.user.dao.Select;
 import koreanmaster.home.user.dto.UserDTO;
-import koreanmaster.home.user.student.dao.StudentDAO;
-import koreanmaster.home.user.student.dto.StudentDTO;
+import koreanmaster.mypage.student.dao.StudentDAO;
+import koreanmaster.mypage.student.dto.StudentDTO;
 import koreanmaster.teachers.teacher.dao.TeacherDAO;
 import koreanmaster.teachers.teacher.dto.TeacherDTO;
 
 import java.sql.SQLException;
 
 public class SignUp {
-
     private UserDTO user;
-    private UserDAO userDAO;
-
-    public SignUp() throws SQLException {
-        userDAO = new UserDAO();
-    }
 
     public void setUser(UserDTO user) {
         this.user = user;
@@ -26,8 +21,7 @@ public class SignUp {
     }
 
     public boolean ableEmail(String email) throws SQLException {
-        UserDAO dao = new UserDAO();
-        return !dao.findByEmail(email);
+        return new Select().findByEmail(email);
     }
 
 
@@ -36,7 +30,7 @@ public class SignUp {
             StudentDTO student = new StudentDTO(user.getEmail(), user.getPassword(), name, birth, level, phone);
             StudentDAO dao = new StudentDAO();
 
-            userDAO.addUser(this.user);
+            new Insert().addUser(user);
             dao.addStudent(student);
             return true;
         }catch (Exception e){
@@ -53,7 +47,7 @@ public class SignUp {
                     korean, howLong, phone, 0);
             TeacherDAO dao = new TeacherDAO();
 
-            userDAO.addUser(this.user);
+            new Insert().addUser(user);
             dao.addTeacher(teacher);
             return true;
         }

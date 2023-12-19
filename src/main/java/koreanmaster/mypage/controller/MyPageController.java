@@ -1,6 +1,6 @@
 package koreanmaster.mypage.controller;
 
-import koreanmaster.home.user.dao.UserDAO;
+import koreanmaster.home.user.dao.Select;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +12,8 @@ import java.sql.SQLException;
 public class MyPageController {
     @GetMapping("/revise_user_info")
     public String reviseUserInfo(HttpSession sesssion, Model model) throws SQLException {
-        UserDAO userDAO = new UserDAO();
         String nowUser = (String) sesssion.getAttribute("userEmail");
-        model.addAttribute("isStudent", userDAO.isStudent(nowUser));
+        model.addAttribute("isStudent", new Select().isStudent(nowUser));
 
         return "revise-user-info";
     }

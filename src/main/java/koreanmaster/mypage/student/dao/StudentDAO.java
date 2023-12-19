@@ -1,16 +1,13 @@
-package koreanmaster.home.user.student.dao;
+package koreanmaster.mypage.student.dao;
 
+import koreanmaster.common.Dao;
 import koreanmaster.common.ExecuteSql;
-import koreanmaster.home.user.student.dto.StudentDTO;
+import koreanmaster.mypage.student.dto.StudentDTO;
 
 import java.sql.SQLException;
 
-public class StudentDAO {
-    private final ExecuteSql executeSql;
-
-    public StudentDAO() throws SQLException {
-        executeSql = new ExecuteSql();
-    }
+public class StudentDAO extends Dao {
+    public StudentDAO() throws SQLException {}
 
     public void addStudent(StudentDTO student) {
         String sql = "INSERT INTO Student VALUES (\"" + student.getEmail() + "\", \""

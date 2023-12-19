@@ -2,7 +2,7 @@ package koreanmaster.home.controller;
 
 import koreanmaster.board.post.PostDto;
 import koreanmaster.board.post.service.Show;
-import koreanmaster.home.user.dao.UserDAO;
+import koreanmaster.home.user.dao.Select;
 import koreanmaster.teachers.teacher.dao.IntroductionDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,9 @@ public class HomeController {
         if (session.getAttribute("userEmail") == null) return "not-user";
         String userEmail = (String) session.getAttribute("userEmail");
         model.addAttribute("email", userEmail);
-        if(new UserDAO().isStudent(userEmail)) {
+
+        Select selectTool = new Select();
+        if(selectTool.isStudent(userEmail)) {
             model.addAttribute("isStudent", true);
             return "my-page";
         }

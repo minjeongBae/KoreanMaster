@@ -1,7 +1,7 @@
 package koreanmaster.mypage.controller;
 
+import koreanmaster.home.user.dao.Select;
 import koreanmaster.mypage.service.SignIn;
-import koreanmaster.home.user.dao.UserDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +29,7 @@ public class SignInController {
             String userEmail = rq.getParameter("userEmail");
             session.setAttribute("userEmail", userEmail);
             model.addAttribute("email", userEmail);
-            if(new UserDAO().isStudent(userEmail)) {
+            if(new Select().isStudent(userEmail)) {
                 model.addAttribute("isStudent", true);
                 return "my-page";
             }

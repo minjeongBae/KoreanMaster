@@ -5,7 +5,7 @@ import koreanmaster.board.post.PostDto;
 import koreanmaster.board.post.reply.ReplyDto;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.board.post.service.Upload;
-import koreanmaster.home.user.dao.UserDAO;
+import koreanmaster.home.user.dao.Select;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +30,7 @@ public class Controller {
         if (reply!=null) model.addAttribute("reply", reply);
 
         String nowUser = (String) session.getAttribute("userEmail");
-        if(new UserDAO().isManager(nowUser)) model.addAttribute("isManager",true);
+        if(new Select().isManager(nowUser)) model.addAttribute("isManager",true);
 
         return "show-post";
     }

@@ -1,4 +1,4 @@
-package koreanmaster.home.user.student.dto;
+package koreanmaster.mypage.student.dto;
 
 import koreanmaster.home.user.dto.UserDTO;
 import lombok.Getter;

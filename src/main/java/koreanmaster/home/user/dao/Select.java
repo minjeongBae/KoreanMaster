@@ -1,19 +1,14 @@
 package koreanmaster.home.user.dao;
 
-import koreanmaster.common.ExecuteSql;
+import koreanmaster.common.Dao;
 import koreanmaster.home.user.dto.UserDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDAO {
-    private final ExecuteSql executeSql;
-
-    public UserDAO() throws SQLException {
-        executeSql = new ExecuteSql();
-    }
-
-    public UserDTO checkCorrect(String email, String password) throws SQLException {
+public class Select extends Dao {
+    public Select() throws SQLException {}
+    public UserDTO checkUser(String email, String password) throws SQLException {
         String sql = "SELECT * FROM User WHERE email = \"" + email + "\" AND password = \"" + password + "\";";
         ResultSet rs = executeSql.getResult(sql);
 
@@ -27,19 +22,6 @@ public class UserDAO {
         return null;
     }
 
-    public void changePW(String email, String oldPW, String newPW) throws SQLException {
-        String sql = "UPDATE User SET password = "
-                + newPW + " WHERE email = \""
-                + email + "\" AND password = \";"
-                + oldPW + "\"";
-        executeSql.noResult(sql);
-    }
-
-    public void addUser(UserDTO user) throws SQLException {
-        String sql = "INSERT INTO User VALUES (\"" + user.getEmail() + "\", \"" + user.getPassword() + "\", " + user.isStudent() + ");";
-        executeSql.noResult(sql);
-    }
-
     public boolean findByEmail(String email) throws SQLException {
         String sql = "SELECT email FROM User WHERE email=\"" + email + "\";";
         ResultSet rs = executeSql.getResult(sql);
@@ -50,7 +32,6 @@ public class UserDAO {
         }
         return false;
     }
-
 
     public boolean isManager(String email) throws SQLException {
         String sql = "SELECT email FROM Manager WHERE email=\"" + email + "\";";
