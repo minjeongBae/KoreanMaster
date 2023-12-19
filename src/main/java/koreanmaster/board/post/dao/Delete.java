@@ -1,10 +1,10 @@
 package koreanmaster.board.post.dao;
 
-import koreanmaster.board.CommonDao;
+import koreanmaster.common.Dao;
 
 import java.sql.SQLException;
 
-public class Delete extends CommonDao {
+public class Delete extends Dao {
     public Delete() throws SQLException {
     }
 

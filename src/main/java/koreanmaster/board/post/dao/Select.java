@@ -1,6 +1,6 @@
 package koreanmaster.board.post.dao;
 
-import koreanmaster.board.CommonDao;
+import koreanmaster.common.Dao;
 import koreanmaster.board.post.PostDto;
 
 import java.sql.ResultSet;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Select extends CommonDao {
+public class Select extends Dao {
     public Select() throws SQLException {
     }
 

@@ -1,11 +1,11 @@
 package koreanmaster.board.post.reply.dao;
 
-import koreanmaster.board.CommonDao;
+import koreanmaster.common.Dao;
 import koreanmaster.board.post.reply.ReplyDto;
 
 import java.sql.SQLException;
 
-public class Insert extends CommonDao {
+public class Insert extends Dao {
     public Insert() throws SQLException {
     }
 

@@ -1,12 +1,12 @@
 package koreanmaster.board.post.reply.dao;
 
-import koreanmaster.board.CommonDao;
+import koreanmaster.common.Dao;
 import koreanmaster.board.post.reply.ReplyDto;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Select extends CommonDao {
+public class Select extends Dao {
 
     public Select() throws SQLException {
     }
