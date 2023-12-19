@@ -45,17 +45,6 @@ public class Controller {
         return "upload-reply";
     }
 
-    @GetMapping("/my_posts")
-    public String showMyPosts(HttpSession session, Model model) {
-        Show show = new Show();
-        String userEmail = (String) session.getAttribute("userEmail");
-        List<PostDto> myPosts = show.getByEmail(userEmail);
-
-        model.addAttribute("myPosts", myPosts);
-        model.addAttribute("email", userEmail);
-        return "my-page";
-    }
-
     @PostMapping("/success_upload_post")
     public String successUploadPost(HttpServletRequest rq, HttpSession session) {
         String title = rq.getParameter("title");
