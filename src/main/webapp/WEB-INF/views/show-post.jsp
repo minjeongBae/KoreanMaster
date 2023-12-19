@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@page import="koreanmaster.board.dto.PostDTO"%>
+<%@page import="koreanmaster.board.post.PostDto"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!doctype html>
@@ -61,10 +61,13 @@
             </form>
         </c:if>
         <br />
-        <form action="post" method="get">
-            <input type="hidden" name="postId" value="${post.getPostId()+1}" />
-            <input type="submit" value="다음글" class="btn btn-secondary" />
-        </form>
+        ${nextIsLast}
+        <c:if test="${isLast==false}">
+            <form action="post" method="get">
+                <input type="hidden" name="postId" value="${post.getPostId()+1}" />
+                <input type="submit" value="다음글" class="btn btn-secondary" />
+            </form>
+        </c:if>
       </div>
       <div align="right" style="margin:30px 90px 30px 30px">
           <c:if test="${isManager == true}">
