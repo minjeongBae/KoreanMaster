@@ -1,10 +1,11 @@
 package koreanmaster.common.config;
 
-import koreanmaster.board.controller.BoardController;
+import koreanmaster.board.Controller;
 import koreanmaster.home.controller.HomeController;
 import koreanmaster.mypage.controller.MyPageController;
 import koreanmaster.mypage.controller.SignInController;
 import koreanmaster.mypage.controller.SignUpController;
+import koreanmaster.teachers.controller.TeachersController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,8 +14,8 @@ import java.sql.SQLException;
 @Configuration
 public class ControllerConfig {
     @Bean
-    public BoardController boardController() {
-        return new BoardController();
+    public Controller boardController() {
+        return new Controller();
     }
 
     @Bean
@@ -35,5 +36,9 @@ public class ControllerConfig {
     @Bean
     public MyPageController myPageController(){
         return new MyPageController();
+    }
+    @Bean
+    public TeachersController teachersController() {
+        return new TeachersController();
     }
 }

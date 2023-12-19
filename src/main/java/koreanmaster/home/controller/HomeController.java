@@ -1,18 +1,13 @@
 package koreanmaster.home.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import koreanmaster.board.dao.PostDAO;
-import koreanmaster.board.dto.PostDTO;
-import koreanmaster.user.dao.UserDAO;
-import koreanmaster.user.teacher.introduction.dao.IntroductionDAO;
-import koreanmaster.user.teacher.introduction.dto.IntroductionDTO;
-import org.springframework.http.ResponseEntity;
+import koreanmaster.board.post.PostDto;
+import koreanmaster.board.post.service.Show;
+import koreanmaster.home.user.dao.UserDAO;
+import koreanmaster.teachers.teacher.dao.IntroductionDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
@@ -33,18 +28,13 @@ public class HomeController {
     }
 
     @GetMapping("/show_board")
-    public String showBoard(HttpSession session, Model model) throws SQLException {
+    public String showBoard(HttpSession session, Model model) {
         model.addAttribute("signIn","false");
         if(session.getAttribute("userEmail")!=null) model.addAttribute("signIn","true");
-        List<PostDTO> posts = new PostDAO().allPosts();
+
+        List<PostDto> posts = new Show().getAll();
         model.addAttribute("posts", posts);
         return "show-board";
-    }
-
-    @GetMapping("/board_values")
-    public @ResponseBody ResponseEntity<List<PostDTO>> boardValues() throws SQLException, JsonProcessingException {
-        List<PostDTO> all = new PostDAO().allPosts();
-        return ResponseEntity.ok(all);
     }
 
     @GetMapping("/introduction")
@@ -56,26 +46,6 @@ public class HomeController {
     public String teachers(Model model) throws SQLException {
         IntroductionDAO introDao = new IntroductionDAO();
         model.addAttribute("introductionDTOList", introDao.getAll());
-
         return "teachers";
-    }
-
-    @GetMapping("/teacher_page")
-    public String teacherPage(HttpServletRequest request, Model model) throws SQLException {
-        IntroductionDAO introductionDAO = new IntroductionDAO();
-        System.out.println(Integer.parseInt(request.getParameter("introduction-id")));
-        IntroductionDTO introduction = introductionDAO.getById(Integer.parseInt(request.getParameter("introduction-id")));
-        model.addAttribute("introduction", introduction);
-        return "teacher-page";
-    }
-
-    @GetMapping("/counsel")
-    public String counsel(){
-        return "counsel";
-    }
-
-    @GetMapping("/subscribe")
-    public String subscribe(){
-        return "subscribe";
     }
 }

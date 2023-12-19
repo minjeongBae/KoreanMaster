@@ -1,7 +1,7 @@
-package koreanmaster.user.teacher.dao;
+package koreanmaster.teachers.teacher.dao;
 
 import koreanmaster.common.ExecuteSql;
-import koreanmaster.user.teacher.dto.TeacherDTO;
+import koreanmaster.teachers.teacher.dto.TeacherDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
