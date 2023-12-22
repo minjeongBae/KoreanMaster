@@ -6,10 +6,11 @@ import java.sql.SQLException;
 
 public class Update extends Dao {
     private final String email;
+
     public Update(String email) throws SQLException {
         this.email = email;
     }
-    // 생일 이름 전화번호 영어소통능력 변경
+
     public void changeBirth(String newDate) {
         String sql = "UPDATE Student SET birth = "
                 + newDate + " WHERE email = \""
