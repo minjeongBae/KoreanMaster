@@ -10,8 +10,8 @@ public class Update extends Dao {
     public void changePW(String email, String oldPW, String newPW) {
         String sql = "UPDATE User SET password = "
                 + newPW + " WHERE email = \""
-                + email + "\" AND password = \";"
-                + oldPW + "\"";
+                + email + "\" AND password = \""
+                + oldPW + "\";";
         executeSql.noResult(sql);
     }
 }
