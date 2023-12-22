@@ -1,7 +1,7 @@
 package koreanmaster.teachers.controller;
 
-import koreanmaster.teachers.teacher.dao.IntroductionDAO;
-import koreanmaster.teachers.teacher.dto.IntroductionDTO;
+import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
+import koreanmaster.teachers.teacher.introduction.IntroductionDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

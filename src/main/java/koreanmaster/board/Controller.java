@@ -1,8 +1,8 @@
 package koreanmaster.board;
 
 import koreanmaster.board.date.MyFormat;
-import koreanmaster.board.post.PostDto;
-import koreanmaster.board.post.reply.ReplyDto;
+import koreanmaster.board.post.PostDTO;
+import koreanmaster.board.post.reply.ReplyDTO;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.board.post.service.Upload;
 import koreanmaster.home.user.dao.Select;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.List;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -23,10 +22,10 @@ public class Controller {
         Show show = new Show(Integer.parseInt(rq.getParameter("postId")));
         model.addAttribute("isLast", show.isLast());
 
-        PostDto post = show.run();
+        PostDTO post = show.run();
         model.addAttribute("post", post);
 
-        ReplyDto reply = show.getReply();
+        ReplyDTO reply = show.getReply();
         if (reply!=null) model.addAttribute("reply", reply);
 
         String nowUser = (String) session.getAttribute("userEmail");
@@ -52,7 +51,7 @@ public class Controller {
         String writer = String.valueOf(session.getAttribute("userEmail"));
         String date = new MyFormat().get();
 
-        PostDto newPost = new PostDto(0, title, writer, date, content, 0);
+        PostDTO newPost = new PostDTO(0, title, writer, date, content, 0);
         if(new Upload(newPost).run()) return "success-upload-post";
         return "upload-post";
     }

@@ -1,9 +1,9 @@
 package koreanmaster.home.controller;
 
-import koreanmaster.board.post.PostDto;
+import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.home.user.dao.Select;
-import koreanmaster.teachers.teacher.dao.IntroductionDAO;
+import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +34,7 @@ public class HomeController {
         model.addAttribute("signIn","false");
         if(session.getAttribute("userEmail")!=null) model.addAttribute("signIn","true");
 
-        List<PostDto> posts = new Show().getAll();
+        List<PostDTO> posts = new Show().getAll();
         model.addAttribute("posts", posts);
         return "show-board";
     }

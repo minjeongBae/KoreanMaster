@@ -1,6 +1,6 @@
-package koreanmaster.teachers.teacher.dto;
+package koreanmaster.teachers.teacher;
 
-import koreanmaster.home.user.dto.UserDTO;
+import koreanmaster.home.user.UserDTO;
 import lombok.Getter;
 
 @Getter

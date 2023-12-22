@@ -1,7 +1,7 @@
 package koreanmaster.board.post.dao;
 
 import koreanmaster.common.Dao;
-import koreanmaster.board.post.PostDto;
+import koreanmaster.board.post.PostDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,15 +12,15 @@ public class Select extends Dao {
     public Select() throws SQLException {
     }
 
-    public List<PostDto> getByEmail(String email) throws SQLException {
+    public List<PostDTO> getByEmail(String email) throws SQLException {
         String sql = "SELECT * FROM Post WHERE writer = \"" + email + "\"";
         ResultSet rs = executeSql.getResult(sql);
 
-        List<PostDto> posts = new ArrayList<>();
+        List<PostDTO> posts = new ArrayList<>();
         while (rs.next()) {
             String replyId = rs.getString(6);
             if (replyId == null) replyId = "0";
-            PostDto post = new PostDto(
+            PostDTO post = new PostDTO(
                     Integer.parseInt(rs.getString(1)),
                     rs.getString(2), rs.getString(3),
                     rs.getString(4), rs.getString(5),
@@ -31,15 +31,15 @@ public class Select extends Dao {
         return posts;
     }
 
-    public PostDto get(int postId) throws SQLException {
+    public PostDTO get(int postId) throws SQLException {
         String sql = "SELECT * FROM Post WHERE post_id = \"" + postId + "\"";
         ResultSet rs = executeSql.getResult(sql);
 
-        PostDto post = null;
+        PostDTO post = null;
         while (rs.next()) {
             String replyId = rs.getString(6);
             if (replyId == null) replyId = "0";
-            post = new PostDto(
+            post = new PostDTO(
                     Integer.parseInt(rs.getString(1)),
                     rs.getString(2), rs.getString(3),
                     rs.getString(4), rs.getString(5),
@@ -49,15 +49,15 @@ public class Select extends Dao {
         return post;
     }
 
-    public List<PostDto> getAll() throws SQLException {
+    public List<PostDTO> getAll() throws SQLException {
         String sql = "SELECT * FROM Post;";
         ResultSet rs = executeSql.getResult(sql);
-        List<PostDto> posts = new ArrayList<>();
+        List<PostDTO> posts = new ArrayList<>();
 
         while (rs.next()) {
             String replyId = rs.getString(6);
             if (replyId == null) replyId = "0";
-            PostDto post = new PostDto(
+            PostDTO post = new PostDTO(
                     Integer.parseInt(rs.getString(1)),
                     rs.getString(2), rs.getString(3),
                     rs.getString(4), rs.getString(5),

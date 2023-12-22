@@ -1,4 +1,4 @@
-package koreanmaster.teachers.teacher.dto;
+package koreanmaster.teachers.applicationform;
 
 import lombok.Getter;
 

@@ -1,15 +1,15 @@
 package koreanmaster.board.post.reply.service;
 
 import koreanmaster.board.post.reply.dao.Insert;
-import koreanmaster.board.post.reply.ReplyDto;
+import koreanmaster.board.post.reply.ReplyDTO;
 import koreanmaster.board.post.reply.dao.Select;
 
 import java.sql.SQLException;
 
 public class Upload {
-    private final ReplyDto reply;
+    private final ReplyDTO reply;
 
-    public Upload(ReplyDto reply) {
+    public Upload(ReplyDTO reply) {
         this.reply = reply;
     }
 

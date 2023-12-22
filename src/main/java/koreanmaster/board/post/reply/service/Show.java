@@ -1,7 +1,7 @@
 package koreanmaster.board.post.reply.service;
 
 import koreanmaster.board.post.reply.dao.Select;
-import koreanmaster.board.post.reply.ReplyDto;
+import koreanmaster.board.post.reply.ReplyDTO;
 
 import java.sql.SQLException;
 
@@ -12,7 +12,7 @@ public class Show {
         this.replyId = replyId;
     }
 
-    public ReplyDto run() throws SQLException {
+    public ReplyDTO run() throws SQLException {
         Select selectTool = new Select();
         return selectTool.get(this.replyId);
     }

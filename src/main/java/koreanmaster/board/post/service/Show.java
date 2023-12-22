@@ -1,8 +1,8 @@
 package koreanmaster.board.post.service;
 
-import koreanmaster.board.post.PostDto;
+import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.dao.Select;
-import koreanmaster.board.post.reply.ReplyDto;
+import koreanmaster.board.post.reply.ReplyDTO;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Show {
         this.postId = postId;
     }
     public Show(){}
-    public PostDto run() throws SQLException {
+    public PostDTO run() throws SQLException {
         Select selectTool  = new Select();
         return selectTool.get(this.postId);
     }
@@ -22,12 +22,12 @@ public class Show {
         return new Select().notNullReplyId(this.postId);
     }
 
-    public ReplyDto getReply() throws SQLException {
+    public ReplyDTO getReply() throws SQLException {
         if(!hasReply()) return null;
 
         try{
             int replyId = new Select().getReplyId(this.postId);
-            ReplyDto reply = new koreanmaster.board.post.reply.service.Show(replyId).run();
+            ReplyDTO reply = new koreanmaster.board.post.reply.service.Show(replyId).run();
             return reply;
         }catch (SQLException e){
             System.out.println(e.getMessage());
@@ -35,7 +35,7 @@ public class Show {
         }
     }
 
-    public List<PostDto> getByEmail(String userEmail){
+    public List<PostDTO> getByEmail(String userEmail){
         try{
             Select selectTool = new Select();
             return selectTool.getByEmail(userEmail);
@@ -44,7 +44,7 @@ public class Show {
             return null;
         }
     }
-    public List<PostDto> getAll(){
+    public List<PostDTO> getAll(){
         try{
             Select selectTool= new Select();
             return selectTool.getAll();

@@ -1,7 +1,7 @@
 package koreanmaster.mypage.student.dao;
 
 import koreanmaster.common.Dao;
-import koreanmaster.mypage.student.dto.StudentDTO;
+import koreanmaster.mypage.student.StudentDTO;
 
 import java.sql.SQLException;
 

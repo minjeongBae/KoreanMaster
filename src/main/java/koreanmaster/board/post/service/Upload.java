@@ -1,13 +1,13 @@
 package koreanmaster.board.post.service;
 
-import koreanmaster.board.post.PostDto;
+import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.dao.Insert;
 
 import java.sql.SQLException;
 
 public class Upload {
-    private final PostDto post;
-    public Upload(PostDto post){
+    private final PostDTO post;
+    public Upload(PostDTO post){
         this.post = post;
     }
     public boolean run() {

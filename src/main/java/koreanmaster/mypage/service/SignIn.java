@@ -1,7 +1,7 @@
 package koreanmaster.mypage.service;
 
 import koreanmaster.home.user.dao.Select;
-import koreanmaster.home.user.dto.UserDTO;
+import koreanmaster.home.user.UserDTO;
 
 import java.sql.SQLException;
 

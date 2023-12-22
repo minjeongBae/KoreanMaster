@@ -3,7 +3,7 @@ package koreanmaster.board.post;
 import lombok.Getter;
 
 @Getter
-public class PostDto {
+public class PostDTO {
     private final int postId;
     private final String title;
     private final String writer;
@@ -11,7 +11,7 @@ public class PostDto {
     private String content;
     private int replyId;
 
-    public PostDto(int boardId, String title,
+    public PostDTO(int boardId, String title,
                    String writer, String registrationDate,
                    String content, int replyId) {
         this.postId = boardId;

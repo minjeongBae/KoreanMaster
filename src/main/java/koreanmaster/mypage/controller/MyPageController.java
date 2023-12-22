@@ -1,6 +1,6 @@
 package koreanmaster.mypage.controller;
 
-import koreanmaster.board.post.PostDto;
+import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.home.user.dao.Select;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class MyPageController {
     public String showMyPosts(HttpSession session, Model model) throws SQLException {
         Show show = new Show();
         String userEmail = (String) session.getAttribute("userEmail");
-        List<PostDto> myPosts = show.getByEmail(userEmail);
+        List<PostDTO> myPosts = show.getByEmail(userEmail);
 
         Select selectTool = new Select();
         if(selectTool.isStudent(userEmail)) {
