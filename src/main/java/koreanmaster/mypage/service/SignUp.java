@@ -3,7 +3,6 @@ package koreanmaster.mypage.service;
 import koreanmaster.home.user.dao.Insert;
 import koreanmaster.home.user.dao.Select;
 import koreanmaster.home.user.dto.UserDTO;
-import koreanmaster.mypage.student.dao.StudentDAO;
 import koreanmaster.mypage.student.dto.StudentDTO;
 import koreanmaster.teachers.teacher.dao.TeacherDAO;
 import koreanmaster.teachers.teacher.dto.TeacherDTO;
@@ -28,10 +27,9 @@ public class SignUp {
     public boolean studentUser(String name, String birth, int level, String phone) {
         try{
             StudentDTO student = new StudentDTO(user.getEmail(), user.getPassword(), name, birth, level, phone);
-            StudentDAO dao = new StudentDAO();
 
             new Insert().addUser(user);
-            dao.addStudent(student);
+            new koreanmaster.mypage.student.dao.Insert().addStudent(student);
             return true;
         }catch (Exception e){
             System.out.println(e.getMessage());
