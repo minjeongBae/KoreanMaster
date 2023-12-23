@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@page import="koreanmaster.teachers.teacher.dto.IntroductionDTO"%>
+<%@page import="koreanmaster.teachers.teacher.introduction.IntroductionDTO"%>
+
 
 <!DOCTYPE html>
 <html>

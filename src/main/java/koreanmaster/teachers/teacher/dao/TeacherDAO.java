@@ -1,7 +1,7 @@
 package koreanmaster.teachers.teacher.dao;
 
 import koreanmaster.common.ExecuteSql;
-import koreanmaster.teachers.teacher.dto.TeacherDTO;
+import koreanmaster.teachers.teacher.TeacherDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +12,8 @@ public class TeacherDAO {
     public TeacherDAO() throws SQLException {
         executeSql = new ExecuteSql();
     }
+    // 비밀번호 생일 이름 전화번호
+    // 영어소통능력수준 한국거주기간 자기소개
 
     public void addTeacher(TeacherDTO teacher) {
         String sql = "INSERT INTO Teacher VALUES (\"" + teacher.getEmail() + "\", \""

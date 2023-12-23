@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -26,6 +27,8 @@ public class MyPageController {
         Show show = new Show();
         String userEmail = (String) session.getAttribute("userEmail");
         List<PostDTO> myPosts = show.getByEmail(userEmail);
+        model.addAttribute("myPosts", myPosts);
+        model.addAttribute("email", userEmail);
 
         Select selectTool = new Select();
         if(selectTool.isStudent(userEmail)) {
@@ -34,8 +37,6 @@ public class MyPageController {
         }
         model.addAttribute("isStudent",false);
 
-        model.addAttribute("myPosts", myPosts);
-        model.addAttribute("email", userEmail);
         return "my-page";
     }
 

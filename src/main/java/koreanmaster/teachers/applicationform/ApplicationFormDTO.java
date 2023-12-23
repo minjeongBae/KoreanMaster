@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class ApplicationFormDTO {
+    private final String teacherEmail;
     private final String studentEmail;
     private final int frequency;
     private final int time;
@@ -13,8 +14,10 @@ public class ApplicationFormDTO {
     private final int counselTime;
     private final String addition;
 
-    public ApplicationFormDTO(String studentEmail, int frequency, int time, String root, int level,
+    public ApplicationFormDTO(String teacherEmail, String studentEmail, int frequency,
+                              int time, String root, int level,
                               String state, int counselTime, String addition){
+        this.teacherEmail = teacherEmail;
         this.studentEmail = studentEmail;
         this.frequency = frequency;
         this.time = time;

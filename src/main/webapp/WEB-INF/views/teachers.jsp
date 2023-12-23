@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@page import="koreanmaster.teachers.teacher.dto.IntroductionDTO"%>
+<%@page import="koreanmaster.teachers.teacher.introduction.IntroductionDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
