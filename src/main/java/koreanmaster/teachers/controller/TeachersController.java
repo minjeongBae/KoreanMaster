@@ -1,5 +1,8 @@
 package koreanmaster.teachers.controller;
 
+import koreanmaster.teachers.applicationform.ApplicationFormDTO;
+import koreanmaster.teachers.applicationform.dao.Insert;
+import koreanmaster.teachers.applicationform.dao.Select;
 import koreanmaster.teachers.teacher.dao.TeacherDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDTO;
@@ -46,7 +49,7 @@ public class TeachersController {
     public String successSubscribe(HttpServletRequest request, HttpSession session) throws SQLException {
         System.out.println("/success_subscribe: "+request.getParameter("introductionId"));
         TeacherDAO dao = new TeacherDAO();
-        System.out.println(dao.getEmailByIntroductionId(Integer.parseInt(request.getParameter("introductionId"))));
+        String teacher = dao.getEmailByIntroductionId(Integer.parseInt(request.getParameter("introductionId")));
         int frequency = Integer.parseInt(request.getParameter("frequency"));
         int time = Integer.parseInt(request.getParameter("time"));
         String root = request.getParameter("root");
@@ -55,6 +58,14 @@ public class TeachersController {
         int counselTime = Integer.parseInt(request.getParameter("counselTime"));
         String addition = request.getParameter("addition");
         String student = (String) session.getAttribute("userEmail");
+
+        ApplicationFormDTO form = new ApplicationFormDTO(teacher,student,frequency,time,root,level,
+                state,counselTime,addition);
+
+        Insert insertTool = new Insert();
+        insertTool.apply(form);
+
+        insertTool.makeApplication(new Select().getTheLast(), form);
 
         return "success-subscribe";
     }
