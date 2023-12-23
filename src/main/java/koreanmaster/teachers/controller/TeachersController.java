@@ -47,7 +47,6 @@ public class TeachersController {
 
     @PostMapping("/success_subscribe")
     public String successSubscribe(HttpServletRequest request, HttpSession session) throws SQLException {
-        System.out.println("/success_subscribe: "+request.getParameter("introductionId"));
         TeacherDAO dao = new TeacherDAO();
         String teacher = dao.getEmailByIntroductionId(Integer.parseInt(request.getParameter("introductionId")));
         int frequency = Integer.parseInt(request.getParameter("frequency"));
