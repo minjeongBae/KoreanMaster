@@ -1,5 +1,6 @@
 package koreanmaster.teachers.controller;
 
+import koreanmaster.teachers.teacher.dao.TeacherDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDTO;
 import org.springframework.stereotype.Controller;
@@ -37,15 +38,15 @@ public class TeachersController {
             model.addAttribute("message", "로그인이 필요합니다.");
             return "redirect:/teachers";
         }
-        System.out.println("/subscribe: "+request.getParameter("introductionId"));
         model.addAttribute("introductionId", request.getParameter("introductionId"));
         return "subscribe";
     }
 
     @PostMapping("/success_subscribe")
-    public String successSubscribe(HttpServletRequest request, HttpSession session){
+    public String successSubscribe(HttpServletRequest request, HttpSession session) throws SQLException {
         System.out.println("/success_subscribe: "+request.getParameter("introductionId"));
-
+        TeacherDAO dao = new TeacherDAO();
+        System.out.println(dao.getEmailByIntroductionId(Integer.parseInt(request.getParameter("introductionId"))));
         int frequency = Integer.parseInt(request.getParameter("frequency"));
         int time = Integer.parseInt(request.getParameter("time"));
         String root = request.getParameter("root");

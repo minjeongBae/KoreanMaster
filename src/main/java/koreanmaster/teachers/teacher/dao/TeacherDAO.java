@@ -49,7 +49,18 @@ public class TeacherDAO {
 
         return name;
     }
+    public String getEmailByIntroductionId(int introductionId) throws SQLException {
+        String sql = "SELECT email FROM Teacher WHERE introduction_id=\"" + introductionId + "\"";
+        ResultSet rs = executeSql.getResult(sql);
+        if(rs==null) return null;
 
+        String result = "";
+        while (rs.next()) {
+            result =  rs.getString(1);
+        }
+
+        return result;
+    }
     public TeacherDTO getByIntroductionId(int introductionId) throws SQLException {
         String sql = "SELECT * FROM Teacher WHERE introduction_id=\"" + introductionId + "\"";
         ResultSet rs = executeSql.getResult(sql);
