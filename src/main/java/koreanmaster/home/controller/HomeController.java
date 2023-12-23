@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
@@ -45,7 +46,9 @@ public class HomeController {
     }
 
     @GetMapping("/teachers")
-    public String teachers(Model model) throws SQLException {
+    public String teachers(HttpServletRequest request, Model model) throws SQLException {
+        if(request.getParameter("message")!=null)
+            model.addAttribute("message",request.getParameter("message"));
         IntroductionDAO introDao = new IntroductionDAO();
         model.addAttribute("introductionDTOList", introDao.getAll());
         return "teachers";
