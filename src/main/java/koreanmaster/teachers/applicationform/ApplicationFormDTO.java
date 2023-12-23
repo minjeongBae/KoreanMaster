@@ -10,13 +10,13 @@ public class ApplicationFormDTO {
     private final int time;
     private final String root;
     private final int level;
-    private final String state;
+    private final int state;
     private final int counselTime;
     private final String addition;
 
     public ApplicationFormDTO(String teacherEmail, String studentEmail, int frequency,
                               int time, String root, int level,
-                              String state, int counselTime, String addition){
+                              int state, int counselTime, String addition){
         this.teacherEmail = teacherEmail;
         this.studentEmail = studentEmail;
         this.frequency = frequency;

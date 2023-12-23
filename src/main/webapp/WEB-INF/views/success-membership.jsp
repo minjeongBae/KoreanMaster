@@ -34,7 +34,7 @@
       </div>
 
       <div style="margin:60px 50px 50px 50px" width="100px" height="40px">
-        <button onclick="go_home()" type="submit" style="margin-bottom:50px" class="w-100 btn btn-secondary btn-lg" /> 홈 </button>
+        <button onclick="go_sign_in()" type="submit" style="margin-bottom:50px" class="w-100 btn btn-secondary btn-lg" /> 로그인하기 </button>
       </div>
 
       <footer class="container py-5">
@@ -51,7 +51,7 @@
 
       <script>
         function go_sign_in() {
-            window.location.href = "/KoreanMaster";
+            window.location.href = "/KoreanMaster/sign_in";
         }
       </script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

@@ -35,8 +35,15 @@
         <h1 class="display-4 fw-bold lh-1">${introduction.getName()} <br/> ${introduction.getBrief()}</h1>
         <p class="lead">${introduction.getTxt()}</p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-          <button onclick="subscribe()" type="button" class="btn btn-success btn-lg px-4 me-md-2 fw-bold">매칭신청</button>
-          <button onclick="counsel()" type="button" class="btn btn-outline-secondary btn-lg px-4">상담하기</button>
+          <form action="subscribe" method="get">
+            <input type="hidden" id="introductionId" name="introductionId" value=${introduction.getIntroductionId()}>
+            <button class="btn btn-success btn-lg px-4 me-md-2 fw-bold" type="submit">매칭신청</button>
+          </form>
+
+          <form action="counsel" method="get">
+            <input type="hidden" id="introductionId" name="introductionId" value=${introduction.getIntroductionId()}>
+            <button class="btn btn-outline-secondary btn-lg px-4" type="submit">상담하기</button>
+          </form>
         </div>
       </div>
       <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg" align="center">

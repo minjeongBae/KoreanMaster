@@ -47,9 +47,11 @@
         <div class="row g-5">
           <div class="col-md-7 col-lg-8">
             <div>
-            <h4 class="mb-3">매칭신청</h4>
+            <h4 class="mb-3">매칭신청 ${introductionId}</h4>
             <p>가능한 날짜/시간대 및 외의 필수사항들을 입력해주세요. <br/></p>
+
                 <form id="form" action="success_subscribe" method="post" onsubmit="return validatePasswords()" class="needs-validation" novalidate>
+                    <input type="hidden" id="introductionId" name="introductionId" value=${introductionId}>
                     <hr class="my-4">
                     <h4 class="mb-3"><br/>1. 원하는 횟수를 선택해주세요.</h4>
                     <div class="my-3"  style="margin:30px 30px 30px 30px; padding:30px; border:5px solid #c9e4c2;">
@@ -128,7 +130,7 @@
                     <h4 class="mb-3"><br/>신청인의 정보를 입력해주세요.</h4>
                     <div class="my-3"  style="margin:30px 30px 30px 30px; padding:30px; border:5px solid #c9e4c2;">
                         <p>
-                            <label for="phone" class="form-label"><h3>상담 가능 시간대</h3></label>
+                            <label for="counselTime" class="form-label"><h3>상담 가능 시간대</h3></label>
                         </p>
                         <p>
                             <div class="form-check">

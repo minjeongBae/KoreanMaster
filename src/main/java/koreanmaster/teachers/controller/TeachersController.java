@@ -22,27 +22,39 @@ public class TeachersController {
     }
 
     @GetMapping("/counsel")
-    public String counsel(HttpSession session, Model model){
+    public String counsel(HttpSession session, HttpServletRequest request, Model model){
         if(session.getAttribute("userEmail")==null) {
             model.addAttribute("message", "로그인이 필요합니다.");
             return "redirect:/teachers";
         }
+        model.addAttribute("introductionId", request.getParameter("introductionId"));
         return "counsel";
     }
 
     @GetMapping("/subscribe")
-    public String subscribe(HttpSession session, Model model){
+    public String subscribe(HttpSession session, HttpServletRequest request, Model model){
         if(session.getAttribute("userEmail")==null) {
             model.addAttribute("message", "로그인이 필요합니다.");
             return "redirect:/teachers";
         }
+        System.out.println("/subscribe: "+request.getParameter("introductionId"));
+        model.addAttribute("introductionId", request.getParameter("introductionId"));
         return "subscribe";
     }
 
     @PostMapping("/success_subscribe")
-    public String successSubscribe(HttpServletRequest request){
-        int frequency = request.getIntHeader("frequency");
-        System.out.println(frequency);
+    public String successSubscribe(HttpServletRequest request, HttpSession session){
+        System.out.println("/success_subscribe: "+request.getParameter("introductionId"));
+
+        int frequency = Integer.parseInt(request.getParameter("frequency"));
+        int time = Integer.parseInt(request.getParameter("time"));
+        String root = request.getParameter("root");
+        int level = Integer.parseInt(request.getParameter("level"));
+        int state = 0;
+        int counselTime = Integer.parseInt(request.getParameter("counselTime"));
+        String addition = request.getParameter("addition");
+        String student = (String) session.getAttribute("userEmail");
+
         return "success-subscribe";
     }
 }
