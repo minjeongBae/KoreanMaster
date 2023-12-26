@@ -41,14 +41,26 @@ public class MyPageController {
     }
 
     @GetMapping("/show_classes")
-    public String showClasses(Model model){
+    public String showClasses(HttpSession session, Model model) throws SQLException {
         // student version
+        String email = (String) session.getAttribute("userEmail");
+
+        koreanmaster.teachers.applicationform.simpledao.Select selectTool
+                = new koreanmaster.teachers.applicationform.simpledao.Select();
+        model.addAttribute("classes", selectTool.getAllOfStudent(email));
+
         return "show-classes";
     }
 
     @GetMapping("/show_application")
-    public String showApplication(){
+    public String showApplication(HttpSession session, Model model) throws SQLException {
         // teacher version
+        String email = (String) session.getAttribute("userEmail");
+
+        koreanmaster.teachers.applicationform.simpledao.Select selectTool
+                = new koreanmaster.teachers.applicationform.simpledao.Select();
+        model.addAttribute("applications", selectTool.getAllOfTeacher(email));
+
         return "show-application";
     }
 }

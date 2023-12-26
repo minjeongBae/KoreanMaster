@@ -1,6 +1,7 @@
 package koreanmaster.teachers.controller;
 
 import koreanmaster.teachers.applicationform.ApplicationFormDTO;
+import koreanmaster.teachers.applicationform.SimpleFormDTO;
 import koreanmaster.teachers.applicationform.dao.Insert;
 import koreanmaster.teachers.applicationform.dao.Select;
 import koreanmaster.teachers.teacher.dao.TeacherDAO;
@@ -60,11 +61,15 @@ public class TeachersController {
 
         ApplicationFormDTO form = new ApplicationFormDTO(teacher,student,frequency,time,root,level,
                 state,counselTime,addition);
+        SimpleFormDTO simpleForm = new SimpleFormDTO(teacher, student,state);
+
+        koreanmaster.teachers.applicationform.simpledao.Insert simpleInsertTool = new koreanmaster.teachers.applicationform.simpledao.Insert();
+        simpleInsertTool.add(simpleForm);
+        koreanmaster.teachers.applicationform.simpledao.Select simpleSelectTool = new koreanmaster.teachers.applicationform.simpledao.Select();
+        int formCode = simpleSelectTool.getCode(simpleForm.getTeacherEmail(), simpleForm.getStudentEmail());
 
         Insert insertTool = new Insert();
-        insertTool.apply(form);
-
-        insertTool.makeApplication(new Select().getTheLast(), form);
+        insertTool.add(formCode, form);
 
         return "success-subscribe";
     }

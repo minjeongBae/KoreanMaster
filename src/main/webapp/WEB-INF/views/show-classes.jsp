@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@page import="koreanmaster.teachers.applicationform.SimpleFormDTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -35,7 +37,36 @@
         <h1 style="margin:30px 30px 30px 30px" >[나의 수강목록]</h1>
     </div>
 
-
+    <div align="center" style="margin-top:50px" class= "container">
+        <div= "row">
+            <table class= "table table-stripped" style= "text-align: center; boarder: 1px; solid #dddddd">
+                <thead>
+                    <tr>
+                	    <th style= "background-color: #c9e4c2; text-align: center;">번호</th>
+                	    <th style= "background-color: #c9e4c2; text-align: center;">선생님</th>
+                	    <th style= "background-color: #c9e4c2; text-align: center;">현상태</th>
+                	    <th style= "background-color: #c9e4c2; text-align: center;"></th>
+                	</tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="mine" items="${classes}" varStatus="loop">
+                        <tr>
+                            <td>${loop.index + 1}</td>
+                            <td>${mine.getTeacherEmail()}</td>
+                            <td>${mine.getState()}</td>
+                            <td>
+                                <form action="" method="post">
+                                    <input type="hidden" name="teacher" value="${mine.getTeacherEmail()}" />
+                                    <input type="hidden" name="student" value="${mine.getStudentEmail()}" />
+                                    <input type="submit" value="상세보기" class="btn btn-secondary"/>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

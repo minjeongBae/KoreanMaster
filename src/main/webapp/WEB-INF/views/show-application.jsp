@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@page import="koreanmaster.teachers.applicationform.ApplicationFormDTO"%>
+<%@page import="koreanmaster.teachers.applicationform.SimpleFormDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,21 +42,22 @@
     	    <table class= "table table-stripped" style= "text-align: center; boarder: 1px; solid #dddddd">
     	        <thead>
     	    	<tr>
-    	    		<th style= "background-color: #c9e4c2; text-align: center;">현상태</th>
+    	    		<th style= "background-color: #c9e4c2; text-align: center;">번호</th>
     	    		<th style= "background-color: #c9e4c2; text-align: center;">신청인</th>
-    	    		<th style= "background-color: #c9e4c2; text-align: center;">수업방식</th>
+    	    		<th style= "background-color: #c9e4c2; text-align: center;">현상태</th>
     	    		<th style= "background-color: #c9e4c2; text-align: center;"></th>
     	    	</tr>
     	    	</thead>
                 <tbody>
-                    <c:forEach var="application" items="${applications}">
+                    <c:forEach var="application" items="${applications}" varStatus="loop">
                         <tr>
-                            <td>${application.getState()}</td>
+                            <td>${loop.index + 1}</td>
                             <td>${application.getStudentEmail()}</td>
-                            <td>${application.getRoot()}</td>
+                            <td>${application.getState()}</td>
                             <td>
-                                <form action="post" method="get">
-                                    <input type="hidden" name="postId" value="${post.getPostId()}" />
+                                <form action="" method="get">
+                                    <input type="hidden" name="teacher" value="${application.getTeacherEmail()}" />
+                                    <input type="hidden" name="student" value="${application.getStudentEmail()}" />
                                     <input type="submit" value="상세보기" class="btn btn-secondary"/>
                                 </form>
                             </td>

@@ -9,8 +9,9 @@ public class Select extends Dao {
     public Select() throws SQLException {
     }
 
-    public int getTheLast() throws SQLException {
-        String sql = "SELECT form_code AS LAST_VALUE_OVER FROM Application;";
+    public int getByCode(int code) throws SQLException {
+        String sql = "SELECT * FROM Application_Form WHERE form_code = "
+                + code + ";";
         ResultSet rs = executeSql.getResult(sql);
         int formCode = -1;
 
