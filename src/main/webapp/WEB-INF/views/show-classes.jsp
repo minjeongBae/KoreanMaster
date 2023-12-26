@@ -53,7 +53,7 @@
                         <tr>
                             <td>${loop.index + 1}</td>
                             <td>${mine.getTeacherEmail()}</td>
-                            <td>${mine.getState()}</td>
+                            <td>${mine.getStateDetail()}</td>
                             <td>
                                 <form action="" method="post">
                                     <input type="hidden" name="teacher" value="${mine.getTeacherEmail()}" />
