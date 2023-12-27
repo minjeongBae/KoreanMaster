@@ -12,8 +12,8 @@ public class Update extends Dao {
     }
 
     public void changeBirth(String newDate) {
-        String sql = "UPDATE Student SET birth = "
-                + newDate + " WHERE email = \""
+        String sql = "UPDATE Student SET birth = \""
+                + newDate + "\" WHERE email = \""
                 + email + "\";";
         executeSql.noResult(sql);
     }

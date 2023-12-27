@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Update extends Dao {
     public Update() throws SQLException {}
 
-    public void changePW(String email, String oldPW, String newPW) {
+    public void changePw(String email, String oldPW, String newPW) {
         String sql = "UPDATE User SET password = "
                 + newPW + " WHERE email = \""
                 + email + "\" AND password = \""

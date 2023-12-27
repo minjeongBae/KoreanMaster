@@ -19,6 +19,14 @@
             padding: 20px; /* 내용과 테두리 간격을 조절합니다. */
         }
     </style>
+    <script>
+        function alertMessage(message) {
+            if (message.trim()!="") {
+                alert(message);
+            }
+        }
+        alertMessage(`${message}`);
+    </script>
 </head>
 <body>
     <header class="p-3 bg-dark text-white">
@@ -51,7 +59,7 @@
         <div>
             <div id="change_pw_btn" style="margin: 50px 50px 50px 50px; display: none;">
                 <h4>비밀번호 변경</h4>
-                <form>
+                <form action="change_pw" method="post">
                     <p>현재 비밀번호<br /><input name="old_password" type="password"></p>
                     <p>새 비밀번호<br /><input name="new_password" type="password"></p>
                     <p>비밀번호 확인<br /><input name="chk_password" type="password"></p>
@@ -60,7 +68,7 @@
             </div>
             <div id="change_birth_btn" style="margin: 50px 50px 50px 50px; display: none;">
                 <h4>생일 변경</h4>
-                <form>
+                <form action="change_birth" method="post">
                     <p>생년월일 입력<br /><input type="date" name="birth"/></p>
                     <input type="submit" value="변경"/>
                 </form>

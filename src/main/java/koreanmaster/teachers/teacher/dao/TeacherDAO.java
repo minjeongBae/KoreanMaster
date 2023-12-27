@@ -79,4 +79,11 @@ public class TeacherDAO {
 
         return result;
     }
+
+    public void changeBirth(String email, String newDate) {
+        String sql = "UPDATE Student SET birth = \""
+                + newDate + "\" WHERE email = \""
+                + email + "\";";
+        executeSql.noResult(sql);
+    }
 }
