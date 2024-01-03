@@ -3,7 +3,6 @@ package koreanmaster.teachers.controller;
 import koreanmaster.teachers.applicationform.ApplicationFormDTO;
 import koreanmaster.teachers.applicationform.SimpleFormDTO;
 import koreanmaster.teachers.applicationform.dao.Insert;
-import koreanmaster.teachers.applicationform.dao.Select;
 import koreanmaster.teachers.teacher.dao.TeacherDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDTO;
@@ -44,6 +43,15 @@ public class TeachersController {
         }
         model.addAttribute("introductionId", request.getParameter("introductionId"));
         return "subscribe";
+    }
+
+    @GetMapping("/manage_teachers")
+    public String manageTeachers(HttpSession session, Model model) throws SQLException {
+        // 현재 session 의 사용자가 관리자일 경우
+        TeacherDAO dao = new TeacherDAO();
+        model.addAttribute("teachers",dao.allTeachers());
+        return "manage-qualification";
+        // 아니면 로그인 화면으로
     }
 
     @PostMapping("/success_subscribe")

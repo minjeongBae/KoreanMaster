@@ -1,10 +1,13 @@
 package koreanmaster.teachers.teacher.dao;
 
 import koreanmaster.common.ExecuteSql;
+import koreanmaster.teachers.teacher.SimpleTeacherDTO;
 import koreanmaster.teachers.teacher.TeacherDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeacherDAO {
     private final ExecuteSql executeSql;
@@ -81,9 +84,29 @@ public class TeacherDAO {
     }
 
     public void changeBirth(String email, String newDate) {
-        String sql = "UPDATE Student SET birth = \""
+        String sql = "UPDATE Teacher SET birth = \""
                 + newDate + "\" WHERE email = \""
                 + email + "\";";
         executeSql.noResult(sql);
+    }
+
+    public void qualify(String email){
+        String sql = "UPDATE Teacher SET qualified = true WHERE email =\""
+                + email + "\";";
+        executeSql.noResult(sql);
+    }
+
+    public List<SimpleTeacherDTO> allTeachers() throws SQLException {
+        List<SimpleTeacherDTO> teachers = new ArrayList<>();
+        String sql = "SELECT * FROM Teacher;";
+        ResultSet rs = executeSql.getResult(sql);
+        if(rs==null) return null;
+        while (rs.next()) {
+            teachers.add(new SimpleTeacherDTO(rs.getString(1),
+                    rs.getBoolean(5),
+                    rs.getInt(9)));
+        }
+
+        return teachers;
     }
 }
