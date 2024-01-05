@@ -32,6 +32,8 @@
           </div>
         </div>
       </header>
+      <div style="margin: 50px 50px 50px 50px" align="center">
+          <h2>모든 멘토 확인하기</h2>
           <c:if test="${teachers.size() > 0}">
               <div style="margin: 50px 50px 50px 50px">
                   <table class= "table table-stripped" style= "text-align: center; boarder: 1px; solid: #dddddd">
@@ -47,11 +49,11 @@
                           <c:forEach var="teacher" items="${teachers}">
                               <tr>
                                   <td>${teacher.getEmail()}</td>
-                                  <td>${teacher.isQualified()}</td>
+                                  <td>${teacher.isQualified() ? 'O' : 'X'}</td>
                                   <td>${teacher.getIntroductionId()}</td>
                                   <td>
-                                      <form action="post" method="get">
-                                          <input type="hidden" name="postId" value="${teacher.getEmail()}" />
+                                      <form action="teacher-more-info-manager.ver" method="get">
+                                          <input type="hidden" name="teacher" value="${teacher.getEmail()}" />
                                           <input type="submit" value="상세보기" class="btn btn-secondary"/>
                                       </form>
                                   </td>
@@ -61,6 +63,7 @@
                   </table>
               </div>
           </c:if>
+      </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>
