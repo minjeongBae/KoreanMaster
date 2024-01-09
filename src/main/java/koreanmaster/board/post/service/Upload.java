@@ -1,20 +1,21 @@
 package koreanmaster.board.post.service;
 
 import koreanmaster.board.post.PostDTO;
-import koreanmaster.board.post.dao.Insert;
+import koreanmaster.common.mapper.PostMapper;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
-
+@Component
 public class Upload {
-    private final PostDTO post;
-    public Upload(PostDTO post){
-        this.post = post;
-    }
-    public boolean run() {
+
+    @Setter(onMethod_ = @Autowired)
+    private PostMapper mapper;
+
+    public boolean run(PostDTO post) {
         try{
-            Insert insertTool = new Insert();
-            insertTool.upload(this.post);
-        }catch (SQLException e){
+            mapper.upload(post);
+        }catch (Exception e){
             System.out.println(e.getMessage());
             return false;
         }

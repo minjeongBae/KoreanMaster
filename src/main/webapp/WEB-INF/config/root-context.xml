@@ -3,15 +3,20 @@
 <!-- 스프링 IoC 컨테이너(ApplicationContext) 설정 파일 -->
 <!-- 프로젝트에서 필요한 빈을 설정 -->
 
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-          http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
           http://mybatis.org/schema/mybatis-spring
           http://mybatis.org/schema/mybatis-spring.xsd">
 
 
+    <context:component-scan base-package="koreanmaster"/>
     <mybatis-spring:scan base-package="koreanmaster.common.mapper"/>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -6,6 +6,7 @@ import koreanmaster.board.post.reply.ReplyDTO;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.board.post.service.Upload;
 import koreanmaster.home.user.dao.Select;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,12 @@ import java.sql.SQLException;
 
 @org.springframework.stereotype.Controller
 public class Controller {
+    private final Upload upload;
+
+    @Autowired
+    public Controller(Upload upload) {
+        this.upload = upload;
+    }
 
     @GetMapping("/post")
     public String showPost(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
@@ -52,7 +59,8 @@ public class Controller {
         String date = new MyFormat().get();
 
         PostDTO newPost = new PostDTO(0, title, writer, date, content, 0);
-        if(new Upload(newPost).run()) return "success-upload-post";
+        if(upload.run(newPost)) return "success-upload-post";
         return "upload-post";
     }
+
 }
