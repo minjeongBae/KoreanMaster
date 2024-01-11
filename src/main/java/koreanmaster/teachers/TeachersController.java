@@ -1,10 +1,10 @@
-package koreanmaster.teachers.controller;
+package koreanmaster.teachers;
 
 import koreanmaster.teachers.applicationform.ApplicationFormDTO;
 import koreanmaster.teachers.applicationform.SimpleFormDTO;
 import koreanmaster.teachers.applicationform.service.AddForm;
-import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDTO;
+import koreanmaster.teachers.teacher.introduction.service.GetIntroduction;
 import koreanmaster.teachers.teacher.service.CheckTeacher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,16 +19,19 @@ import java.sql.SQLException;
 public class TeachersController {
     private final CheckTeacher checkTeacher;
     private final AddForm addForm;
+    private final GetIntroduction getIntroduction;
 
-    public TeachersController(CheckTeacher checkTeacher, AddForm addForm) {
+    public TeachersController(CheckTeacher checkTeacher, AddForm addForm,
+                              GetIntroduction getIntroduction) {
         this.checkTeacher = checkTeacher;
         this.addForm = addForm;
+        this.getIntroduction = getIntroduction;
     }
 
     @GetMapping("/teacher_page")
     public String teacherPage(HttpServletRequest request, Model model) throws SQLException {
-        IntroductionDAO introductionDAO = new IntroductionDAO();
-        IntroductionDTO introduction = introductionDAO.getById(Integer.parseInt(request.getParameter("introduction-id")));
+        IntroductionDTO introduction = getIntroduction.getById(
+                Integer.parseInt(request.getParameter("introduction-id")));
         model.addAttribute("introduction", introduction);
         return "teacher-page";
     }

@@ -3,7 +3,7 @@ package koreanmaster.home;
 import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.mypage.student.service.CheckStudent;
-import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
+import koreanmaster.teachers.teacher.introduction.service.GetIntroduction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -20,13 +19,17 @@ public class HomeController {
     private final Show show;
     private final CheckStudent checkStudent;
 
+    private final GetIntroduction getIntroduction;
+
     @Autowired
-    public HomeController(Show show, CheckStudent checkStudent){
+    public HomeController(Show show, CheckStudent checkStudent,
+                          GetIntroduction getIntroduction){
         this.show = show;
         this.checkStudent = checkStudent;
+        this.getIntroduction = getIntroduction;
     }
     @GetMapping("/my_page")
-    public String myPage(HttpSession session, Model model) throws SQLException {
+    public String myPage(HttpSession session, Model model) {
         if (session.getAttribute("userEmail") == null) return "not-user";
         String userEmail = (String) session.getAttribute("userEmail");
         model.addAttribute("email", userEmail);
@@ -55,11 +58,10 @@ public class HomeController {
     }
 
     @GetMapping("/teachers")
-    public String teachers(HttpServletRequest request, Model model) throws SQLException {
+    public String teachers(HttpServletRequest request, Model model) {
         if(request.getParameter("message")!=null)
             model.addAttribute("message",request.getParameter("message"));
-        IntroductionDAO introDao = new IntroductionDAO();
-        model.addAttribute("introductionDTOList", introDao.getAll());
+        model.addAttribute("introductionDTOList", getIntroduction.getAll());
         return "teachers";
     }
 }
