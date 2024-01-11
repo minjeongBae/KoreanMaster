@@ -4,6 +4,7 @@ import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.home.user.dao.Select;
 import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,13 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+
+    private final Show show;
+
+    @Autowired
+    public HomeController(Show show){
+        this.show = show;
+    }
     @GetMapping("/my_page")
     public String myPage(HttpSession session, Model model) throws SQLException {
         if (session.getAttribute("userEmail") == null) return "not-user";
@@ -35,7 +43,7 @@ public class HomeController {
         model.addAttribute("signIn","false");
         if(session.getAttribute("userEmail")!=null) model.addAttribute("signIn","true");
 
-        List<PostDTO> posts = new Show().getAll();
+        List<PostDTO> posts = show.getAll();
         model.addAttribute("posts", posts);
         return "show-board";
     }

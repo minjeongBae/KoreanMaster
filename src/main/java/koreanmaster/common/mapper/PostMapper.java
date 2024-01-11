@@ -3,6 +3,8 @@ package koreanmaster.common.mapper;
 import koreanmaster.board.post.PostDTO;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface PostMapper {
 
@@ -30,4 +32,9 @@ public interface PostMapper {
     @Select("SELECT post_id FROM Post WHERE post_id < #{postId} ORDER BY post_id DESC LIMIT 1")
     Integer getPrev(int postId);
 
+    @Select("SELECT * FROM Post WHERE writer = #{email}")
+    List<PostDTO> getByEmail(String email);
+
+    @Select("SELECT * FROM Post")
+    List<PostDTO> getAll();
 }

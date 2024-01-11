@@ -6,6 +6,7 @@ import koreanmaster.home.user.dao.Select;
 import koreanmaster.home.user.dao.Update;
 import koreanmaster.mypage.service.SignIn;
 import koreanmaster.teachers.teacher.dao.TeacherDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,11 @@ import java.util.List;
 
 @Controller
 public class MyPageController {
+    private final Show show;
+    @Autowired
+    public MyPageController(Show show){
+        this.show = show;
+    }
     @GetMapping("/revise_user_info")
     public String reviseUserInfo(HttpSession session, Model model) throws SQLException {
         String nowUser = (String) session.getAttribute("userEmail");
@@ -75,7 +81,6 @@ public class MyPageController {
 
     @GetMapping("/my_posts")
     public String showMyPosts(HttpSession session, Model model) throws SQLException {
-        Show show = new Show();
         String userEmail = (String) session.getAttribute("userEmail");
         List<PostDTO> myPosts = show.getByEmail(userEmail);
         model.addAttribute("myPosts", myPosts);
