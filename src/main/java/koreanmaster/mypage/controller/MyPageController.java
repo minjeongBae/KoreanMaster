@@ -5,6 +5,7 @@ import koreanmaster.board.post.service.Show;
 import koreanmaster.home.user.service.ChangeUserInfo;
 import koreanmaster.home.user.service.CheckUser;
 import koreanmaster.mypage.student.service.CheckStudent;
+import koreanmaster.teachers.applicationform.service.ShowForm;
 import koreanmaster.teachers.teacher.service.CheckTeacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -24,16 +24,18 @@ public class MyPageController {
     private final CheckStudent checkStudent;
     private final ChangeUserInfo changeUserInfo;
     private final CheckTeacher checkTeacher;
+    private final ShowForm showForm;
 
     @Autowired
     public MyPageController(Show show, CheckUser checkUser,
                             CheckStudent checkStudent, CheckTeacher checkTeacher,
-                            ChangeUserInfo changeUserInfo){
+                            ChangeUserInfo changeUserInfo, ShowForm showForm){
         this.show = show;
         this.checkUser = checkUser;
         this.checkStudent = checkStudent;
         this.changeUserInfo = changeUserInfo;
         this.checkTeacher = checkTeacher;
+        this.showForm = showForm;
     }
     @GetMapping("/revise_user_info")
     public String reviseUserInfo(HttpSession session, Model model) {
@@ -69,7 +71,7 @@ public class MyPageController {
     }
 
     @PostMapping("/change_birth")
-    public String completeChangeBirth(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
+    public String completeChangeBirth(HttpServletRequest rq, HttpSession session, Model model) {
         String nowUser = (String) session.getAttribute("userEmail");
         boolean isStudent = checkStudent.isStudent(nowUser);
 
@@ -88,7 +90,7 @@ public class MyPageController {
     }
 
     @GetMapping("/my_posts")
-    public String showMyPosts(HttpSession session, Model model){
+    public String showMyPosts(HttpSession session, Model model) {
         String userEmail = (String) session.getAttribute("userEmail");
         List<PostDTO> myPosts = show.getByEmail(userEmail);
         model.addAttribute("myPosts", myPosts);
@@ -104,24 +106,19 @@ public class MyPageController {
     }
 
     @GetMapping("/show_classes")
-    public String showClasses(HttpSession session, Model model) throws SQLException {
+    public String showClasses(HttpSession session, Model model) {
         // student version
         String email = (String) session.getAttribute("userEmail");
-        koreanmaster.teachers.applicationform.simpledao.Select selectTool
-                = new koreanmaster.teachers.applicationform.simpledao.Select();
-        model.addAttribute("classes", selectTool.getAllOfStudent(email));
+        model.addAttribute("classes", showForm.getAllOfStudent(email));
 
         return "show-classes";
     }
 
     @GetMapping("/show_application")
-    public String showApplication(HttpSession session, Model model) throws SQLException {
+    public String showApplication(HttpSession session, Model model) {
         // teacher version
         String email = (String) session.getAttribute("userEmail");
-
-        koreanmaster.teachers.applicationform.simpledao.Select selectTool
-                = new koreanmaster.teachers.applicationform.simpledao.Select();
-        model.addAttribute("applications", selectTool.getAllOfTeacher(email));
+        model.addAttribute("applications", showForm.getAllOfTeacher(email));
 
         return "show-application";
     }

@@ -2,7 +2,7 @@ package koreanmaster.teachers.controller;
 
 import koreanmaster.teachers.applicationform.ApplicationFormDTO;
 import koreanmaster.teachers.applicationform.SimpleFormDTO;
-import koreanmaster.teachers.applicationform.dao.Insert;
+import koreanmaster.teachers.applicationform.service.AddForm;
 import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDTO;
 import koreanmaster.teachers.teacher.service.CheckTeacher;
@@ -18,9 +18,11 @@ import java.sql.SQLException;
 @Controller
 public class TeachersController {
     private final CheckTeacher checkTeacher;
+    private final AddForm addForm;
 
-    public TeachersController(CheckTeacher checkTeacher) {
+    public TeachersController(CheckTeacher checkTeacher, AddForm addForm) {
         this.checkTeacher = checkTeacher;
+        this.addForm = addForm;
     }
 
     @GetMapping("/teacher_page")
@@ -72,18 +74,13 @@ public class TeachersController {
         String addition = request.getParameter("addition");
         String student = (String) session.getAttribute("userEmail");
 
-        ApplicationFormDTO form = new ApplicationFormDTO(teacher,student,frequency,time,root,level,
-                state,counselTime,addition);
-        SimpleFormDTO simpleForm = new SimpleFormDTO(teacher, student,state);
+        ApplicationFormDTO form = new ApplicationFormDTO(
+                                    teacher,student,frequency,
+                                    time,root,level,
+                                    state,counselTime,addition);
 
-        koreanmaster.teachers.applicationform.simpledao.Insert simpleInsertTool = new koreanmaster.teachers.applicationform.simpledao.Insert();
-        simpleInsertTool.add(simpleForm);
-        koreanmaster.teachers.applicationform.simpledao.Select simpleSelectTool = new koreanmaster.teachers.applicationform.simpledao.Select();
-        int formCode = simpleSelectTool.getCode(simpleForm.getTeacherEmail(), simpleForm.getStudentEmail());
-
-        Insert insertTool = new Insert();
-        insertTool.add(formCode, form);
-
+        SimpleFormDTO simpleForm = new SimpleFormDTO(0, teacher, student,state);
+        addForm.run(simpleForm, form);
         return "success-subscribe";
     }
 }

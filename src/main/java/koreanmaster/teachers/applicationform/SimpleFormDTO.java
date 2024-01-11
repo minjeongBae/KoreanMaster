@@ -1,15 +1,19 @@
 package koreanmaster.teachers.applicationform;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class SimpleFormDTO {
+    @Setter
+    private int formCode;
     private final String teacherEmail;
     private final String studentEmail;
     private final int state;
     private String stateDetail;
 
-    public SimpleFormDTO(String teacherEmail, String studentEmail, int state){
+    public SimpleFormDTO(int formCode, String teacherEmail, String studentEmail, int state){
+        this.formCode = formCode;
         this.teacherEmail = teacherEmail;
         this.studentEmail = studentEmail;
         this.state = state;
