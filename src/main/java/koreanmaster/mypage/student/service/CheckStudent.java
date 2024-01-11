@@ -14,4 +14,14 @@ public class CheckStudent {
         String getEmail = mapper.isStudent(email);
         return getEmail!=null;
     }
+
+    public boolean changeBirth(String email, String newDate){
+        try{
+            mapper.changeBirth(email, newDate);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
 }

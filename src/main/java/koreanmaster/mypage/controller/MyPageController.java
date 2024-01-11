@@ -4,7 +4,6 @@ import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.home.user.service.ChangeUserInfo;
 import koreanmaster.home.user.service.CheckUser;
-import koreanmaster.mypage.student.service.ChangeStudentInfo;
 import koreanmaster.mypage.student.service.CheckStudent;
 import koreanmaster.teachers.teacher.service.CheckTeacher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +23,16 @@ public class MyPageController {
     private final CheckUser checkUser;
     private final CheckStudent checkStudent;
     private final ChangeUserInfo changeUserInfo;
-    private final ChangeStudentInfo changeStudentInfo;
     private final CheckTeacher checkTeacher;
 
     @Autowired
     public MyPageController(Show show, CheckUser checkUser,
                             CheckStudent checkStudent, CheckTeacher checkTeacher,
-                            ChangeUserInfo changeUserInfo, ChangeStudentInfo changeStudentInfo){
+                            ChangeUserInfo changeUserInfo){
         this.show = show;
         this.checkUser = checkUser;
         this.checkStudent = checkStudent;
         this.changeUserInfo = changeUserInfo;
-        this.changeStudentInfo = changeStudentInfo;
         this.checkTeacher = checkTeacher;
     }
     @GetMapping("/revise_user_info")
@@ -80,7 +77,7 @@ public class MyPageController {
         String birth = rq.getParameter("birth");
         model.addAttribute("message", "생일이 변경되었습니다.");
         if(isStudent){
-            if(!changeStudentInfo.changeBirth(nowUser, birth))
+            if(!checkStudent.changeBirth(nowUser,birth))
                 model.addAttribute("message", "생일변경에 실패하였습니다. 다시 시도해주세요.");
             return "revise-user-info";
         }
