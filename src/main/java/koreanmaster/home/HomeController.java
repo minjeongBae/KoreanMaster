@@ -1,4 +1,4 @@
-package koreanmaster.home.controller;
+package koreanmaster.home;
 
 import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.service.Show;
