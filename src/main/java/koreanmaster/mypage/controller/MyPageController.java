@@ -2,7 +2,7 @@ package koreanmaster.mypage.controller;
 
 import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.service.Show;
-import koreanmaster.home.user.dao.Update;
+import koreanmaster.home.user.service.ChangeUserInfo;
 import koreanmaster.home.user.service.CheckUser;
 import koreanmaster.mypage.student.service.CheckStudent;
 import koreanmaster.teachers.teacher.dao.TeacherDAO;
@@ -22,12 +22,15 @@ public class MyPageController {
     private final Show show;
     private final CheckUser checkUser;
     private final CheckStudent checkStudent;
+    private final ChangeUserInfo changeUserInfo;
     @Autowired
     public MyPageController(Show show, CheckUser checkUser,
-                            CheckStudent checkStudent){
+                            CheckStudent checkStudent,
+                            ChangeUserInfo changeUserInfo){
         this.show = show;
         this.checkUser = checkUser;
         this.checkStudent = checkStudent;
+        this.changeUserInfo = changeUserInfo;
     }
     @GetMapping("/revise_user_info")
     public String reviseUserInfo(HttpSession session, Model model) {
@@ -38,7 +41,7 @@ public class MyPageController {
     }
 
     @PostMapping("/change_pw")
-    public String completeChangePw(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
+    public String completeChangePw(HttpServletRequest rq, HttpSession session, Model model) {
         String oldPw = rq.getParameter("old_password");
         String userEmail = (String) session.getAttribute("userEmail");
         String newPw1 = rq.getParameter("new_password");
@@ -57,8 +60,7 @@ public class MyPageController {
             return "revise-user-info";
         }
 
-        Update updateTool = new Update();
-        updateTool.changePw(userEmail, oldPw, rq.getParameter("new_password"));
+        changeUserInfo.changePw(userEmail, oldPw, rq.getParameter("new_password"));
         model.addAttribute("message", "비밀번호를 변경하였습니다.");
         return "revise-user-info";
     }

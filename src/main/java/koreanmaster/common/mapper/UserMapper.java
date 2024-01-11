@@ -1,10 +1,7 @@
 package koreanmaster.common.mapper;
 
 import koreanmaster.home.user.UserDTO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface UserMapper {
@@ -19,4 +16,6 @@ public interface UserMapper {
 
     @Select("SELECT email FROM Manager WHERE email = #{email}")
     String isManager(String email);
+    @Update("UPDATE User SET password = #{newPW} WHERE email = #{email} AND password = #{oldPW}")
+    void changePw(@Param("email") String email, @Param("oldPW") String oldPW, @Param("newPW") String newPW);
 }
