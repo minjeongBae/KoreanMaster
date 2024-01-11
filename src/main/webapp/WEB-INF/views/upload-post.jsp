@@ -31,7 +31,8 @@
     </header>
     <div style="margin: 50px 50px 50px 50px" class="colored-div">
         <h2> [게시물 작성] </h2>
-        <form action="success_upload_post" method="post" class="needs-validation">
+        <form action="success_upload" method="post" class="needs-validation">
+            <input type="hidden" name="type" value="post"/>
             <input type="text" name="title" class="form-control mt-4 mb-2"
                 placeholder="제목을 입력해주세요." required>
             <div class="form-group">
@@ -39,7 +40,7 @@
                     placeholder="내용을 입력해주세요" required></textarea>
             </div>
             <div style="margin-Top: 20px">
-                <button type="submit" class="btn btn-secondary mb-3">제출</button>
+                <button type="submit" class="btn btn-secondary mb-3">게시</button>
             </div>
         </form>
     </div>

@@ -8,10 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Upload {
-
     @Setter(onMethod_ = @Autowired)
     private PostMapper mapper;
-
     public boolean run(PostDTO post) {
         try{
             mapper.upload(post);

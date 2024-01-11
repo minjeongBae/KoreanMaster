@@ -3,37 +3,32 @@ package koreanmaster.board.post.service;
 import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.dao.Select;
 import koreanmaster.board.post.reply.ReplyDTO;
+import koreanmaster.board.post.reply.service.ShowReply;
+import koreanmaster.common.mapper.PostMapper;
+import koreanmaster.common.mapper.ReplyMapper;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 import java.util.List;
-
+@Component
 public class Show {
-    private int postId;
-    public Show(int postId){
-        this.postId = postId;
-    }
-    public Show(){}
-    public PostDTO run() throws SQLException {
-        Select selectTool  = new Select();
-        return selectTool.get(this.postId);
+
+    @Setter(onMethod_ = @Autowired)
+    private PostMapper postMapper;
+    public PostDTO run(int postId) {
+        return postMapper.show(postId);
     }
 
-    private boolean hasReply() throws SQLException {
-        return new Select().notNullReplyId(this.postId);
+    public Integer getNextId(int postId){
+        return postMapper.getNext(postId);
     }
 
-    public ReplyDTO getReply() throws SQLException {
-        if(!hasReply()) return null;
-
-        try{
-            int replyId = new Select().getReplyId(this.postId);
-            ReplyDTO reply = new koreanmaster.board.post.reply.service.Show(replyId).run();
-            return reply;
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-            return null;
-        }
+    public Integer getPrevId(int postId){
+        return postMapper.getPrev(postId);
     }
+
 
     public List<PostDTO> getByEmail(String userEmail){
         try{
@@ -54,9 +49,9 @@ public class Show {
         }
     }
 
-    public boolean isLast() throws SQLException {
+    public boolean isLast(int postId) throws SQLException {
         Select selectTool = new Select();
-        return selectTool.getTheLast() == this.postId;
+        return selectTool.getTheLast() == postId;
     }
 
 }

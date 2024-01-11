@@ -1,33 +1,30 @@
 package koreanmaster.board.post.service;
 
-import koreanmaster.board.post.dao.Update;
 import koreanmaster.board.post.reply.ReplyDTO;
-import koreanmaster.board.post.reply.service.Upload;
+import koreanmaster.common.mapper.PostMapper;
+import koreanmaster.common.mapper.ReplyMapper;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 
+@Component
 public class AddReply {
-    private final Upload uploadReplyTool;
-    private final int postId;
-    public AddReply(int postId, ReplyDTO reply){
-        this.postId = postId;
-        this.uploadReplyTool = new Upload(reply);
-    }
+    @Setter(onMethod_ = @Autowired)
+    private PostMapper postMapper;
 
-    public boolean run(){
-        int value = uploadReplyTool.run();
-        if(value==-1){
-            return false;
-        }
+    @Setter(onMethod_ = @Autowired)
+    private ReplyMapper replyMapper;
 
+    public boolean run(int postId, ReplyDTO reply){
+        System.out.println(postId);
         try{
-            Update updateTool = new Update();
-            updateTool.addReply(this.postId, value);
-        }catch (SQLException e){
+            replyMapper.upload(reply);
+            postMapper.addReply(postId, reply.getReplyId());
+        }catch (Exception e){
             System.out.println(e.getMessage());
             return false;
         }
-
         return true;
     }
 }

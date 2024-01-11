@@ -1,27 +1,25 @@
 package koreanmaster.board.post.service;
 
 import koreanmaster.board.post.dao.Select;
-import koreanmaster.board.post.dao.Update;
+import koreanmaster.common.mapper.PostMapper;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 
+
+@Component
 public class Revise {
-    private final int postId;
-    private final String newContent;
-
-    public Revise(int postId, String newContent) {
-        this.postId = postId;
-        this.newContent = newContent;
-    }
-
-    public boolean run() throws SQLException {
+    @Setter(onMethod_ = @Autowired)
+    private PostMapper mapper;
+    public boolean run(int postId, String newContent) throws SQLException {
         Select selectTool = new Select();
-        if (selectTool.notNullReplyId(this.postId)) return false;
+        if (selectTool.notNullReplyId(postId)) return false;
 
         try {
-            Update updateTool = new Update();
-            updateTool.revise(this.postId, this.newContent);
-        } catch (SQLException e) {
+            mapper.reviseContent(postId, newContent);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }

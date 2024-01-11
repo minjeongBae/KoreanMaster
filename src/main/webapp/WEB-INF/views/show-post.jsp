@@ -8,6 +8,7 @@
     <title>안녕 - 게시물</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
+
   <body>
       <header class="p-3 bg-dark text-white">
         <div class="container">
@@ -39,7 +40,7 @@
       </div>
 
       <div style="margin:50px 50px 50px 50px">
-        <c:if test="${post.getReplyId() > 0}">
+        <c:if test="${post.getReplyId() > 1}">
             <div class="card">
               <div class="card-header">
                 ${reply.getRegistrationDate()}
@@ -54,24 +55,38 @@
       </div>
 
       <div align="right" style="margin-top:50px; margin-right:100px">
-        <c:if test="${post.getPostId() > 1}">
+        <c:if test="${prevId > -1}">
             <form action="post" method="get">
-                <input type="hidden" name="postId" value="${post.getPostId()-1}" />
+                <input type="hidden" name="postId" value="${prevId}" />
                     <input type="submit" value="이전글" class="btn btn-secondary" />
             </form>
         </c:if>
+
+        <br />
+        <c:if test="${post.getWriter() eq nowUser}">
+            <form action="remove_post" method="post">
+                <input type="hidden" name="postId" value="${post.getPostId()}" />
+                    <input type="submit" value="글삭제" class="btn btn-secondary" />
+            </form>
+        </c:if>
+
         <br />
         ${nextIsLast}
-        <c:if test="${isLast==false}">
+        <c:if test="${nextId > -1}">
             <form action="post" method="get">
-                <input type="hidden" name="postId" value="${post.getPostId()+1}" />
+                <input type="hidden" name="postId" value="${nextId}" />
                 <input type="submit" value="다음글" class="btn btn-secondary" />
             </form>
         </c:if>
       </div>
       <div align="right" style="margin:30px 90px 30px 30px">
           <c:if test="${isManager == true}">
-            <button onclick="upload_reply()" type="submit" style="margin: 10px 10px 30px 10px"  class="btn btn-outline-danger">답변작성</button>
+            <form action="/KoreanMaster/upload_reply" method="post">
+                <input type="hidden" name="postId" value="${post.getPostId()}"/>
+                <div style="margin-Top: 20px">
+                    <button type="submit" class="btn btn-outline-danger">답변작성</button>
+                </div>
+            </form>
           </c:if>
       </div>
 
@@ -86,11 +101,6 @@
         </div>
       </footer>
 
-    <script>
-        function upload_reply() {
-            window.location.href = "/KoreanMaster/upload_reply";
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>

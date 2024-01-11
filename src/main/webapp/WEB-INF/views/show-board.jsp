@@ -12,6 +12,14 @@
     		text-decoration:none;
     	}
     </style>
+    <script>
+        function alertMessage(message) {
+            if (message.trim()!="") {
+                alert(message);
+            }
+        }
+        alertMessage(`${message}`);
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
   <body>
@@ -51,9 +59,9 @@
     	    	</thead>
                 <tbody>
                     <!-- JSTL을 사용한 반복문 -->
-                    <c:forEach var="post" items="${posts}">
+                    <c:forEach var="post" items="${posts}" varStatus="loop">
                         <tr>
-                            <td>${post.getPostId()}</td>
+                            <td>${loop.index + 1}</td>
                             <td>${post.getTitle()}</td>
                             <td>${post.getWriter()}</td>
                             <td>${post.getRegistrationDate()}</td>

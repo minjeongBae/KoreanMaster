@@ -27,15 +27,15 @@
 
     <div style="margin: 50px 50px 50px 50px">
         <h2> [답변 작성] </h2>
-        <form action="/KoreanMaster/show_board" method="get" class="needs-validation">
-            <input type="text" name="title" class="form-control mt-4 mb-2"
-                placeholder="제목을 입력해주세요." required>
+        <form action="/KoreanMaster/success_upload" method="post" class="needs-validation">
+            <input type="hidden" name="type" value="reply"/>
+            <input type="hidden" name="postId" value="${postId}"/>
             <div class="form-group">
                 <textarea class="form-control" rows="10" name="content"
                     placeholder="내용을 입력해주세요" required></textarea>
             </div>
             <div style="margin-Top: 20px">
-                <button type="submit" class="btn btn-secondary mb-3">제출</button>
+                <button type="submit" class="btn btn-secondary mb-3">등록</button>
             </div>
         </form>
     </div>

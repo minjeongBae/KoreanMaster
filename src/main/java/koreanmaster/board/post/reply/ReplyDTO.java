@@ -1,12 +1,14 @@
 package koreanmaster.board.post.reply;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class ReplyDTO {
-    private final int replyId;
-    private final String writer;
-    private final String registrationDate;
+    private int replyId;
+    private String writer;
+    private String registrationDate;
     private String content;
 
     public ReplyDTO(int replyId, String writer, String registrationDate, String content) {
@@ -14,9 +16,5 @@ public class ReplyDTO {
         this.writer = writer;
         this.registrationDate = registrationDate;
         this.content = content;
-    }
-
-    public void setContent(String newContent) {
-        this.content = newContent;
     }
 }
