@@ -3,9 +3,9 @@ package koreanmaster.teachers.controller;
 import koreanmaster.teachers.applicationform.ApplicationFormDTO;
 import koreanmaster.teachers.applicationform.SimpleFormDTO;
 import koreanmaster.teachers.applicationform.dao.Insert;
-import koreanmaster.teachers.teacher.dao.TeacherDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
 import koreanmaster.teachers.teacher.introduction.IntroductionDTO;
+import koreanmaster.teachers.teacher.service.CheckTeacher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +17,12 @@ import java.sql.SQLException;
 
 @Controller
 public class TeachersController {
+    private final CheckTeacher checkTeacher;
+
+    public TeachersController(CheckTeacher checkTeacher) {
+        this.checkTeacher = checkTeacher;
+    }
+
     @GetMapping("/teacher_page")
     public String teacherPage(HttpServletRequest request, Model model) throws SQLException {
         IntroductionDAO introductionDAO = new IntroductionDAO();
@@ -46,18 +52,17 @@ public class TeachersController {
     }
 
     @GetMapping("/manage_teachers")
-    public String manageTeachers(HttpSession session, Model model) throws SQLException {
+    public String manageTeachers(HttpSession session, Model model) {
         // 현재 session 의 사용자가 관리자일 경우
-        TeacherDAO dao = new TeacherDAO();
-        model.addAttribute("teachers",dao.allTeachers());
+        model.addAttribute("teachers",checkTeacher.allTeachers());
         return "manage-qualification";
         // 아니면 로그인 화면으로
     }
 
     @PostMapping("/success_subscribe")
     public String successSubscribe(HttpServletRequest request, HttpSession session) throws SQLException {
-        TeacherDAO dao = new TeacherDAO();
-        String teacher = dao.getEmailByIntroductionId(Integer.parseInt(request.getParameter("introductionId")));
+        String teacher = checkTeacher.getEmailByIntroId(Integer.parseInt(request.getParameter("introductionId")));
+
         int frequency = Integer.parseInt(request.getParameter("frequency"));
         int time = Integer.parseInt(request.getParameter("time"));
         String root = request.getParameter("root");
