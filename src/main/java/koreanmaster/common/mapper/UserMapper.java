@@ -17,4 +17,6 @@ public interface UserMapper {
     @Select("SELECT * FROM User WHERE email = #{email} AND password = #{password}")
     UserDTO signIn(@Param("email") String email, @Param("password") String password);
 
+    @Select("SELECT email FROM Manager WHERE email = #{email}")
+    String isManager(String email);
 }

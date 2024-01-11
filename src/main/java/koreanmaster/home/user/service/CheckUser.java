@@ -15,9 +15,13 @@ public class CheckUser {
         String getEmail = mapper.findByEmail(email);
         return (getEmail==null);
     }
-
     public boolean signIn(String email, String pw){
         UserDTO user = mapper.signIn(email, pw);
         return user != null;
+    }
+
+    public boolean isManager(String email){
+        String getEmail = mapper.isManager(email);
+        return getEmail != null;
     }
 }

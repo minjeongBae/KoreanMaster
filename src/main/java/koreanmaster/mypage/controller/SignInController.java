@@ -1,7 +1,7 @@
 package koreanmaster.mypage.controller;
 
-import koreanmaster.home.user.dao.Select;
 import koreanmaster.home.user.service.CheckUser;
+import koreanmaster.mypage.student.service.CheckStudent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +15,12 @@ import java.sql.SQLException;
 @Controller
 public class SignInController {
     private final CheckUser checkUser;
+    private final CheckStudent checkStudent;
 
     @Autowired
-    public SignInController(CheckUser checkUser){
+    public SignInController(CheckUser checkUser, CheckStudent checkStudent){
         this.checkUser = checkUser;
+        this.checkStudent = checkStudent;
     }
     @GetMapping("/sign_in")
     public String signIn(HttpServletRequest request) {
@@ -37,7 +39,7 @@ public class SignInController {
             String userEmail = rq.getParameter("userEmail");
             session.setAttribute("userEmail", userEmail);
             model.addAttribute("email", userEmail);
-            if(new Select().isStudent(userEmail)) {
+            if(checkStudent.isStudent(userEmail)) {
                 model.addAttribute("isStudent", true);
                 return "my-page";
             }

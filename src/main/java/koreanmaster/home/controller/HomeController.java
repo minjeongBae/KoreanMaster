@@ -2,7 +2,7 @@ package koreanmaster.home.controller;
 
 import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.service.Show;
-import koreanmaster.home.user.dao.Select;
+import koreanmaster.mypage.student.service.CheckStudent;
 import koreanmaster.teachers.teacher.introduction.IntroductionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +18,12 @@ import java.util.List;
 public class HomeController {
 
     private final Show show;
+    private final CheckStudent checkStudent;
 
     @Autowired
-    public HomeController(Show show){
+    public HomeController(Show show, CheckStudent checkStudent){
         this.show = show;
+        this.checkStudent = checkStudent;
     }
     @GetMapping("/my_page")
     public String myPage(HttpSession session, Model model) throws SQLException {
@@ -29,8 +31,7 @@ public class HomeController {
         String userEmail = (String) session.getAttribute("userEmail");
         model.addAttribute("email", userEmail);
 
-        Select selectTool = new Select();
-        if(selectTool.isStudent(userEmail)) {
+        if(checkStudent.isStudent(userEmail)) {
             model.addAttribute("isStudent", true);
             return "my-page";
         }

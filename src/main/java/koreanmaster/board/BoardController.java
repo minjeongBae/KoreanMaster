@@ -8,7 +8,7 @@ import koreanmaster.board.post.service.AddReply;
 import koreanmaster.board.post.service.Remove;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.board.post.service.Upload;
-import koreanmaster.home.user.dao.Select;
+import koreanmaster.home.user.service.CheckUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,14 +27,18 @@ public class BoardController {
 
     private final Show show;
     private final ShowReply showReply;
+
+    private final CheckUser checkUser;
     @Autowired
     public BoardController(Upload upload, Remove remove, Show show,
-                           AddReply addReply, ShowReply showReply) {
+                           AddReply addReply, ShowReply showReply,
+                           CheckUser checkUser) {
         this.upload = upload;
         this.show = show;
         this.addReply = addReply;
         this.remove = remove;
         this.showReply = showReply;
+        this.checkUser = checkUser;
     }
 
     @GetMapping("/post")
@@ -50,7 +54,6 @@ public class BoardController {
         model.addAttribute("prevId", prevId);
         model.addAttribute("nextId", nextId);
 
-
         PostDTO post = show.run(postId);
         model.addAttribute("post", post);
 
@@ -60,8 +63,7 @@ public class BoardController {
 
         String nowUser = (String) session.getAttribute("userEmail");
         model.addAttribute("nowUser", nowUser);
-        if(new Select().isManager(nowUser)) model.addAttribute("isManager",true);
-
+        if(checkUser.isManager(nowUser)) model.addAttribute("isManager",true);
         return "show-post";
     }
 
