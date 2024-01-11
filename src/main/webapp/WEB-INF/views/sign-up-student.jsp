@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@page import="koreanmaster.board.post.PostDto"%>
 
 <!doctype html>
 <html lang="en">

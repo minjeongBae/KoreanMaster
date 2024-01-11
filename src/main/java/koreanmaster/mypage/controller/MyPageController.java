@@ -4,7 +4,7 @@ import koreanmaster.board.post.PostDTO;
 import koreanmaster.board.post.service.Show;
 import koreanmaster.home.user.dao.Select;
 import koreanmaster.home.user.dao.Update;
-import koreanmaster.mypage.service.SignIn;
+import koreanmaster.home.user.service.CheckUser;
 import koreanmaster.teachers.teacher.dao.TeacherDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +20,11 @@ import java.util.List;
 @Controller
 public class MyPageController {
     private final Show show;
+    private final CheckUser checkUser;
     @Autowired
-    public MyPageController(Show show){
+    public MyPageController(Show show, CheckUser checkUser){
         this.show = show;
+        this.checkUser = checkUser;
     }
     @GetMapping("/revise_user_info")
     public String reviseUserInfo(HttpSession session, Model model) throws SQLException {
@@ -39,10 +41,10 @@ public class MyPageController {
         String newPw1 = rq.getParameter("new_password");
         String newPw2 = rq.getParameter("chk_password");
 
-        boolean isSuccess = new SignIn().isSuccess(userEmail, oldPw);
+        boolean signIn = checkUser.signIn(userEmail, oldPw);
         model.addAttribute("isStudent", new Select().isStudent(userEmail));
 
-        if(!newPw1.equals(newPw2) || !isSuccess){
+        if(!newPw1.equals(newPw2) || !signIn){
             model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
             return "revise-user-info";
         }

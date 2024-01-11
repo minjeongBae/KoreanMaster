@@ -1,7 +1,8 @@
 package koreanmaster.mypage.controller;
 
 import koreanmaster.home.user.dao.Select;
-import koreanmaster.mypage.service.SignIn;
+import koreanmaster.home.user.service.CheckUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,12 @@ import java.sql.SQLException;
 
 @Controller
 public class SignInController {
+    private final CheckUser checkUser;
+
+    @Autowired
+    public SignInController(CheckUser checkUser){
+        this.checkUser = checkUser;
+    }
     @GetMapping("/sign_in")
     public String signIn(HttpServletRequest request) {
         HttpSession s = request.getSession(false);
@@ -22,10 +29,11 @@ public class SignInController {
 
     @PostMapping("/session")
     public String checkSession(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
-        SignIn signin = new SignIn();
-        boolean isSuccess = signin.isSuccess(rq.getParameter("userEmail"),
+        boolean signIn = checkUser.signIn(
+                rq.getParameter("userEmail"),
                 rq.getParameter("userPW"));
-        if(isSuccess) {
+
+        if(signIn) {
             String userEmail = rq.getParameter("userEmail");
             session.setAttribute("userEmail", userEmail);
             model.addAttribute("email", userEmail);
@@ -38,6 +46,5 @@ public class SignInController {
         }
         model.addAttribute("alertMessage","사용자 이메일 또는 비밀번호가 옳지 않습니다.");
         return "sign-in";
-
     }
 }
