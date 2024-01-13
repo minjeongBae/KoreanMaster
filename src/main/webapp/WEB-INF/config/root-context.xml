@@ -26,7 +26,7 @@
     <!-- HikariCP Configuration -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/koreanmasterdb?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/koreanmasterdb?useSSL=false&amp;serverTimezone=Asia/Seoul&amp;allowPublicKeyRetrieval=true"/>
         <property name="username" value="root" />
         <property name="password" value="qoalswjd620!" />
     </bean>
