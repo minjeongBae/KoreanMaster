@@ -2,7 +2,8 @@
 
 <!-- 필요한 설정을 추가 -->
 
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:context="http://www.springframework.org/schema/context"
@@ -14,11 +15,10 @@
 			 					 http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- @Controller 애노테이션 사용 -->
-    <annotation-driven/>
+    <mvc:annotation-driven/>
 
     <!-- Component Scan 패키지 설정 -->
     <context:component-scan base-package="koreanmaster.common.config"/>
-
 
     <!-- 뷰 prefix, suffix 설정 -->
     <!--  ViewResolver 설정  -->
