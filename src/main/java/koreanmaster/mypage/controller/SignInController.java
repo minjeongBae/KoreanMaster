@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 
 @Controller
 public class SignInController {
@@ -30,7 +29,7 @@ public class SignInController {
     }
 
     @PostMapping("/session")
-    public String checkSession(HttpServletRequest rq, HttpSession session, Model model) throws SQLException {
+    public String checkSession(HttpServletRequest rq, HttpSession session, Model model) {
         boolean signIn = checkUser.signIn(
                 rq.getParameter("userEmail"),
                 rq.getParameter("userPW"));

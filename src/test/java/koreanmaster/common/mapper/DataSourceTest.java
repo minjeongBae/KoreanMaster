@@ -20,7 +20,6 @@ import static org.junit.Assert.fail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:/C:/Users/ssii6/KoreanMaster/src/main/webapp/WEB-INF/config/root-context.xml")
-@Log4j
 public class DataSourceTest {
 
     @Setter(onMethod_={@Autowired})
@@ -30,11 +29,10 @@ public class DataSourceTest {
     @Test
     public void testConnection(){
         try(Connection con = dataSource.getConnection()){
-            log.info(con);
             System.out.println("connect: "+con);
         }catch (Exception e){
-            org.junit.Assert.fail(e.getMessage());;
-            log.info("bad connect: "+e);
+            org.junit.Assert.fail(e.getMessage());
+            System.out.println("bad connect: "+e);
         }
     }
 
