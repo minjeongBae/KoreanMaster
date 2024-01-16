@@ -55,7 +55,8 @@
                             <td>${mine.getTeacherEmail()}</td>
                             <td>${mine.getStateDetail()}</td>
                             <td>
-                                <form action="" method="post">
+                                <form action="show_detail_class" method="post">
+                                    <input type="hidden" name="formCode" value="${application.getFormCode()}"
                                     <input type="hidden" name="teacher" value="${mine.getTeacherEmail()}" />
                                     <input type="hidden" name="student" value="${mine.getStudentEmail()}" />
                                     <input type="submit" value="상세보기" class="btn btn-secondary"/>

@@ -114,12 +114,12 @@ public class MyPageController {
         return "show-classes";
     }
 
-    @GetMapping("/show_application")
-    public String showApplication(HttpSession session, Model model) {
+    @GetMapping("/show_applications")
+    public String showApplications(HttpSession session, Model model) {
         // teacher version
         String email = (String) session.getAttribute("userEmail");
         model.addAttribute("applications", showForm.getAllOfTeacher(email));
 
-        return "show-application";
+        return "show-applications";
     }
 }

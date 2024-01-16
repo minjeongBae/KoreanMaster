@@ -55,10 +55,11 @@
                             <td>${application.getStudentEmail()}</td>
                             <td>${application.getStateDetail()}</td>
                             <td>
-                                <form action="" method="get">
+                                <form action="show_detail_application" method="post">
+                                    <input type="hidden" name="formCode" value="${application.getFormCode()}"
                                     <input type="hidden" name="teacher" value="${application.getTeacherEmail()}" />
                                     <input type="hidden" name="student" value="${application.getStudentEmail()}" />
-                                    <input type="submit" value="상세보기" class="btn btn-secondary"/>
+                                    <button class="btn btn-secondary" type="submit">상세보기</button>
                                 </form>
                             </td>
                         </tr>
@@ -68,8 +69,6 @@
 
     	</div>
     </div>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

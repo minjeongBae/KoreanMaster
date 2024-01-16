@@ -46,7 +46,7 @@
             <button onclick="show_my_posts()" type="button" class="btn btn-outline-info">나의 글</button>
             <button onclick="change_info()" type="button" class="btn btn-outline-secondary">정보 수정</button>
             <c:if test="${isStudent==false}">
-                <button onclick="show_application()" type="button" class="btn btn-outline-success">매칭 신청 목록</button>
+                <button onclick="show_applications()" type="button" class="btn btn-outline-success">매칭 신청 목록</button>
             </c:if>
             <button onclick="logout()" type="button" class="btn btn-outline-danger">로그아웃</button>
         </div>
@@ -102,8 +102,8 @@
         function show_classes() {
             window.location.href = "/KoreanMaster/show_classes";
         }
-        function show_application() {
-            window.location.href = "/KoreanMaster/show_application";
+        function show_applications() {
+            window.location.href = "/KoreanMaster/show_applications";
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
