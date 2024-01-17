@@ -29,7 +29,7 @@
 
       <h1 style="margin:30px 30px 30px 30px" >질문게시판</h1>
 
-      <div style="margin:50px 50px 50px 50px; border:5px solid #c9e4c2;">
+      <div style="margin:50px 50px 50px 50px; border:5px solid #B2EBF2;">
         <div style="margin:50px 50px 50px 50px;">
             <h2> ${post.getTitle()} <br /> </h2>
             작성일자: ${post.getRegistrationDate()} <br />

@@ -39,10 +39,10 @@
                   <table class= "table table-stripped" style= "text-align: center; boarder: 1px; solid: #dddddd">
                       <thead>
                         <tr>
-                          <th style= "background-color: #c9e4c2; text-align: center;">이메일</th>
-                          <th style= "background-color: #c9e4c2; text-align: center;">자격</th>
-                          <th style= "background-color: #c9e4c2; text-align: center;">소개글</th>
-                          <th style= "background-color: #c9e4c2; text-align: center;"> </th>
+                          <th style= "background-color: #B2EBF2; text-align: center;">이메일</th>
+                          <th style= "background-color: #B2EBF2; text-align: center;">자격</th>
+                          <th style= "background-color: #B2EBF2; text-align: center;">소개글</th>
+                          <th style= "background-color: #B2EBF2; text-align: center;"> </th>
                         </tr>
                       </thead>
                       <tbody>

@@ -3,9 +3,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>안녕 - 게시물</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  </head>
+    <title>안녕 - 신청서들 확인하기</title>
+</head>
   <body>
       <header class="p-3 bg-dark text-white">
         <div class="container">
@@ -23,6 +22,7 @@
           </div>
         </div>
       </header>
+
 
 
       <footer class="container py-5">

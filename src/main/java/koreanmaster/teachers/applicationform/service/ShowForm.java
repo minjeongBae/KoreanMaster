@@ -2,6 +2,7 @@ package koreanmaster.teachers.applicationform.service;
 
 import koreanmaster.common.mapper.ApplicationFormMapper;
 import koreanmaster.common.mapper.SimpleFormMapper;
+import koreanmaster.teachers.applicationform.ApplicationFormDTO;
 import koreanmaster.teachers.applicationform.SimpleFormDTO;
 import lombok.Setter;
 import org.apache.ibatis.annotations.Param;
@@ -24,5 +25,9 @@ public class ShowForm {
 
     public List<SimpleFormDTO> getAllOfTeacher(@Param("teacher") String teacher){
         return simpleMapper.getAllOfTeacher(teacher);
+    }
+
+    public ApplicationFormDTO getForm(@Param("formCode") int formCode){
+        return mapper.getByCode(formCode);
     }
 }

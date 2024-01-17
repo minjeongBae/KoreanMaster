@@ -42,10 +42,10 @@
             <table class= "table table-stripped" style= "text-align: center; boarder: 1px; solid #dddddd">
                 <thead>
                     <tr>
-                	    <th style= "background-color: #c9e4c2; text-align: center;">번호</th>
-                	    <th style= "background-color: #c9e4c2; text-align: center;">선생님</th>
-                	    <th style= "background-color: #c9e4c2; text-align: center;">현상태</th>
-                	    <th style= "background-color: #c9e4c2; text-align: center;"></th>
+                	    <th style= "background-color: #B2EBF2; text-align: center;">번호</th>
+                	    <th style= "background-color: #B2EBF2; text-align: center;">선생님</th>
+                	    <th style= "background-color: #B2EBF2; text-align: center;">현상태</th>
+                	    <th style= "background-color: #B2EBF2; text-align: center;"></th>
                 	</tr>
                 </thead>
                 <tbody>

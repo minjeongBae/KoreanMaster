@@ -15,7 +15,7 @@
             text-align: center;
         }
         .colored-div {
-            background-color: #FDF5E6; /* 여기에 원하는 색상 코드를 넣습니다. */
+            background-color: #E0F7FA; /* 여기에 원하는 색상 코드를 넣습니다. */
             padding: 20px; /* 내용과 테두리 간격을 조절합니다. */
         }
     </style>
