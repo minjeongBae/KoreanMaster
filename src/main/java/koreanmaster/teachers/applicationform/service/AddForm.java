@@ -18,9 +18,9 @@ public class AddForm {
 
     public boolean run(SimpleFormDTO simpleForm, ApplicationFormDTO form){
         try{
-            int code = simpleMapper.add(simpleForm);
-            mapper.add(code, form);
-        }catch (Exception e){
+            simpleMapper.add(simpleForm);
+            mapper.add(simpleForm.getFormCode(), form);
+        }catch(Exception e){
             System.out.println(e.getMessage());
             return false;
         }

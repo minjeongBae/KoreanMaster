@@ -65,7 +65,7 @@ public class TeachersController {
     }
 
     @PostMapping("/success_subscribe")
-    public String successSubscribe(HttpServletRequest request, HttpSession session) throws SQLException {
+    public String successSubscribe(HttpServletRequest request, HttpSession session) {
         String teacher = checkTeacher.getEmailByIntroId(Integer.parseInt(request.getParameter("introductionId")));
 
         int frequency = Integer.parseInt(request.getParameter("frequency"));

@@ -10,9 +10,9 @@ public interface SimpleFormMapper {
     @Insert("INSERT INTO Simple_Form (teacher_email, student_email, state) " +
             "VALUES (#{form.teacherEmail}, #{form.studentEmail}, #{form.state})")
     @Options(useGeneratedKeys = true, keyProperty = "formCode")
-    int add(@Param("form") SimpleFormDTO form);
+    void add(@Param("form") SimpleFormDTO form);
     @Select("SELECT form_code FROM Simple_Form WHERE teacher_email = #{teacher} AND student_email = #{student}")
-    int getCode(@Param("teacher") String teacher, @Param("student") String student);
+    List<Integer> getCode(@Param("teacher") String teacher, @Param("student") String student);
 
     @Select("SELECT * FROM Simple_Form WHERE teacher_email = #{teacher}")
     @Results({
