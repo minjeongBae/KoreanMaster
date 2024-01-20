@@ -77,10 +77,19 @@ public class TeachersController {
         String addition = request.getParameter("addition");
         String student = (String) session.getAttribute("userEmail");
 
-        ApplicationFormDTO form = new ApplicationFormDTO(
-                                    teacher,student,frequency,
-                                    time,root,level,
-                                    state,counselTime,addition);
+        ApplicationFormDTO form = null;
+        if(addition.isEmpty()) {
+             form = new ApplicationFormDTO(
+                    teacher,student,frequency,
+                    time,level, root,
+                    state,counselTime);
+        }
+        if(form==null) {
+            form = new ApplicationFormDTO(
+                    teacher,student,frequency,
+                    time,level,root,
+                    state,counselTime,addition);
+        }
 
         SimpleFormDTO simpleForm = new SimpleFormDTO(0, teacher, student,state);
         addForm.run(simpleForm, form);

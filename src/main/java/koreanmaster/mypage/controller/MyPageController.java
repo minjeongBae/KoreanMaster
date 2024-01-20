@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -110,7 +111,7 @@ public class MyPageController {
         // student version
         String email = (String) session.getAttribute("userEmail");
         model.addAttribute("classes", showForm.getAllOfStudent(email));
-
+        System.out.println(showForm.getAllOfStudent(email).get(0).getFormCode());
         return "show-classes";
     }
 
@@ -119,7 +120,6 @@ public class MyPageController {
         // teacher version
         String email = (String) session.getAttribute("userEmail");
         model.addAttribute("applications", showForm.getAllOfTeacher(email));
-
         return "show-applications";
     }
 }

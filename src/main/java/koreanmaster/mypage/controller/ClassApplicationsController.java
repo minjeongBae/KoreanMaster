@@ -1,5 +1,6 @@
 package koreanmaster.mypage.controller;
 
+import koreanmaster.teachers.applicationform.ApplicationFormDTO;
 import koreanmaster.teachers.applicationform.service.ShowForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ public class ClassApplicationsController {
     public String showDetailApplication(HttpServletRequest rq, Model model){
         int formCode = Integer.parseInt(rq.getParameter("formCode"));
         model.addAttribute("formCode", formCode);
+        System.out.println("form Code in show detail application (): "+ formCode);
         model.addAttribute("form", showForm.getForm(formCode));
         return "show-detail-application";
     }
