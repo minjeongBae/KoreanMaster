@@ -4,7 +4,9 @@ import koreanmaster.common.mapper.ApplicationFormMapper;
 import koreanmaster.common.mapper.SimpleFormMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RemoveForm {
     @Setter(onMethod_ = @Autowired)
     private ApplicationFormMapper mapper;
@@ -16,7 +18,6 @@ public class RemoveForm {
         try{
             mapper.remove(formCode);
             simpleMapper.remove(formCode);
-            simpleMapper.rearrangeFormCode();
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

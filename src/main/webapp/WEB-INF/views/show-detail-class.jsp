@@ -25,6 +25,11 @@
       </header>
 
 
+      <form action="remove_form" method="post">
+        <input type="hidden" name="formCode" value="${formCode}"/>
+        <h3>${formCode}</h3>
+        <input type="submit" value="form 삭제" class="btn btn-secondary"/>
+      </form>
 
 
       <footer class="container py-5">

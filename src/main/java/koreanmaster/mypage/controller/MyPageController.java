@@ -111,7 +111,6 @@ public class MyPageController {
         // student version
         String email = (String) session.getAttribute("userEmail");
         model.addAttribute("classes", showForm.getAllOfStudent(email));
-        System.out.println(showForm.getAllOfStudent(email).get(0).getFormCode());
         return "show-classes";
     }
 

@@ -32,8 +32,6 @@ public interface SimpleFormMapper {
     })
     List<SimpleFormDTO> getAllOfStudent(@Param("student") String student);
 
-    void rearrangeFormCode();
-
     @Delete("DELETE FROM Simple_Form WHERE form_code = #{formCode}")
     void remove(int formCode);
 }
