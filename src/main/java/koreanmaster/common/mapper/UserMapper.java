@@ -11,11 +11,11 @@ public interface UserMapper {
     @Select("SELECT email FROM User WHERE email= #{email}")
     String findByEmail(String email);
 
-    @Select("SELECT * FROM User WHERE email = #{email} AND password = #{password}")
-    UserDTO signIn(@Param("email") String email, @Param("password") String password);
-
     @Select("SELECT email FROM Manager WHERE email = #{email}")
     String isManager(String email);
-    @Update("UPDATE User SET password = #{newPW} WHERE email = #{email} AND password = #{oldPW}")
-    void changePw(@Param("email") String email, @Param("oldPW") String oldPW, @Param("newPW") String newPW);
+    @Update("UPDATE User SET password = #{newPW} WHERE email = #{email}")
+    void changePw(@Param("email") String email, @Param("newPW") String newPW);
+
+    @Select("SELECT password FROM User WHERE email = #{email}")
+    String getPw(@Param("email") String email);
 }

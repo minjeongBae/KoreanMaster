@@ -4,6 +4,8 @@ import koreanmaster.common.mapper.UserMapper;
 import koreanmaster.home.user.UserDTO;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,8 +18,11 @@ public class CheckUser {
         return (getEmail==null);
     }
     public boolean signIn(String email, String pw){
-        UserDTO user = mapper.signIn(email, pw);
-        return user != null;
+        if(mapper.findByEmail(email)!=null){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            return encoder.matches(pw,mapper.getPw(email));
+        }
+        return false;
     }
 
     public boolean isManager(String email){

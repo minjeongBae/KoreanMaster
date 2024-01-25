@@ -1,11 +1,13 @@
 package koreanmaster.home.user;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class UserDTO {
     private final String email;
-    private final String password;
+    @Setter
+    private String password;
     private final boolean isStudent;
 
     public UserDTO(String email, String password, boolean isStudent) {
