@@ -125,7 +125,7 @@
                         </thead>
                         <tbody>
                             <c:forEach var="application" items="${applications}" varStatus="loop">
-                                <c:if test="${application.getState() eq '1'}">
+                                <c:if test="${application.getState() eq '0'}">
                                     <tr>
                                         <td>${loop.index + 1}</td>
                                         <td>${application.getStudentEmail()}</td>
@@ -154,7 +154,7 @@
                         </thead>
                         <tbody>
                             <c:forEach var="application" items="${applications}" varStatus="loop">
-                                <c:if test="${application.getState() eq '2'}">
+                                <c:if test="${application.getState() eq '1'}">
                                     <tr>
                                         <td>${loop.index + 1}</td>
                                         <td>${application.getStudentEmail()}</td>
@@ -183,7 +183,7 @@
                         </thead>
                         <tbody>
                             <c:forEach var="application" items="${applications}" varStatus="loop">
-                                <c:if test="${application.getState() eq '3'}">
+                                <c:if test="${application.getState() eq '2'}">
                                     <tr>
                                         <td>${loop.index + 1}</td>
                                         <td>${application.getStudentEmail()}</td>
@@ -212,7 +212,7 @@
                         </thead>
                         <tbody>
                             <c:forEach var="application" items="${applications}" varStatus="loop">
-                                <c:if test="${application.getState() eq '4'}">
+                                <c:if test="${application.getState() eq '3'}">
                                     <tr>
                                         <td>${loop.index + 1}</td>
                                         <td>${application.getStudentEmail()}</td>
