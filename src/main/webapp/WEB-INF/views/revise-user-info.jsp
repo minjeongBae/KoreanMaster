@@ -114,7 +114,9 @@
             <p>
                 <button type="button" class="btn btn-secondary">영어 소통 능력 수준 변경</button>
                 <button type="button" class="btn btn-secondary">한국 거주 기간 변경</button>
-                <button type="button" class="btn btn-secondary">자기소개 추가 및 변경</button>
+                <form action="revise_introduction" method="post">
+                    <button type="submit" class="btn btn-secondary">자기소개 추가 및 변경</button>
+                </form>
             </p>
         </div>
     </div>

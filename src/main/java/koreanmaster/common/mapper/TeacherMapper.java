@@ -4,6 +4,7 @@ import koreanmaster.teachers.teacher.SimpleTeacherDTO;
 import koreanmaster.teachers.teacher.TeacherDTO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -14,8 +15,11 @@ public interface TeacherMapper {
             "VALUES (#{email}, #{name}, #{birth}, #{english}, #{qualified}, #{korean}, #{howLong}, #{phone})")
     void addTeacher(TeacherDTO teacher);
 
-
+    @Select("SELECT * FROM Teacher")
     List<SimpleTeacherDTO> allTeachers();
+
+    @Select("SELECT introduction_id FROM Teacher WHERE email=#{email}")
+    int getIntroIdByEmail(@Param("email") String email);
 
     void changeBirth(String email, String newDate);
 
