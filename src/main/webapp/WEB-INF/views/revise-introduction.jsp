@@ -31,6 +31,8 @@
         <div class="container">
             <form action="" method="post" style="background-color: #E0F7FA; margin:30px; padding: 20px">
                 <h2></br>[최종학력 및 전공]</h2>
+                <input type="hidden" name="origin" value="${introduction.getIntroductionId()}"/>
+
                 </br>최종학력을 입력해주세요.</br>
                 <input type="text" name="finalAcademicAbility" class="form-control mt-4 mb-2"
                     value="${introduction.getFinalAcademicAbility()}"/>
@@ -49,6 +51,8 @@
         <div class="container">
             <form action="" method="post" style="background-color: #E0F7FA; margin:30px; padding: 20px;">
                 <h2></br>[소개글]</h2>
+                <input type="hidden" name="origin" value="${introduction.getIntroductionId()}"/>
+
                 <input type="text" name="brief" class="form-control mt-4 mb-2"
                     value="${introduction.getBrief()}">
                 <div class="form-group">
@@ -60,11 +64,14 @@
                     <button type="submit" class="btn btn-secondary mb-3">저장</button>
                 </div>
             </form>
-            <form action="" method="post" style="background-color: #E0F7FA; margin:30px; padding: 20px;">
+            <form action="/KoreanMaster/admin/uploadFile" method="post"
+                enctype="multipart/form-data"
+                style="background-color: #E0F7FA; margin:30px; padding: 20px;">
+                <input type="hidden" name="origin" value="${introduction.getIntroductionId()}"/>
                 <h2></br>[이미지]</br></h2>
                 <img class="rounded-lg-3" src="${introduction.getImg()}" width="25%">
                 </br>
-                <input type="file" name="img" id="fileInput" style="margin-Top: 10px"
+                <input type="file" name="file" id="fileInput" style="margin-Top: 10px"
                     value=${introduction.getImg()} onchange="previewImage()">
                 <div style="margin-Top: 60px">
                     <button type="submit" class="btn btn-secondary mb-3">저장</button>
@@ -72,7 +79,6 @@
             </form>
         </div>
     </div>
-
 
     <footer class="container py-5">
         <div class="row">
@@ -86,30 +92,19 @@
     </footer>
 
     <script>
-    function previewImage() {
-        // Get the file input element
-        var fileInput = document.getElementById('fileInput');
+    let formData = new FormData();
 
-        // Get the preview image element
+    function previewImage() {
+        var fileInput = document.getElementById('fileInput');
         var previewImg = document.getElementById('previewImg');
 
-        // Check if a file is selected
-        if (fileInput.files && fileInput.files[0]) {
-            // Create a FileReader object
-            var reader = new FileReader();
-
-            // Set the callback function when the file is loaded
-            reader.onload = function (e) {
-                // Set the source of the preview image to the loaded file data
-                previewImg.src = e.target.result;
-            };
-
-            // Read the file as a data URL
-            reader.readAsDataURL(fileInput.files[0]);
-        } else {
-            // If no file is selected, you can set a default image or clear the preview
-            previewImg.src = ""; // Set a default image source or leave it empty to clear the preview
+        let maxSize = 1048576*10;
+        if(fileInput.files[0].size > maxSize){
+            alert("파일 크기가 너무 큽니다.. " + fileInput.files[0].size);
+            return false;
         }
+
+        formData.append("file", fileInput.files[0]);
     }
     </script>
 
