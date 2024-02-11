@@ -4,6 +4,9 @@ import koreanmaster.common.mapper.IntroductionMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @Component
 public class ReviseIntroduction {
@@ -19,9 +22,11 @@ public class ReviseIntroduction {
         return true;
     }
 
-    public boolean reviseImg(int id, String newImg){
+    public boolean reviseImg(int id, MultipartFile file){
         try{
-            mapper.reviseImg(id,newImg);
+            File newFile = new File("C:\\Users\\ssii6\\KoreanMaster\\images",file.getOriginalFilename());
+            file.transferTo(newFile);
+            mapper.reviseImg(id,newFile.getAbsolutePath());
         }catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
